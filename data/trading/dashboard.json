@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-03-22T21:16:00.771821",
+  "positions": {
+    "total": 65,
+    "today_pnl": 2.3,
+    "month_pnl": 8.7
+  },
+  "risk": {
+    "vix": 18.5,
+    "put_call": 0.82,
+    "sentiment": 55
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "currentWeek": "2026-W12",
+  "stats": [
+    {
+      "timestamp": "2026-03-19T07:51:00+08:00",
+      "type": "morning",
+      "newsCount": 35,
+      "marketCoverage": ["外汇", "宏观数据", "大宗商品", "美股", "A 股", "Crypto"],
+      "fetchTimeSec": 12.5,
+      "pushDelaySec": 2.1,
+      "success": true
+    }
+  ],
+  "sourceStats": {},
+  "alerts": []
+}
