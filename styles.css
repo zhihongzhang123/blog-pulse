@@ -894,33 +894,15 @@ body.light-mode .ambient-light::after {
 .mode-switcher {
     display: flex;
     gap: var(--spacing-xs);
+    justify-content: center;
+    margin: var(--spacing-md) auto;
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     padding: var(--spacing-xs);
     border-radius: var(--radius-xxl);
     border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-subtle);
-}
-
-@media (max-width: 768px) {
-    .header-content {
-        flex-direction: column;
-        gap: var(--spacing-md);
-        align-items: center;
-    }
-    
-    .header-left {
-        text-align: center;
-    }
-    
-    .logo {
-        justify-content: center;
-    }
-    
-    .mode-switcher-wrapper {
-        position: static;
-    }
+    width: fit-content;
 }
 
 .switch-btn {
@@ -1214,5 +1196,5 @@ body.light-mode .ambient-light::after {
 /* ========================================
    ÂìçÂ∫îÂºè
    ======================================== */
-ºè
+ÔøΩÔøΩ
    ======================================== */
