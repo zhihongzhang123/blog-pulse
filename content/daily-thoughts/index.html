@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日思考 · Pulse</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #0a84ff; text-decoration: none; margin-bottom: 20px; }
+        .page-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; text-align: center; background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .article-card { background: rgba(44, 44, 46, 0.65); backdrop-filter: blur(20px); border-radius: 20px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+        .article-card:hover { transform: translateY(-4px); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4); }
+        .article-date { color: #86868b; font-size: 0.85rem; margin-bottom: 8px; }
+        .article-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 12px; line-height: 1.4; }
+        .article-excerpt { color: #94a3b8; line-height: 1.7; margin-bottom: 16px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .tag { background: rgba(10, 132, 255, 0.12); color: #0a84ff; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
+        .read-more { color: #0a84ff; text-decoration: none; font-weight: 500; }
+        .read-more:hover { color: #ffd60a; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-link">← 返回首页</a>
+        <h1 class="page-title">🌌 每日交易思考</h1>
+        
+        <div class="articles-grid">
+            <article class="article-card">
+                <div class="article-date">2026 年 3 月 22 日</div>
+                <h2 class="article-title">在别人恐惧时，你看到了什么？</h2>
+                <div class="article-tags">
+                    <span class="tag">交易哲学</span>
+                    <span class="tag">巴菲特智慧</span>
+                </div>
+                <p class="article-excerpt">市场暴跌时，大多数人看到的是亏损的数字。但真正的交易者看到的是价格的重新定价，是价值与价格偏离的瞬间...</p>
+                <a href="2026-03-22-fear-and-opportunity.html" class="read-more">阅读全文 →</a>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-date">2026 年 3 月 21 日</div>
+                <h2 class="article-title">等待的艺术</h2>
+                <div class="article-tags">
+                    <span class="tag">交易技能</span>
+                    <span class="tag">利弗莫尔</span>
+                </div>
+                <p class="article-excerpt">利弗莫尔说："赚大钱的不是买卖，而是等待。"但等待不是被动，而是主动选择...</p>
+                <a href="2026-03-21-art-of-waiting.html" class="read-more">阅读全文 →</a>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-date">2026 年 3 月 20 日</div>
+                <h2 class="article-title">周期与人性</h2>
+                <div class="article-tags">
+                    <span class="tag">交易人生</span>
+                    <span class="tag">周期理论</span>
+                </div>
+                <p class="article-excerpt">市场周期本质是人性的周期。贪婪与恐惧代代相传，技术在变，人性不变...</p>
+                <a href="2026-03-20-cycles-and-human-nature.html" class="read-more">阅读全文 →</a>
+            </article>
+        </div>
+    </div>
+</body>
+</html>

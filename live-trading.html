@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实盘系统 · Pulse</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #0a84ff; text-decoration: none; margin-bottom: 20px; }
+        .page-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; text-align: center; background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 40px; }
+        .dashboard-card { background: rgba(44, 44, 46, 0.65); backdrop-filter: blur(20px); border-radius: 20px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .dashboard-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 20px; color: #ffd60a; }
+        .metric-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .metric-row:last-child { border-bottom: none; }
+        .metric-label { color: #86868b; font-size: 0.9rem; }
+        .metric-value { font-weight: 700; font-size: 1.1rem; }
+        .metric-value.positive { color: #10b981; }
+        .metric-value.negative { color: #ff453a; }
+        .disclaimer { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 20px; text-align: center; color: #86868b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回首页</a>
+        <h1 class="page-title">⚡ 交易系统实盘</h1>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>📊 持仓概览</h3>
+                <div class="metric-row">
+                    <span class="metric-label">总仓位</span>
+                    <span class="metric-value">65%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">今日盈亏</span>
+                    <span class="metric-value positive">+2.3%</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">本月盈亏</span>
+                    <span class="metric-value positive">+8.7%</span>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>🛡️ 风险指标</h3>
+                <div class="metric-row">
+                    <span class="metric-label">VIX</span>
+                    <span class="metric-value">18.5</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Put/Call</span>
+                    <span class="metric-value">0.82</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">情绪评分</span>
+                    <span class="metric-value">55/100</span>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>🌡️ 市场温度</h3>
+                <div class="metric-row">
+                    <span class="metric-label">当前温度</span>
+                    <span class="metric-value">65° 偏暖</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">趋势</span>
+                    <span class="metric-value positive">震荡偏多</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">建议</span>
+                    <span class="metric-value">持有为主</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="disclaimer">
+            <p>⚠️ 实盘数据延迟 15 分钟，仅供参考。投资决策请自行判断。</p>
+            <p style="margin-top: 8px; font-size: 0.85rem;">市场有风险，投资需谨慎。</p>
+        </div>
+    </div>
+    
+    <script src="scripts/integrate-systems.js"></script>
+</body>
+</html>

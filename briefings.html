@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻简报 · Pulse</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #0a84ff; text-decoration: none; margin-bottom: 20px; }
+        .page-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; text-align: center; background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .briefing-card { background: rgba(44, 44, 46, 0.65); backdrop-filter: blur(20px); border-radius: 20px; padding: 30px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 20px; transition: all 0.3s ease; }
+        .briefing-card:hover { transform: translateY(-2px); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4); }
+        .briefing-title { font-size: 1.5rem; margin-bottom: 10px; }
+        .briefing-meta { color: #86868b; font-size: 0.9rem; margin-bottom: 20px; }
+        .briefing-content { white-space: pre-wrap; line-height: 1.8; max-height: 400px; overflow-y: auto; }
+        .view-full { display: inline-block; margin-top: 16px; color: #0a84ff; text-decoration: none; font-weight: 500; }
+        .view-full:hover { color: #ffd60a; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回首页</a>
+        <h1 class="page-title">📰 新闻简报归档</h1>
+        
+        <div id="briefing-list">
+            <div class="briefing-card">
+                <h2 class="briefing-title">🟢 2026-03-22 晚报 | 全球宏观与核心交易线索</h2>
+                <div class="briefing-meta">
+                    <span>📅 2026-03-22 21:32</span> • 
+                    <span>📊 102 条新闻</span> •
+                    <span>🆔 e9dc828cf21c4ed786dd3a63fcdd8b15</span>
+                </div>
+                <div class="briefing-content">💡 核心主线 (TL;DR)
+「科技股领涨，AI 创新持续发酵」- Page-Agent 优化版智能采集 102 条
+
+⏰ 数据截点：2026-03-22 21:32 (Asia/Shanghai)
+🌍 焦点雷达：宏观政策 | 科技巨头 | 加密货币 | 地缘政治
+
+---
+
+📡 核心异动 & 催化剂
+
+【级别一：重大】
+• OpenAI 计划 2026 年底员工翻倍至 8000 人 - Page-Agent-Particle
+• 特朗普对伊朗发出 48 小时霍尔木兹最后通牒 - Page-Agent-Particle
+• 马斯克被判误导 Twitter 投资者 - Page-Agent-Particle
+• 英国确认伊朗向迪戈加西亚基地发射导弹 - Page-Agent-Particle
+• 加密货币裁员潮加剧 - Page-Agent-Particle
+
+【级别二：重要】
+• 英伟达 DLSS 5 宣传混乱 - Page-Agent-Particle
+• SPY 下跌 1.4%，市场抛售持续 - Page-Agent-CNBC
+• NVDA 下跌 3.3%，芯片板块走弱 - Page-Agent-CNBC
+• 油价因地缘政治紧张局势飙升 - Page-Agent-CNBC
+
+【级别三：关注】
+• 科技巨头财报季前瞻
+• 美联储政策会议纪要
+• 中东局势持续发酵</div>
+                <a href="data/news/latest.html" class="view-full">查看完整简报 →</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 加载最新简报数据
+        fetch('data/news/latest.json')
+            .then(r => r.json())
+            .then(data => {
+                const card = document.querySelector('.briefing-card');
+                if (data.title) {
+                    card.querySelector('.briefing-title').textContent = data.title;
+                }
+                if (data.content) {
+                    card.querySelector('.briefing-content').textContent = data.content.substring(0, 500) + '...';
+                }
+            })
+            .catch(e => console.log('数据加载失败'));
+    </script>
+</body>
+</html>

@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const switchBtns = document.querySelectorAll('.switch-btn');
     const body = document.body;
     
-    // 读取保存的模式
-    const savedMode = localStorage.getItem('pulse-theme-mode') || 'dark';
+    // 读取保存的模式（默认浅色）
+    const savedMode = localStorage.getItem('pulse-theme-mode') || 'light';
     applyMode(savedMode);
     
     // 更新按钮状态

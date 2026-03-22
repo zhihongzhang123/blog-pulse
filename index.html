@@ -69,11 +69,29 @@
     <div class="container">
         <!-- 头部 -->
         <header class="header">
-            <div class="logo">
-                <span class="pulse-icon">💓</span>
-                <h1>Pulse</h1>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                <div>
+                    <div class="logo">
+                        <span class="pulse-icon">💓</span>
+                        <h1>Pulse</h1>
+                    </div>
+                    <p class="tagline">市场脉搏 · 交易哲学 · 投资人生</p>
+                </div>
+                
+                <!-- 模式切换器 - 右上角 -->
+                <div class="mode-switcher">
+                    <button class="switch-btn" data-mode="light" title="浅色模式">
+                        <span class="switch-icon">☀️</span>
+                    </button>
+                    <button class="switch-btn active" data-mode="dark" title="深色模式">
+                        <span class="switch-icon">🌙</span>
+                    </button>
+                    <button class="switch-btn" data-mode="auto" title="跟随系统">
+                        <span class="switch-icon">🔄</span>
+                    </button>
+                </div>
             </div>
-            <p class="tagline">市场脉搏 · 交易哲学 · 投资人生</p>
+            
             <nav class="nav">
                 <a href="#daily-thoughts" class="active">每日思考</a>
                 <a href="#market-analysis">市场分析</a>
@@ -81,19 +99,6 @@
                 <a href="#live-trading">实盘系统</a>
                 <a href="about.html">关于</a>
             </nav>
-            
-            <!-- 模式切换器 -->
-            <div class="mode-switcher">
-                <button class="switch-btn active" data-mode="dark" title="深色模式">
-                    <span class="switch-icon">🌙</span>
-                </button>
-                <button class="switch-btn" data-mode="light" title="浅色模式">
-                    <span class="switch-icon">☀️</span>
-                </button>
-                <button class="switch-btn" data-mode="auto" title="跟随系统">
-                    <span class="switch-icon">🔄</span>
-                </button>
-            </div>
         </header>
 
         <!-- 每日思考 -->
@@ -174,7 +179,7 @@
                     <div class="analysis-preview">
                         <p>三大指数表现、热门股解读、情绪指标、大师智慧...</p>
                     </div>
-                    <a href="market-analysis/2026-03-22-post-market.html" class="read-more">查看完整分析 →</a>
+                    <a href="market-analysis.html" class="read-more">查看更多分析 →</a>
                 </div>
             </div>
         </section>
@@ -362,6 +367,15 @@
                 <p class="footer-disclaimer">
                     本站内容仅供参考，不构成投资建议。市场有风险，投资需谨慎。
                 </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="scripts/integrate-systems.js"></script>
+</body>
+</html>
+         </p>
             </div>
         </footer>
     </div>
