@@ -8,8 +8,55 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Apple 风格动态光晕背景 */
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 30px) scale(0.9); }
+        }
+        
+        .ambient-light {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .ambient-light::before,
+        .ambient-light::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .ambient-light::before {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(10, 132, 255, 0.3) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+        }
+        
+        .ambient-light::after {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(191, 90, 242, 0.25) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -10s;
+        }
+    </style>
 </head>
 <body>
+    <div class="ambient-light"></div>
     <div class="container">
         <!-- 头部 -->
         <header class="header">
@@ -19,7 +66,7 @@
             </div>
             <p class="tagline">市场脉搏 · 交易哲学 · 投资人生</p>
             <nav class="nav">
-                <a href="#daily-thoughts">每日思考</a>
+                <a href="#daily-thoughts" class="active">每日思考</a>
                 <a href="#market-analysis">市场分析</a>
                 <a href="#briefings">新闻简报</a>
                 <a href="#live-trading">实盘系统</a>

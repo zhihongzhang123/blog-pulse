@@ -4,27 +4,34 @@
    ======================================== */
 
 :root {
-    /* 主色调 - 深邃金融感 */
-    --color-bg: #0a0e14;
-    --color-bg-secondary: #111823;
-    --color-bg-card: #161f2e;
-    --color-text: #e8eef6;
-    --color-text-muted: #94a3b8;
-    --color-accent: #3b82f6;
-    --color-accent-glow: rgba(59, 130, 246, 0.3);
-    --color-success: #10b981;
-    --color-warning: #f59e0b;
-    --color-danger: #ef4444;
-    --color-gold: #d4af37;
+    /* 主色调 - Apple 风格深邃金融感 */
+    --color-bg: #000000;
+    --color-bg-secondary: #1c1c1e;
+    --color-bg-card: #2c2c2e;
+    --color-bg-glass: rgba(44, 44, 46, 0.65);
+    --color-text: #f5f5f7;
+    --color-text-muted: #86868b;
+    --color-accent: #0a84ff;
+    --color-accent-glow: rgba(10, 132, 255, 0.4);
+    --color-success: #30d158;
+    --color-warning: #ffd60a;
+    --color-danger: #ff453a;
+    --color-gold: #ffd60a;
+    --color-purple: #bf5af2;
+    --color-pink: #ff375f;
+    --color-teal: #64d2ff;
     
-    /* 渐变 */
-    --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
-    --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-    --gradient-dark: linear-gradient(180deg, #0a0e14 0%, #111823 100%);
+    /* Apple 风格渐变 */
+    --gradient-gold: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%);
+    --gradient-blue: linear-gradient(135deg, #0a84ff 0%, #5e5ce6 100%);
+    --gradient-purple: linear-gradient(135deg, #bf5af2 0%, #5e5ce6 100%);
+    --gradient-mesh: radial-gradient(ellipse at 30% 20%, rgba(94, 92, 230, 0.15) 0%, transparent 50%),
+                     radial-gradient(ellipse at 70% 80%, rgba(10, 132, 255, 0.1) 0%, transparent 50%);
+    --gradient-dark: linear-gradient(180deg, #000000 0%, #1c1c1e 100%);
     
-    /* 字体 */
+    /* Apple 字体栈 */
     --font-serif: 'Playfair Display', 'Noto Serif SC', serif;
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
     
     /* 间距 */
     --spacing-xs: 0.5rem;
@@ -33,14 +40,23 @@
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
     
-    /* 圆角 */
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
+    /* Apple 风格圆角 */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-xxl: 40px;
     
-    /* 阴影 */
-    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.4);
-    --shadow-glow: 0 0 30px var(--color-accent-glow);
+    /* Apple 风格阴影 */
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 40px var(--color-accent-glow);
+    --shadow-elevated: 0 12px 48px rgba(0, 0, 0, 0.4);
+    --shadow-subtle: 0 2px 12px rgba(0, 0, 0, 0.2);
+    
+    /* 毛玻璃效果 */
+    --glass-bg: rgba(44, 44, 46, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(20px);
 }
 
 /* 基础重置 */
@@ -60,6 +76,21 @@ body {
     color: var(--color-text);
     line-height: 1.7;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apple 风格背景网格 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-mesh);
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* 容器 */
@@ -75,8 +106,20 @@ body {
 .header {
     text-align: center;
     padding: var(--spacing-xl) 0;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    border-bottom: 1px solid var(--glass-border);
     margin-bottom: var(--spacing-xl);
+    position: relative;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
 }
 
 .logo {
@@ -90,67 +133,70 @@ body {
 .pulse-icon {
     font-size: 2.5rem;
     animation: pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 55, 95, 0.5));
 }
 
 @keyframes pulse {
     0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 0.9; }
 }
 
 .logo h1 {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 600;
     background: var(--gradient-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: 0.1em;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 60px rgba(255, 214, 10, 0.3);
 }
 
 .tagline {
-    font-family: var(--font-serif);
-    font-size: 1.1rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
     color: var(--color-text-muted);
-    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.02em;
     margin-bottom: var(--spacing-lg);
+    opacity: 0.8;
 }
 
 .nav {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-sm);
     flex-wrap: wrap;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-xxl);
+    border: 1px solid var(--glass-border);
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .nav a {
-    color: var(--color-text);
+    color: var(--color-text-muted);
     text-decoration: none;
-    font-size: 0.95rem;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-sm);
-    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-xl);
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
     position: relative;
 }
 
-.nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-gold);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-}
-
-.nav a:hover::after {
-    width: 80%;
-}
-
 .nav a:hover {
-    color: var(--color-gold);
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.nav a.active {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 /* ========================================
@@ -162,12 +208,14 @@ body {
 }
 
 .section-title {
-    font-family: var(--font-serif);
-    font-size: 1.8rem;
+    font-family: var(--font-sans);
+    font-size: 1.7rem;
+    font-weight: 600;
     margin-bottom: var(--spacing-lg);
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    letter-spacing: -0.02em;
 }
 
 .title-icon {
@@ -184,12 +232,14 @@ body {
 }
 
 .card {
-    background: var(--color-bg-card);
-    border-radius: var(--radius-lg);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
     box-shadow: var(--shadow-card);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(148, 163, 184, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    border: 1px solid var(--glass-border);
     position: relative;
     overflow: hidden;
 }
@@ -200,20 +250,39 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: var(--gradient-blue);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.4s ease;
+    pointer-events: none;
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-glow);
-    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: var(--shadow-elevated);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .card:hover::before {
     opacity: 1;
+}
+
+.card:hover::after {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .card-date {
@@ -250,12 +319,14 @@ body {
 }
 
 .tag {
-    background: rgba(59, 130, 246, 0.15);
+    background: rgba(10, 132, 255, 0.12);
     color: var(--color-accent);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-xxl);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(10, 132, 255, 0.2);
+    letter-spacing: 0.02em;
 }
 
 .read-more {
@@ -286,30 +357,37 @@ body {
    ======================================== */
 .analysis-tabs {
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
     margin-bottom: var(--spacing-lg);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-xxl);
+    border: 1px solid var(--glass-border);
+    width: fit-content;
 }
 
 .tab-btn {
-    background: var(--color-bg-card);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: transparent;
+    border: none;
     color: var(--color-text-muted);
     padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-xl);
     cursor: pointer;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .tab-btn:hover {
-    border-color: var(--color-accent);
     color: var(--color-text);
 }
 
 .tab-btn.active {
-    background: var(--gradient-blue);
-    border-color: transparent;
+    background: var(--color-accent);
     color: white;
+    box-shadow: 0 4px 16px rgba(10, 132, 255, 0.4);
 }
 
 .tab-content {
@@ -375,17 +453,20 @@ body {
 }
 
 .briefing-card {
-    background: var(--color-bg-card);
-    border-radius: var(--radius-lg);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
     text-align: center;
-    border: 1px solid rgba(148, 163, 184, 0.1);
-    transition: all 0.3s ease;
+    border: 1px solid var(--glass-border);
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .briefing-card:hover {
-    border-color: rgba(59, 130, 246, 0.3);
-    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
 }
 
 .briefing-type {
@@ -410,9 +491,15 @@ body {
 }
 
 .briefing-time {
-    font-size: 2rem;
-    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-family: var(--font-sans);
+    font-weight: 700;
     margin-bottom: var(--spacing-sm);
+    letter-spacing: -0.03em;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .briefing-status {
@@ -446,17 +533,22 @@ body {
 }
 
 .dashboard-card {
-    background: var(--color-bg-card);
-    border-radius: var(--radius-lg);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
-    border: 1px solid rgba(148, 163, 184, 0.1);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-subtle);
 }
 
 .dashboard-card h4 {
-    font-family: var(--font-serif);
-    font-size: 1.2rem;
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 600;
     margin-bottom: var(--spacing-md);
-    color: var(--color-gold);
+    color: var(--color-text);
+    letter-spacing: -0.01em;
 }
 
 .dashboard-content {
@@ -467,28 +559,42 @@ body {
 
 .metric {
     text-align: center;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-lg);
+    transition: background 0.3s ease;
+}
+
+.metric:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .metric-label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--color-text-muted);
     margin-bottom: 0.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .metric-value {
     display: block;
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    letter-spacing: -0.03em;
+    font-feature-settings: "tnum" on, "lnum" on;
 }
 
 .metric-value.positive {
     color: var(--color-success);
+    text-shadow: 0 0 20px rgba(48, 209, 88, 0.3);
 }
 
 .metric-value.negative {
     color: var(--color-danger);
+    text-shadow: 0 0 20px rgba(255, 69, 58, 0.3);
 }
 
 .trading-note {
@@ -636,17 +742,66 @@ body {
 }
 
 /* ========================================
+   Apple 风格按钮
+   ======================================== */
+.btn-apple {
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    box-shadow: 0 4px 16px rgba(10, 132, 255, 0.3);
+}
+
+.btn-apple:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 24px rgba(10, 132, 255, 0.4);
+}
+
+.btn-apple.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+/* ========================================
+   Apple 风格分隔线
+   ======================================== */
+.divider-apple {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    border: none;
+    margin: var(--spacing-xl) 0;
+}
+
+/* ========================================
    加载动画
    ======================================== */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
 .card {
-    animation: fadeIn 0.6s ease forwards;
+    animation: fadeIn 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 .card:nth-child(2) { animation-delay: 0.1s; }
 .card:nth-child(3) { animation-delay: 0.2s; }
 .card:nth-child(4) { animation-delay: 0.3s; }
+
+.section {
+    animation: scaleIn 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* ========================================
+   响应式
+   ======================================== */
