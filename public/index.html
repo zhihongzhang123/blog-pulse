@@ -57,6 +57,15 @@
 </head>
 <body>
     <div class="ambient-light"></div>
+    
+    <!-- 动态岛 (Dynamic Island) -->
+    <div class="dynamic-island" id="dynamic-island">
+        <div class="island-content">
+            <span class="island-icon">💓</span>
+            <span class="island-text">Pulse 已就绪</span>
+        </div>
+    </div>
+    
     <div class="container">
         <!-- 头部 -->
         <header class="header">
@@ -72,6 +81,19 @@
                 <a href="#live-trading">实盘系统</a>
                 <a href="#about">关于</a>
             </nav>
+            
+            <!-- 模式切换器 -->
+            <div class="mode-switcher">
+                <button class="switch-btn active" data-mode="dark" title="深色模式">
+                    <span class="switch-icon">🌙</span>
+                </button>
+                <button class="switch-btn" data-mode="light" title="浅色模式">
+                    <span class="switch-icon">☀️</span>
+                </button>
+                <button class="switch-btn" data-mode="auto" title="跟随系统">
+                    <span class="switch-icon">🔄</span>
+                </button>
+            </div>
         </header>
 
         <!-- 每日思考 -->
@@ -185,42 +207,92 @@
                 <span class="title-icon">⚡</span>
                 交易系统实盘
             </h2>
-            <div class="trading-dashboard">
-                <div class="dashboard-card">
-                    <h4>持仓概览</h4>
-                    <div class="dashboard-content">
-                        <div class="metric">
-                            <span class="metric-label">总仓位</span>
-                            <span class="metric-value">65%</span>
+            
+            <!-- iOS 风格小组件网格 -->
+            <div class="widgets-grid">
+                <!-- 持仓概览小组件 -->
+                <div class="widget widget-large">
+                    <div class="widget-header">
+                        <span class="widget-icon">📊</span>
+                        <span class="widget-title">持仓概览</span>
+                    </div>
+                    <div class="widget-content">
+                        <div class="widget-metric">
+                            <span class="widget-metric-label">总仓位</span>
+                            <span class="widget-metric-value">65%</span>
                         </div>
-                        <div class="metric">
-                            <span class="metric-label">今日盈亏</span>
-                            <span class="metric-value positive">+2.3%</span>
+                        <div class="widget-metric">
+                            <span class="widget-metric-label">今日盈亏</span>
+                            <span class="widget-metric-value positive">+2.3%</span>
                         </div>
-                        <div class="metric">
-                            <span class="metric-label">本月盈亏</span>
-                            <span class="metric-value positive">+8.7%</span>
+                        <div class="widget-metric">
+                            <span class="widget-metric-label">本月盈亏</span>
+                            <span class="widget-metric-value positive">+8.7%</span>
                         </div>
                     </div>
+                    <div class="widget-footer">
+                        <span class="widget-update-time">更新于 1 分钟前</span>
+                    </div>
                 </div>
-                <div class="dashboard-card">
-                    <h4>风险指标</h4>
-                    <div class="dashboard-content">
-                        <div class="metric">
-                            <span class="metric-label">VIX</span>
-                            <span class="metric-value">18.5</span>
+                
+                <!-- 风险指标小组件 -->
+                <div class="widget widget-large">
+                    <div class="widget-header">
+                        <span class="widget-icon">🛡️</span>
+                        <span class="widget-title">风险指标</span>
+                    </div>
+                    <div class="widget-content">
+                        <div class="widget-metric">
+                            <span class="widget-metric-label">VIX</span>
+                            <span class="widget-metric-value">18.5</span>
                         </div>
-                        <div class="metric">
-                            <span class="metric-label">Put/Call</span>
-                            <span class="metric-value">0.82</span>
+                        <div class="widget-metric">
+                            <span class="widget-metric-label">Put/Call</span>
+                            <span class="widget-metric-value">0.82</span>
                         </div>
-                        <div class="metric">
-                            <span class="metric-label">情绪评分</span>
-                            <span class="metric-value">55/100</span>
+                        <div class="widget-metric">
+                            <span class="widget-metric-label">情绪</span>
+                            <span class="widget-metric-value">55/100</span>
+                        </div>
+                    </div>
+                    <div class="widget-footer">
+                        <span class="widget-update-time">更新于 1 分钟前</span>
+                    </div>
+                </div>
+                
+                <!-- 市场状态小组件 -->
+                <div class="widget widget-small">
+                    <div class="widget-header">
+                        <span class="widget-icon">🌡️</span>
+                        <span class="widget-title">市场温度</span>
+                    </div>
+                    <div class="widget-content-center">
+                        <div class="temperature-gauge">
+                            <div class="gauge-fill" style="width: 65%"></div>
+                        </div>
+                        <span class="temperature-text">65° 偏暖</span>
+                    </div>
+                </div>
+                
+                <!-- 推送状态小组件 -->
+                <div class="widget widget-small">
+                    <div class="widget-header">
+                        <span class="widget-icon">📬</span>
+                        <span class="widget-title">今日推送</span>
+                    </div>
+                    <div class="widget-content-center">
+                        <div class="push-status">
+                            <span class="status-dot success"></span>
+                            <span class="status-text">早报已推送</span>
+                        </div>
+                        <div class="push-status">
+                            <span class="status-dot pending"></span>
+                            <span class="status-text">晚报待推送</span>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="trading-note">
                 <p>⚠️ 实盘数据延迟 15 分钟，仅供参考。投资决策请自行判断。</p>
             </div>

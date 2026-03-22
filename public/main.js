@@ -1,8 +1,92 @@
 // ========================================
-// Pulse Blog · 交互脚本
+// Pulse Blog · 交互脚本 (Apple 风格增强)
 // ========================================
 
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // 动态岛通知
+    const dynamicIsland = document.getElementById('dynamic-island');
+    
+    function showIslandNotification(text, icon = '💓', duration = 3000) {
+        const islandContent = dynamicIsland.querySelector('.island-content');
+        islandContent.innerHTML = `
+            <span class="island-icon">${icon}</span>
+            <span class="island-text">${text}</span>
+        `;
+        
+        dynamicIsland.classList.add('visible');
+        dynamicIsland.classList.add('expanded');
+        
+        setTimeout(() => {
+            dynamicIsland.classList.remove('expanded');
+            setTimeout(() => {
+                dynamicIsland.classList.remove('visible');
+            }, 400);
+        }, duration);
+    }
+    
+    // 显示欢迎通知
+    setTimeout(() => {
+        showIslandNotification('Pulse 已就绪', '💓', 2500);
+    }, 1000);
+    
+    // 模式切换器
+    const switchBtns = document.querySelectorAll('.switch-btn');
+    const body = document.body;
+    
+    // 读取保存的模式
+    const savedMode = localStorage.getItem('pulse-theme-mode') || 'dark';
+    applyMode(savedMode);
+    
+    // 更新按钮状态
+    switchBtns.forEach(btn => {
+        if (btn.dataset.mode === savedMode) {
+            btn.classList.add('active');
+        }
+        
+        btn.addEventListener('click', function() {
+            const mode = this.dataset.mode;
+            applyMode(mode);
+            
+            // 保存偏好
+            localStorage.setItem('pulse-theme-mode', mode);
+            
+            // 触觉反馈动画
+            this.classList.add('haptic-press');
+            setTimeout(() => this.classList.remove('haptic-press'), 150);
+            
+            // 动态岛通知
+            const modeNames = { dark: '深色模式', light: '浅色模式', auto: '跟随系统' };
+            showIslandNotification(`已切换到${modeNames[mode]}`, this.querySelector('.switch-icon').textContent, 2000);
+        });
+    });
+    
+    function applyMode(mode) {
+        // 移除所有模式类
+        body.classList.remove('dark-mode', 'light-mode');
+        
+        if (mode === 'auto') {
+            // 跟随系统
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            body.classList.add(prefersDark ? 'dark-mode' : 'light-mode');
+        } else {
+            body.classList.add(mode === 'dark' ? 'dark-mode' : 'light-mode');
+        }
+        
+        // 更新按钮状态
+        switchBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.mode === mode);
+        });
+    }
+    
+    // 监听系统主题变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        const currentMode = localStorage.getItem('pulse-theme-mode');
+        if (currentMode === 'auto') {
+            applyMode('auto');
+            showIslandNotification('跟随系统主题', e.matches ? '🌙' : '☀️', 2000);
+        }
+    });
     
     // 标签页切换
     const tabBtns = document.querySelectorAll('.tab-btn');
@@ -19,10 +103,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // 添加 active 到当前
             this.classList.add('active');
             document.getElementById(targetTab).classList.add('active');
+            
+            // 触觉反馈
+            this.classList.add('haptic-press');
+            setTimeout(() => this.classList.remove('haptic-press'), 150);
         });
     });
     
-    // 平滑滚动
+    // 平滑滚动 + 触觉反馈
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -32,21 +120,53 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth',
                     block: 'start'
                 });
+                
+                // 触觉反馈
+                this.classList.add('haptic-press');
+                setTimeout(() => this.classList.remove('haptic-press'), 150);
             }
         });
     });
     
-    // 卡片悬停效果增强
-    const cards = document.querySelectorAll('.card');
+    // 卡片悬停效果增强 + 微光扫过
+    const cards = document.querySelectorAll('.card, .widget');
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-4px) scale(1.02)';
+            this.style.transform = 'translateY(-6px) scale(1.02)';
+            
+            // 添加微光效果
+            const shimmer = document.createElement('div');
+            shimmer.className = 'shimmer';
+            shimmer.style.position = 'absolute';
+            shimmer.style.top = '0';
+            shimmer.style.left = '0';
+            shimmer.style.right = '0';
+            shimmer.style.bottom = '0';
+            shimmer.style.borderRadius = 'inherit';
+            shimmer.style.pointerEvents = 'none';
+            this.appendChild(shimmer);
+            
+            setTimeout(() => shimmer.remove(), 2000);
         });
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
+    
+    // 鼠标移动视差效果 (桌面端)
+    if (window.matchMedia('(hover: hover)').matches) {
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth - 0.5;
+            const mouseY = e.clientY / window.innerHeight - 0.5;
+            
+            // 背景光晕轻微跟随鼠标
+            const ambient = document.querySelector('.ambient-light');
+            if (ambient) {
+                ambient.style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
+            }
+        });
+    }
     
     // 动态更新时间
     function updateTime() {

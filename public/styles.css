@@ -706,6 +706,33 @@ body::before {
 }
 
 /* ========================================
+   浅色模式支持
+   ======================================== */
+body.light-mode {
+    --color-bg: #f5f5f7;
+    --color-bg-secondary: #ffffff;
+    --color-bg-card: #ffffff;
+    --color-bg-glass: rgba(255, 255, 255, 0.75);
+    --color-text: #1d1d1f;
+    --color-text-muted: #6e6e73;
+    --color-accent: #0071e3;
+    --color-accent-glow: rgba(0, 113, 227, 0.3);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-elevated: 0 12px 48px rgba(0, 0, 0, 0.15);
+    --shadow-subtle: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .ambient-light::before {
+    background: radial-gradient(circle, rgba(0, 113, 227, 0.15) 0%, transparent 70%);
+}
+
+body.light-mode .ambient-light::after {
+    background: radial-gradient(circle, rgba(175, 82, 220, 0.12) 0%, transparent 70%);
+}
+
+/* ========================================
    响应式
    ======================================== */
 @media (max-width: 768px) {
@@ -714,7 +741,13 @@ body::before {
     }
     
     .nav {
-        gap: var(--spacing-sm);
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs);
+    }
+    
+    .nav a {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.85rem;
     }
     
     .section-title {
@@ -739,33 +772,318 @@ body::before {
         gap: var(--spacing-xs);
         align-items: flex-start;
     }
+    
+    .widgets-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .widget-large,
+    .widget-small {
+        grid-column: span 1;
+    }
+    
+    /* 动态岛在小屏幕上调整 */
+    .dynamic-island {
+        top: 8px;
+        min-width: 100px;
+        min-height: 32px;
+    }
+    
+    .dynamic-island.expanded {
+        min-width: 260px;
+        min-height: 52px;
+    }
+}
+
+/* ========================================
+   小组件响应式布局
+   ======================================== */
+@media (min-width: 768px) {
+    .widget-large {
+        grid-column: span 2;
+    }
+    
+    .widget-small {
+        grid-column: span 1;
+    }
+}
+
+/* ========================================
+   动态岛 (Dynamic Island)
+   ======================================== */
+.dynamic-island {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    background: #000;
+    border-radius: var(--radius-xxl);
+    padding: 0;
+    min-width: 120px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 10000;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dynamic-island.visible {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    pointer-events: auto;
+}
+
+.dynamic-island.expanded {
+    min-width: 300px;
+    min-height: 60px;
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.island-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.island-icon {
+    font-size: 1.2rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.island-text {
+    opacity: 0.9;
+}
+
+/* ========================================
+   模式切换器
+   ======================================== */
+.mode-switcher {
+    display: flex;
+    gap: var(--spacing-xs);
+    justify-content: center;
+    margin-top: var(--spacing-md);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-xxl);
+    border: 1px solid var(--glass-border);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.switch-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switch-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-text);
+}
+
+.switch-btn.active {
+    background: var(--color-accent);
+    color: white;
+    box-shadow: 0 4px 16px rgba(10, 132, 255, 0.3);
+}
+
+/* ========================================
+   iOS 风格小组件
+   ======================================== */
+.widgets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.widget {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.widget:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-elevated);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.widget-large {
+    grid-column: span 1;
+}
+
+.widget-small {
+    grid-column: span 1;
+}
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.widget-icon {
+    font-size: 1.3rem;
+}
+
+.widget-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+}
+
+.widget-content {
+    padding: var(--spacing-md);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.widget-content-center {
+    padding: var(--spacing-md);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.widget-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.widget-metric-label {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.widget-metric-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    letter-spacing: -0.03em;
+    font-feature-settings: "tnum" on, "lnum" on;
+}
+
+.widget-metric-value.positive {
+    color: var(--color-success);
+    text-shadow: 0 0 20px rgba(48, 209, 88, 0.3);
+}
+
+.widget-metric-value.negative {
+    color: var(--color-danger);
+    text-shadow: 0 0 20px rgba(255, 69, 58, 0.3);
+}
+
+.widget-footer {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-top: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.widget-update-time {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+/* 温度计量表 */
+.temperature-gauge {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.gauge-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-purple) 100%);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.temperature-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 推送状态 */
+.push-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-dot.success {
+    background: var(--color-success);
+    box-shadow: 0 0 10px rgba(48, 209, 88, 0.5);
+}
+
+.status-dot.pending {
+    background: var(--color-warning);
+    box-shadow: 0 0 10px rgba(255, 214, 10, 0.5);
+}
+
+.status-text {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    font-weight: 500;
 }
 
 /* ========================================
    Apple 风格按钮
    ======================================== */
-.btn-apple {
-    background: var(--color-accent);
-    color: white;
-    border: none;
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--radius-xl);
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-    box-shadow: 0 4px 16px rgba(10, 132, 255, 0.3);
-}
-
-.btn-apple:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 24px rgba(10, 132, 255, 0.4);
-}
-
-.btn-apple.secondary {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: none;
-}
 
 /* ========================================
    Apple 风格分隔线
@@ -778,29 +1096,80 @@ body::before {
 }
 
 /* ========================================
+   触觉反馈动画 (Haptic Visual Feedback)
+   ======================================== */
+@keyframes press {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.97); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.haptic-press {
+    animation: press 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* ========================================
+   空间感背景效果
+   ======================================== */
+@keyframes aurora {
+    0%, 100% { opacity: 0.5; transform: translateY(0) rotate(0deg); }
+    50% { opacity: 0.7; transform: translateY(-20px) rotate(5deg); }
+}
+
+.aurora-light {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.aurora-light::before {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(10, 132, 255, 0.15) 0%, transparent 70%);
+    top: -300px;
+    right: -300px;
+    border-radius: 50%;
+    animation: aurora 15s ease-in-out infinite;
+}
+
+.aurora-light::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(191, 90, 242, 0.12) 0%, transparent 70%);
+    bottom: -200px;
+    left: -200px;
+    border-radius: 50%;
+    animation: aurora 18s ease-in-out infinite reverse;
+}
+
+/* ========================================
    加载动画
    ======================================== */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scaleIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.card {
-    animation: fadeIn 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-}
-
-.card:nth-child(2) { animation-delay: 0.1s; }
-.card:nth-child(3) { animation-delay: 0.2s; }
-.card:nth-child(4) { animation-delay: 0.3s; }
-
-.section {
-    animation: scaleIn 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-}
 
 /* ========================================
    响应式
