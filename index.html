@@ -61,8 +61,8 @@
     <div class="container">
         <!-- 头部 -->
         <header class="header">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-                <div>
+            <div class="header-content">
+                <div class="header-left">
                     <div class="logo">
                         <span class="pulse-icon">💓</span>
                         <h1>Pulse</h1>
@@ -70,17 +70,19 @@
                     <p class="tagline">市场脉搏 · 交易哲学 · 投资人生</p>
                 </div>
                 
-                <!-- 模式切换器 - 右上角 -->
-                <div class="mode-switcher">
-                    <button class="switch-btn" data-mode="light" title="浅色模式">
-                        <span class="switch-icon">☀️</span>
-                    </button>
-                    <button class="switch-btn active" data-mode="dark" title="深色模式">
-                        <span class="switch-icon">🌙</span>
-                    </button>
-                    <button class="switch-btn" data-mode="auto" title="跟随系统">
-                        <span class="switch-icon">🔄</span>
-                    </button>
+                <!-- 模式切换器 - 右上角独立定位 -->
+                <div class="mode-switcher-wrapper">
+                    <div class="mode-switcher">
+                        <button class="switch-btn" data-mode="light" title="浅色模式">
+                            <span class="switch-icon">☀️</span>
+                        </button>
+                        <button class="switch-btn active" data-mode="dark" title="深色模式">
+                            <span class="switch-icon">🌙</span>
+                        </button>
+                        <button class="switch-btn" data-mode="auto" title="跟随系统">
+                            <span class="switch-icon">🔄</span>
+                        </button>
+                    </div>
                 </div>
             </div>
             
