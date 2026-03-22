@@ -319,14 +319,19 @@ body::before {
 }
 
 .tag {
-    background: rgba(10, 132, 255, 0.12);
+    background: rgba(59, 130, 246, 0.1);
     color: var(--color-accent);
     padding: 0.3rem 0.8rem;
     border-radius: var(--radius-xxl);
     font-size: 0.75rem;
-    font-weight: 500;
-    border: 1px solid rgba(10, 132, 255, 0.2);
+    font-weight: 600;
+    border: 1px solid rgba(59, 130, 246, 0.2);
     letter-spacing: 0.02em;
+}
+
+body.light-mode .tag {
+    background: rgba(0, 102, 204, 0.08);
+    border: 1px solid rgba(0, 102, 204, 0.15);
 }
 
 .read-more {
@@ -1196,5 +1201,9 @@ body.light-mode .ambient-light::after {
 /* ========================================
    响应式
    ======================================== */
+��
+   ======================================== */
+============= */
+= */
 ��
    ======================================== */
