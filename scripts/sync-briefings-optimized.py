@@ -191,51 +191,6 @@ def generate_briefing_html(data: dict):
             padding: 60px 24px;
         }}
         
-        /* 主题切换器 */
-        .theme-switcher-wrapper {{
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 16px;
-        }}
-        
-        .mode-switcher {{
-            display: inline-flex;
-            gap: 6px;
-            background: var(--apple-bg-secondary);
-            padding: 4px;
-            border-radius: 20px;
-            border: 1px solid var(--apple-border);
-        }}
-        
-        .switch-btn {{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border: none;
-            background: transparent;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 18px;
-            color: var(--apple-text-secondary);
-        }}
-        
-        .switch-btn:hover {{
-            background: rgba(10, 132, 255, 0.1);
-            color: var(--apple-accent);
-        }}
-        
-        .switch-btn.active {{
-            background: var(--apple-accent);
-            color: white;
-        }}
-        
-        .switch-btn.haptic-press {{
-            transform: scale(0.95);
-        }}
-        
         /* 导航栏 */
         .nav-back {{
             display: inline-flex;
@@ -334,36 +289,37 @@ def generate_briefing_html(data: dict):
         }}
         
         .briefing-content {{
-            font-size: 15px;
-            line-height: 1.75;
+            font-size: 14px;
+            line-height: 1.8;
             color: var(--apple-text);
             white-space: pre-wrap;
             word-wrap: break-word;
-            font-weight: 400;
+            font-weight: 300;
             text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }}
         
         .briefing-content h1,
         .briefing-content h2,
         .briefing-content h3 {{
             font-family: var(--apple-font);
-            font-weight: 600;
+            font-weight: 500;
             margin: 28px 0 14px;
             letter-spacing: -0.01em;
-            line-height: 1.3;
+            line-height: 1.35;
         }}
         
-        .briefing-content h1 {{ font-size: 26px; }}
-        .briefing-content h2 {{ font-size: 21px; }}
-        .briefing-content h3 {{ font-size: 17px; }}
+        .briefing-content h1 {{ font-size: 24px; }}
+        .briefing-content h2 {{ font-size: 19px; }}
+        .briefing-content h3 {{ font-size: 16px; }}
         
         .briefing-content strong {{
-            font-weight: 500;
+            font-weight: 400;
             color: var(--apple-text);
         }}
         
         .briefing-content p {{
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }}
         
         .briefing-content hr {{
@@ -486,41 +442,41 @@ def generate_briefing_html(data: dict):
             
             /* 移动端字体优化 */
             .briefing-content {{
-                font-size: 14px;
-                line-height: 1.7;
-                letter-spacing: 0.02em;
-                font-weight: 400;
+                font-size: 13px;
+                line-height: 1.75;
+                letter-spacing: 0.01em;
+                font-weight: 300;
                 -webkit-font-smoothing: antialiased;
             }}
             
             .briefing-content h1 {{
-                font-size: 22px;
-                line-height: 1.25;
-                margin: 24px 0 12px;
-                font-weight: 600;
-            }}
-            
-            .briefing-content h2 {{
-                font-size: 18px;
+                font-size: 20px;
                 line-height: 1.3;
-                margin: 22px 0 11px;
-                font-weight: 600;
-            }}
-            
-            .briefing-content h3 {{
-                font-size: 15px;
-                line-height: 1.35;
-                margin: 20px 0 10px;
+                margin: 24px 0 12px;
                 font-weight: 500;
             }}
             
+            .briefing-content h2 {{
+                font-size: 17px;
+                line-height: 1.35;
+                margin: 22px 0 11px;
+                font-weight: 500;
+            }}
+            
+            .briefing-content h3 {{
+                font-size: 14px;
+                line-height: 1.4;
+                margin: 20px 0 10px;
+                font-weight: 400;
+            }}
+            
             .briefing-content p {{
-                margin-bottom: 13px;
+                margin-bottom: 14px;
                 word-break: break-word;
             }}
             
             .briefing-content strong {{
-                font-weight: 500;
+                font-weight: 400;
             }}
             
             .briefing-content hr {{
@@ -528,10 +484,10 @@ def generate_briefing_html(data: dict):
             }}
             
             .core-highlight {{
-                padding: 16px;
-                font-size: 13px;
+                padding: 14px;
+                font-size: 12px;
                 line-height: 1.6;
-                margin: 16px 0;
+                margin: 14px 0;
                 border-left-width: 3px;
             }}
         }}
@@ -539,20 +495,20 @@ def generate_briefing_html(data: dict):
         /* 小屏幕手机优化 */
         @media (max-width: 375px) {{
             .briefing-content {{
-                font-size: 13px;
-                line-height: 1.65;
+                font-size: 12px;
+                line-height: 1.7;
             }}
             
             .briefing-content h1 {{
-                font-size: 20px;
+                font-size: 18px;
             }}
             
             .briefing-content h2 {{
-                font-size: 17px;
+                font-size: 15px;
             }}
             
             .briefing-content h3 {{
-                font-size: 14px;
+                font-size: 13px;
             }}
         }}
         
@@ -627,21 +583,6 @@ def generate_briefing_html(data: dict):
 </head>
 <body>
     <div class="briefing-container">
-        <!-- 主题切换器 -->
-        <div class="theme-switcher-wrapper">
-            <div class="mode-switcher">
-                <button class="switch-btn" data-mode="light" title="浅色模式">
-                    <span class="switch-icon">☀️</span>
-                </button>
-                <button class="switch-btn" data-mode="dark" title="深色模式">
-                    <span class="switch-icon">🌙</span>
-                </button>
-                <button class="switch-btn" data-mode="auto" title="跟随系统">
-                    <span class="switch-icon">🔄</span>
-                </button>
-            </div>
-        </div>
-        
         <a href="../../index.html" class="nav-back">返回首页</a>
         
         <header class="briefing-header">
@@ -669,62 +610,6 @@ def generate_briefing_html(data: dict):
     </div>
     
     <script>
-        // 主题切换逻辑
-        (function() {{
-            const switchBtns = document.querySelectorAll('.switch-btn');
-            const body = document.body;
-            
-            // 读取保存的模式（默认 auto）
-            const savedMode = localStorage.getItem('pulse-theme-mode') || 'auto';
-            applyMode(savedMode);
-            syncButtons();
-            
-            // 应用模式
-            function applyMode(mode) {{
-                body.classList.remove('dark-mode', 'light-mode');
-                
-                if (mode === 'auto') {{
-                    // 自动模式：不添加类，让 CSS media query 生效
-                }} else if (mode === 'dark') {{
-                    body.classList.add('dark-mode');
-                }} else if (mode === 'light') {{
-                    body.classList.add('light-mode');
-                }}
-                
-                syncButtons();
-            }}
-            
-            // 同步按钮状态
-            function syncButtons() {{
-                const currentMode = localStorage.getItem('pulse-theme-mode') || 'auto';
-                switchBtns.forEach(btn => {{
-                    btn.classList.toggle('active', btn.dataset.mode === currentMode);
-                }});
-            }}
-            
-            // 绑定点击事件
-            switchBtns.forEach(btn => {{
-                btn.addEventListener('click', function() {{
-                    const mode = this.dataset.mode;
-                    localStorage.setItem('pulse-theme-mode', mode);
-                    applyMode(mode);
-                    
-                    // 触觉反馈
-                    this.classList.add('haptic-press');
-                    setTimeout(() => this.classList.remove('haptic-press'), 150);
-                }});
-            }});
-            
-            // 监听系统主题变化（仅在 auto 模式下生效）
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {{
-                const currentMode = localStorage.getItem('pulse-theme-mode') || 'auto';
-                if (currentMode === 'auto') {{
-                    // auto 模式下自动跟随系统
-                    applyMode('auto');
-                }}
-            }});
-        }})();
-        
         // 核心主线高亮
         document.addEventListener('DOMContentLoaded', function() {{
             const content = document.querySelector('.briefing-content');

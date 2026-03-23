@@ -78,51 +78,6 @@
             padding: 60px 24px;
         }
         
-        /* 主题切换器 */
-        .theme-switcher-wrapper {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 16px;
-        }
-        
-        .mode-switcher {
-            display: inline-flex;
-            gap: 6px;
-            background: var(--apple-bg-secondary);
-            padding: 4px;
-            border-radius: 20px;
-            border: 1px solid var(--apple-border);
-        }
-        
-        .switch-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border: none;
-            background: transparent;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 18px;
-            color: var(--apple-text-secondary);
-        }
-        
-        .switch-btn:hover {
-            background: rgba(10, 132, 255, 0.1);
-            color: var(--apple-accent);
-        }
-        
-        .switch-btn.active {
-            background: var(--apple-accent);
-            color: white;
-        }
-        
-        .switch-btn.haptic-press {
-            transform: scale(0.95);
-        }
-        
         /* 导航栏 */
         .nav-back {
             display: inline-flex;
@@ -502,21 +457,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- 主题切换器 -->
-        <div class="theme-switcher-wrapper">
-            <div class="mode-switcher">
-                <button class="switch-btn" data-mode="light" title="浅色模式">
-                    <span class="switch-icon">☀️</span>
-                </button>
-                <button class="switch-btn" data-mode="dark" title="深色模式">
-                    <span class="switch-icon">🌙</span>
-                </button>
-                <button class="switch-btn" data-mode="auto" title="跟随系统">
-                    <span class="switch-icon">🔄</span>
-                </button>
-            </div>
-        </div>
-        
         <a href="index.html" class="nav-back">返回首页</a>
         
         <header class="page-header">
@@ -587,61 +527,6 @@
             div.textContent = text;
             return div.innerHTML;
         }
-        
-        // 主题切换逻辑
-        (function() {
-            const switchBtns = document.querySelectorAll('.switch-btn');
-            const body = document.body;
-            
-            // 读取保存的模式（默认 auto）
-            const savedMode = localStorage.getItem('pulse-theme-mode') || 'auto';
-            applyMode(savedMode);
-            syncButtons();
-            
-            // 应用模式
-            function applyMode(mode) {
-                body.classList.remove('dark-mode', 'light-mode');
-                
-                if (mode === 'auto') {
-                    // 自动模式：不添加类，让 CSS media query 生效
-                } else if (mode === 'dark') {
-                    body.classList.add('dark-mode');
-                } else if (mode === 'light') {
-                    body.classList.add('light-mode');
-                }
-                
-                syncButtons();
-            }
-            
-            // 同步按钮状态
-            function syncButtons() {
-                const currentMode = localStorage.getItem('pulse-theme-mode') || 'auto';
-                switchBtns.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.mode === currentMode);
-                });
-            }
-            
-            // 绑定点击事件
-            switchBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const mode = this.dataset.mode;
-                    localStorage.setItem('pulse-theme-mode', mode);
-                    applyMode(mode);
-                    
-                    // 触觉反馈
-                    this.classList.add('haptic-press');
-                    setTimeout(() => this.classList.remove('haptic-press'), 150);
-                });
-            });
-            
-            // 监听系统主题变化
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-                const currentMode = localStorage.getItem('pulse-theme-mode') || 'auto';
-                if (currentMode === 'auto') {
-                    applyMode('auto');
-                }
-            });
-        })();
     </script>
 </body>
 </html>
