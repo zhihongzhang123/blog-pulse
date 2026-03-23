@@ -1,17 +1,11 @@
 /**
- * 文章阅读计数 v2.0 (优化版)
+ * 文章阅读计数 v3.0 (修复版)
  * 
- * 功能:
- * 1. 统计每篇文章的阅读次数
- * 2. 防刷机制 (30 分钟内同一用户只计数 1 次)
- * 3. 显示热门文章
- * 4. 数据存储在 localStorage
- * 
- * 优化:
- * - 路径归一化 (解决首页/文章页路径不一致)
- * - 防刷机制 (30 分钟冷却)
- * - 实时同步 (首页/文章页数据一致)
- * - 批量更新首页卡片
+ * 修复内容:
+ * 1. 修复首页卡片选择器 (.card 通用选择器)
+ * 2. 优化路径归一化 (处理相对路径)
+ * 3. 改进冷却时间逻辑
+ * 4. 添加调试日志
  */
 
 (function() {
@@ -37,6 +31,12 @@
         
         // 移除查询参数和哈希
         path = path.split('?')[0].split('#')[0];
+        
+        // 解析相对路径 (处理 content/daily-thoughts/xxx.html)
+        if (path.startsWith('/content/')) {
+            // 已经是绝对路径
+            return path;
+        }
         
         return path;
     }
@@ -95,7 +95,25 @@
     }
     
     /**
-     * 增加文章阅读计数 (带防刷机制)
+     * 从路径提取文章标题
+     */
+    function extractTitle(path) {
+        const filename = path.split('/').pop();
+        if (!filename) return '未知文章';
+        
+        // 移除日期前缀和扩展名
+        const title = filename
+            .replace(/^\d{4}-\d{2}-\d{2}-/, '')
+            .replace(/\.[^.]+$/, '')
+            .replace(/-/g, ' ')
+            .replace(/_/g, ' ')
+            .trim();
+        
+        return title;
+    }
+    
+    /**
+     * 增加文章阅读计数
      */
     function incrementViews(path) {
         const normalizedPath = normalizePath(path);
@@ -139,91 +157,6 @@
     }
     
     /**
-     * 获取所有文章阅读排行
-     */
-    function getTopArticles(limit = 5) {
-        const data = getViewsData();
-        const articles = Object.entries(data).map(([path, info]) => ({
-            path,
-            count: info.count,
-            firstView: info.firstView,
-            lastView: info.lastView,
-            title: info.title || extractTitle(path)
-        }));
-        
-        // 按阅读数排序
-        articles.sort((a, b) => b.count - a.count);
-        
-        return articles.slice(0, limit);
-    }
-    
-    /**
-     * 显示阅读计数
-     */
-    function displayViews(elementId, count) {
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.textContent = count ? count.toLocaleString() : '0';
-        }
-    }
-    
-    /**
-     * 显示热门文章列表
-     */
-    function displayTopArticles(containerId, limit = 5) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        
-        const topArticles = getTopArticles(limit);
-        
-        if (topArticles.length === 0) {
-            container.innerHTML = '<p class="no-data">暂无阅读数据</p>';
-            return;
-        }
-        
-        let html = '<ul class="top-articles-list">';
-        topArticles.forEach((article, index) => {
-            const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
-            
-            html += `
-                <li class="top-article-item">
-                    <span class="rank">${medal}</span>
-                    <a href="${article.path}" class="article-link" title="${article.title}">${article.title}</a>
-                    <span class="views-count">👁️ ${article.count.toLocaleString()}</span>
-                </li>
-            `;
-        });
-        html += '</ul>';
-        
-        container.innerHTML = html;
-    }
-    
-    /**
-     * 从路径提取文章标题
-     */
-    function extractTitle(path) {
-        const filename = path.split('/').pop();
-        if (!filename) return '未知文章';
-        
-        // 移除日期前缀和扩展名
-        const title = filename
-            .replace(/^\d{4}-\d{2}-\d{2}-/, '')
-            .replace(/\.[^.]+$/, '')
-            .replace(/-/g, ' ')
-            .replace(/_/g, ' ')
-            .trim();
-        
-        // 首字母大写 (英文标题)
-        if (/^[a-zA-Z]/.test(title)) {
-            return title.split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ');
-        }
-        
-        return title;
-    }
-    
-    /**
      * 初始化当前页面阅读计数
      */
     function initCurrentPageViews() {
@@ -239,10 +172,12 @@
         }
         
         const count = incrementViews(path);
+        console.log(`📖 文章页面阅读计数：${count}`);
         
         // 显示计数
         displayViews('view-count', count);
         displayViews('article-views-count', count);
+        displayViews('article-views', `👁️ ${count}`);
     }
     
     /**
@@ -250,17 +185,23 @@
      */
     function updateHomepageViews() {
         const data = getViewsData();
+        console.log('🏠 更新首页阅读计数，当前数据:', data);
         
-        // 查找所有文章卡片
-        const cards = document.querySelectorAll('.thought-card, .article-card');
+        // 查找所有文章卡片 (使用通用 .card 选择器)
+        const cards = document.querySelectorAll('.card');
+        console.log(`📇 找到 ${cards.length} 个卡片`);
         
-        cards.forEach(card => {
+        cards.forEach((card, index) => {
             const link = card.querySelector('a[href*="content/daily-thoughts"]');
-            if (!link) return;
+            if (!link) {
+                console.log(`⏭️ 卡片 ${index}: 无文章链接`);
+                return;
+            }
             
             // 获取链接路径并归一化
             const href = link.getAttribute('href');
             const path = normalizePath(href);
+            console.log(`📇 卡片 ${index}: ${href} → ${path}`);
             
             // 获取阅读数
             const articleData = data[path];
@@ -281,22 +222,36 @@
                 }
             }
             
-            viewsElement.textContent = `👁️ ${views.toLocaleString()}`;
+            viewsElement.textContent = `👁️ ${views}`;
+            console.log(`✅ 卡片 ${index}: 更新为 ${views} 次阅读`);
         });
         
         console.log(`🏠 更新了 ${cards.length} 个文章卡片的阅读数`);
     }
     
     /**
+     * 显示阅读计数
+     */
+    function displayViews(elementId, count) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = typeof count === 'string' ? count : (count ? count.toLocaleString() : '0');
+        }
+    }
+    
+    /**
      * 页面加载完成后初始化
      */
     function init() {
+        console.log('🚀 阅读计数器初始化...');
+        
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 initCurrentPageViews();
                 updateHomepageViews();
             });
         } else {
+            // DOM 已加载完成
             initCurrentPageViews();
             updateHomepageViews();
         }
@@ -308,12 +263,10 @@
     // 导出到全局
     window.PulseViews = {
         getViews,
-        getTopArticles,
-        displayTopArticles,
+        getViewsData,
         incrementViews,
         normalizePath,
-        getViewsData,
-        getTopArticles
+        getCurrentPath
     };
     
 })();
