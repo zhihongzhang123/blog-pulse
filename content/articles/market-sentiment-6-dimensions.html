@@ -367,7 +367,21 @@
 </head>
 <body>
     <div class="container">
-        <a href="../../index.html" class="nav-back">返回首页</a>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+            <a href="../../index.html" class="nav-back" style="margin-bottom: 0;">← 返回首页</a>
+            <div class="mode-switcher" style="display: flex; gap: 8px;">
+                <button class="switch-btn" data-mode="light" title="浅色模式" style="padding: 8px 12px; border: 1px solid var(--apple-border); border-radius: 20px; background: var(--apple-bg-secondary); cursor: pointer;">
+                    <span style="font-size: 16px;">☀️</span>
+                </button>
+                <button class="switch-btn" data-mode="dark" title="深色模式" style="padding: 8px 12px; border: 1px solid var(--apple-border); border-radius: 20px; background: var(--apple-bg-secondary); cursor: pointer;">
+                    <span style="font-size: 16px;">🌙</span>
+                </button>
+                <button class="switch-btn" data-mode="auto" title="跟随系统" style="padding: 8px 12px; border: 1px solid var(--apple-border); border-radius: 20px; background: var(--apple-bg-secondary); cursor: pointer;">
+                    <span style="font-size: 16px;">🔄</span>
+                </button>
+            </div>
+        </div>
         
         <header class="article-header">
             <div class="article-date">📅 2026 年 3 月 24 日</div>
