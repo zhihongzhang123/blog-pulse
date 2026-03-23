@@ -207,6 +207,14 @@ body::before {
     border-bottom: 1px solid rgba(148, 163, 184, 0.1);
 }
 
+/* 增加特定模块的间距 - 提升阅读体验 */
+.section-spaced {
+    margin-top: calc(var(--spacing-xl) * 1.5);
+    margin-bottom: calc(var(--spacing-xl) * 1.5);
+    padding-top: calc(var(--spacing-xl) * 1.2);
+    padding-bottom: calc(var(--spacing-xl) * 1.2);
+}
+
 .section-title {
     font-family: var(--font-sans);
     font-size: 1.7rem;
