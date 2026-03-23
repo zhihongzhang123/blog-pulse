@@ -197,6 +197,19 @@ body::before {
 .nav a.active {
     color: var(--color-text);
     background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--color-gold);
+    border-radius: 50%;
 }
 
 /* ========================================
