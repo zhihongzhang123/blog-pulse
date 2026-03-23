@@ -4,58 +4,329 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>市场分析 · Pulse</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        .back-link { display: inline-flex; align-items: center; gap: 8px; color: #0a84ff; text-decoration: none; margin-bottom: 20px; }
-        .page-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; text-align: center; background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .analysis-card { background: rgba(44, 44, 46, 0.65); backdrop-filter: blur(20px); border-radius: 20px; padding: 30px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 20px; }
-        .analysis-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .analysis-time { color: #86868b; font-size: 0.9rem; }
-        .analysis-status { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 500; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
-        .analysis-content { line-height: 1.8; }
-        .coming-soon { text-align: center; padding: 60px 20px; color: #86868b; }
-        .coming-soon-icon { font-size: 4rem; margin-bottom: 20px; }
+        :root {
+            --apple-font: -apple-system, BlinkMacSystemFont, 'SF Pro SC', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', sans-serif;
+            --apple-bg: #ffffff;
+            --apple-bg-secondary: #f5f5f7;
+            --apple-text: #1d1d1f;
+            --apple-text-secondary: #86868b;
+            --apple-accent: #0a84ff;
+            --apple-accent-hover: #0066cc;
+            --apple-border: rgba(0, 0, 0, 0.08);
+            --apple-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --apple-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --apple-radius: 12px;
+            --apple-radius-lg: 18px;
+        }
+        
+        /* 深色模式 */
+        body.dark-mode {
+            --apple-bg: #000000;
+            --apple-bg-secondary: #1d1d1f;
+            --apple-text: #f5f5f7;
+            --apple-text-secondary: #86868b;
+            --apple-border: rgba(255, 255, 255, 0.08);
+            --apple-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --apple-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --apple-bg-auto: #000000;
+                --apple-bg-secondary-auto: #1d1d1f;
+                --apple-text-auto: #f5f5f7;
+                --apple-text-secondary-auto: #86868b;
+                --apple-border-auto: rgba(255, 255, 255, 0.08);
+                --apple-shadow-auto: 0 2px 8px rgba(0, 0, 0, 0.2);
+                --apple-shadow-hover-auto: 0 8px 24px rgba(0, 0, 0, 0.3);
+            }
+            body:not(.dark-mode):not(.light-mode) {
+                --apple-bg: var(--apple-bg-auto);
+                --apple-bg-secondary: var(--apple-bg-secondary-auto);
+                --apple-text: var(--apple-text-auto);
+                --apple-text-secondary: var(--apple-text-secondary-auto);
+                --apple-border: var(--apple-border-auto);
+                --apple-shadow: var(--apple-shadow-auto);
+                --apple-shadow-hover: var(--apple-shadow-hover-auto);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--apple-font);
+            background: var(--apple-bg);
+            color: var(--apple-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        
+        /* 导航栏 */
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--apple-accent);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--apple-bg-secondary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 40px;
+        }
+        
+        .nav-back:hover {
+            background: var(--apple-accent);
+            color: white;
+            transform: translateX(-4px);
+        }
+        
+        .nav-back::before {
+            content: '←';
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* 页面标题 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .page-title {
+            font-family: var(--apple-font);
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-subtitle {
+            font-size: 16px;
+            color: var(--apple-text-secondary);
+            font-weight: 400;
+        }
+        
+        /* 分析卡片 */
+        .analysis-card {
+            background: var(--apple-bg-secondary);
+            border-radius: var(--apple-radius-lg);
+            padding: 32px 28px;
+            margin-bottom: 24px;
+            border: 1px solid var(--apple-border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }
+        
+        .analysis-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--apple-shadow-hover);
+        }
+        
+        .analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--apple-border);
+        }
+        
+        .analysis-time {
+            color: var(--apple-text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .analysis-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        
+        .analysis-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--apple-text);
+        }
+        
+        .analysis-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 28px 0 14px;
+            letter-spacing: -0.01em;
+        }
+        
+        .analysis-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .analysis-content p {
+            margin-bottom: 16px;
+            color: var(--apple-text);
+        }
+        
+        .analysis-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+        
+        .analysis-content li {
+            margin-bottom: 8px;
+            color: var(--apple-text-secondary);
+        }
+        
+        .analysis-content blockquote {
+            background: linear-gradient(135deg, rgba(255, 214, 10, 0.1) 0%, rgba(255, 159, 10, 0.1) 100%);
+            border-left: 4px solid #ffd60a;
+            padding: 20px 24px;
+            margin: 24px 0;
+            border-radius: 12px;
+            font-style: italic;
+            color: var(--apple-text);
+            line-height: 1.6;
+        }
+        
+        /* 即将到来 */
+        .coming-soon {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--apple-text-secondary);
+            background: var(--apple-bg-secondary);
+            border-radius: var(--apple-radius-lg);
+            border: 1px dashed var(--apple-border);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }
+        
+        .coming-soon-icon {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            opacity: 0.7;
+        }
+        
+        .coming-soon h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--apple-text);
+        }
+        
+        .coming-soon p {
+            font-size: 14px;
+            color: var(--apple-text-secondary);
+        }
+        
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .analysis-card {
+                padding: 24px 20px;
+            }
+            
+            .analysis-header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link">← 返回首页</a>
-        <h1 class="page-title">📈 美股市场分析</h1>
+        <a href="index.html" class="nav-back">返回首页</a>
         
-        <div class="analysis-card">
-            <div class="analysis-header">
-                <span class="analysis-time">最新盘后分析</span>
-                <span class="analysis-status">✅ 已更新</span>
-            </div>
-            <div class="analysis-content">
-                <h3>🎯 核心观点</h3>
-                <p>科技股领涨，AI 创新持续发酵。OpenAI 宣布员工翻倍计划，显示 AI 行业持续扩张态势。</p>
-                
-                <h3>📊 指数表现</h3>
-                <ul>
-                    <li>SPY: -1.4% (市场抛售持续)</li>
-                    <li>QQQ: -1.2% (科技股回调)</li>
-                    <li>NVDA: -3.3% (芯片板块走弱)</li>
-                </ul>
-                
-                <h3>🧠 大师智慧</h3>
-                <blockquote>
-                    "市场是投票机，也是称重机。短期看情绪，长期看价值。"
-                    <br>—— 沃伦·巴菲特
-                </blockquote>
-                
-                <h3>💭 哲学思考</h3>
-                <p>市场如潮水，有涨必有落。真正的智慧不在于预测每一次波动，而在于理解周期、保持耐心。</p>
-            </div>
-        </div>
+        <header class="page-header">
+            <h1 class="page-title">📈 美股市场分析</h1>
+            <p class="page-subtitle">盘前预测 · 盘后总结 · 深度洞察</p>
+        </header>
         
-        <div class="coming-soon">
-            <div class="coming-soon-icon">🔜</div>
-            <h3>更多分析报告即将发布</h3>
-            <p>盘前预测 (21:00-21:30) | 盘后总结 (05:00-06:00)</p>
-        </div>
+        <main>
+            <article class="analysis-card">
+                <div class="analysis-header">
+                    <span class="analysis-time">🕐 最新盘后分析 · 2026-03-23</span>
+                    <span class="analysis-status">✅ 已更新</span>
+                </div>
+                
+                <div class="analysis-content">
+                    <h3>🎯 核心观点</h3>
+                    <p>科技股领涨，AI 创新持续发酵。OpenAI 宣布员工翻倍计划，显示 AI 行业持续扩张态势。市场在高息环境下展现韧性，投资者聚焦财报季指引。</p>
+                    
+                    <h3>📊 指数表现</h3>
+                    <ul>
+                        <li><strong>SPY (标普 500)</strong>: -1.4% — 市场抛售持续，周线连跌</li>
+                        <li><strong>QQQ (纳斯达克)</strong>: -1.2% — 科技股回调，估值压力显现</li>
+                        <li><strong>NVDA (英伟达)</strong>: -3.3% — 芯片板块走弱，获利回吐</li>
+                        <li><strong>VIX (恐慌指数)</strong>: 24.1 (-4.1%) — 恐慌情绪自我消解</li>
+                    </ul>
+                    
+                    <h3>🧠 大师智慧</h3>
+                    <blockquote>
+                        "市场是投票机，也是称重机。短期看情绪，长期看价值。"
+                        <br><br>
+                        <strong>— 沃伦·巴菲特</strong>
+                        <br><br>
+                        <strong>洞察：</strong>当前 VIX 24，市场恐慌情绪蔓延。历史经验表明，极度恐慌往往是长期投资者的买入良机。优质资产的价值不会因短期波动而改变。
+                        <br><br>
+                        <strong>建议：</strong>保持冷静，审视优质资产的长期价值，分批布局。科技股长期逻辑未变，估值回调后具备配置价值。
+                    </blockquote>
+                    
+                    <h3>💭 哲学思考</h3>
+                    <p>市场如潮水，有涨必有落。真正的智慧不在于预测每一次波动，而在于理解周期、保持耐心。</p>
+                    <p>如巴菲特所言："价格是你付出的，价值是你得到的。"在喧嚣的市场中，保持独立思考，坚守价值本源，方能在长期中获胜。</p>
+                </div>
+            </article>
+            
+            <div class="coming-soon">
+                <div class="coming-soon-icon">🔜</div>
+                <h3>更多分析报告即将发布</h3>
+                <p><strong>盘前预测</strong> (21:00-21:30) | <strong>盘后总结</strong> (05:00-06:00)</p>
+                <p style="margin-top: 12px; font-size: 13px; opacity: 0.7;">自动推送至 Telegram + PushPlus 微信</p>
+            </div>
+        </main>
     </div>
+    
     <script src="main.js"></script>
 </body>
 </html>
