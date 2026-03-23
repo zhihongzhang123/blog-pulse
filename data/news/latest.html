@@ -221,11 +221,13 @@
         }
         
         .briefing-content {
-            font-size: 16px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 1.75;
             color: var(--apple-text);
             white-space: pre-wrap;
             word-wrap: break-word;
+            font-weight: 400;
+            text-rendering: optimizeLegibility;
         }
         
         .briefing-content h1,
@@ -233,17 +235,29 @@
         .briefing-content h3 {
             font-family: var(--apple-font);
             font-weight: 600;
-            margin: 32px 0 16px;
+            margin: 28px 0 14px;
             letter-spacing: -0.01em;
+            line-height: 1.3;
         }
         
-        .briefing-content h1 { font-size: 32px; }
-        .briefing-content h2 { font-size: 24px; }
-        .briefing-content h3 { font-size: 18px; }
+        .briefing-content h1 { font-size: 26px; }
+        .briefing-content h2 { font-size: 21px; }
+        .briefing-content h3 { font-size: 17px; }
         
         .briefing-content strong {
-            font-weight: 600;
+            font-weight: 500;
             color: var(--apple-text);
+        }
+        
+        .briefing-content p {
+            margin-bottom: 15px;
+        }
+        
+        .briefing-content hr {
+            border: none;
+            height: 1px;
+            background: var(--apple-border);
+            margin: 28px 0;
         }
         
         .briefing-content hr {
@@ -359,39 +373,73 @@
             
             /* 移动端字体优化 */
             .briefing-content {
-                font-size: 15px;
+                font-size: 14px;
                 line-height: 1.7;
-                letter-spacing: 0.01em;
+                letter-spacing: 0.02em;
+                font-weight: 400;
+                -webkit-font-smoothing: antialiased;
             }
             
             .briefing-content h1 {
-                font-size: 24px;
-                line-height: 1.3;
+                font-size: 22px;
+                line-height: 1.25;
                 margin: 24px 0 12px;
+                font-weight: 600;
             }
             
             .briefing-content h2 {
-                font-size: 20px;
-                line-height: 1.35;
-                margin: 24px 0 12px;
+                font-size: 18px;
+                line-height: 1.3;
+                margin: 22px 0 11px;
+                font-weight: 600;
             }
             
             .briefing-content h3 {
-                font-size: 16px;
-                line-height: 1.4;
+                font-size: 15px;
+                line-height: 1.35;
                 margin: 20px 0 10px;
+                font-weight: 500;
             }
             
             .briefing-content p {
-                margin-bottom: 14px;
+                margin-bottom: 13px;
                 word-break: break-word;
             }
             
+            .briefing-content strong {
+                font-weight: 500;
+            }
+            
+            .briefing-content hr {
+                margin: 24px 0;
+            }
+            
             .core-highlight {
-                padding: 18px;
-                font-size: 14px;
+                padding: 16px;
+                font-size: 13px;
                 line-height: 1.6;
-                margin: 18px 0;
+                margin: 16px 0;
+                border-left-width: 3px;
+            }
+        }
+        
+        /* 小屏幕手机优化 */
+        @media (max-width: 375px) {
+            .briefing-content {
+                font-size: 13px;
+                line-height: 1.65;
+            }
+            
+            .briefing-content h1 {
+                font-size: 20px;
+            }
+            
+            .briefing-content h2 {
+                font-size: 17px;
+            }
+            
+            .briefing-content h3 {
+                font-size: 14px;
             }
         }
         
