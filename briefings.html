@@ -289,22 +289,120 @@
             }
         }
         
-        /* 响应式 */
+        /* 响应式 - 移动端优化 */
         @media (max-width: 768px) {
             .container {
-                padding: 40px 20px;
+                padding: 32px 16px;
+            }
+            
+            .page-header {
+                margin-bottom: 32px;
+            }
+            
+            .page-icon {
+                font-size: 40px;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .page-subtitle {
+                font-size: 14px;
             }
             
             .briefing-card {
-                padding: 24px;
+                padding: 24px 20px;
+                border-radius: var(--apple-radius);
+            }
+            
+            .briefing-card-header {
+                gap: 12px;
+            }
+            
+            .briefing-icon {
+                font-size: 28px;
+            }
+            
+            .briefing-title {
+                font-size: 17px;
+                line-height: 1.4;
+            }
+            
+            .briefing-meta {
+                gap: 8px;
+            }
+            
+            .meta-item {
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+            
+            .briefing-preview {
+                font-size: 14px;
+                line-height: 1.6;
+                -webkit-line-clamp: 2;
             }
             
             .briefing-actions {
                 flex-direction: column;
+                gap: 10px;
             }
             
             .btn {
                 width: 100%;
+                padding: 14px 20px;
+                font-size: 14px;
+            }
+        }
+        
+        /* 小屏幕手机优化 */
+        @media (max-width: 375px) {
+            .container {
+                padding: 24px 14px;
+            }
+            
+            .page-icon {
+                font-size: 36px;
+            }
+            
+            .page-title {
+                font-size: 26px;
+            }
+            
+            .page-subtitle {
+                font-size: 13px;
+            }
+            
+            .briefing-card {
+                padding: 20px 16px;
+            }
+            
+            .briefing-title {
+                font-size: 15px;
+            }
+            
+            .briefing-preview {
+                font-size: 13px;
+                line-height: 1.55;
+            }
+            
+            .nav-back {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+        }
+        
+        /* 移动端字体渲染优化 */
+        @media (max-width: 768px) {
+            body {
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+            }
+            
+            .briefing-preview {
+                text-rendering: optimizeLegibility;
+                -webkit-font-smoothing: antialiased;
             }
         }
         
@@ -317,6 +415,24 @@
         ::selection {
             background: rgba(0, 102, 204, 0.2);
             color: var(--apple-text);
+        }
+        
+        /* 移动端触摸优化 */
+        @media (max-width: 768px) {
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            .btn, .nav-back {
+                -webkit-touch-callout: none;
+                user-select: none;
+            }
+            
+            /* 按钮点击反馈 */
+            .btn:active {
+                transform: scale(0.98);
+                opacity: 0.9;
+            }
         }
     </style>
 </head>

@@ -373,14 +373,15 @@ def generate_briefing_html(data: dict):
             }}
         }}
         
-        /* 响应式 */
+        /* 响应式 - 移动端优化 */
         @media (max-width: 768px) {{
             .briefing-container {{
-                padding: 40px 20px;
+                padding: 32px 16px;
             }}
             
             .briefing-content-card {{
-                padding: 24px;
+                padding: 24px 20px;
+                border-radius: var(--apple-radius);
             }}
             
             .briefing-meta {{
@@ -388,12 +389,96 @@ def generate_briefing_html(data: dict):
                 gap: 8px;
             }}
             
+            .meta-item {{
+                font-size: 12px;
+                padding: 4px 10px;
+            }}
+            
             .action-buttons {{
                 flex-direction: column;
+                gap: 10px;
             }}
             
             .btn {{
                 width: 100%;
+                padding: 14px 20px;
+                font-size: 14px;
+            }}
+            
+            /* 移动端字体优化 */
+            .briefing-content {{
+                font-size: 15px;
+                line-height: 1.7;
+                letter-spacing: 0.01em;
+            }}
+            
+            .briefing-content h1 {{
+                font-size: 24px;
+                line-height: 1.3;
+                margin: 24px 0 12px;
+            }}
+            
+            .briefing-content h2 {{
+                font-size: 20px;
+                line-height: 1.35;
+                margin: 24px 0 12px;
+            }}
+            
+            .briefing-content h3 {{
+                font-size: 16px;
+                line-height: 1.4;
+                margin: 20px 0 10px;
+            }}
+            
+            .briefing-content p {{
+                margin-bottom: 14px;
+                word-break: break-word;
+            }}
+            
+            .core-highlight {{
+                padding: 18px;
+                font-size: 14px;
+                line-height: 1.6;
+                margin: 18px 0;
+            }}
+        }}
+        
+        /* 小屏幕手机优化 */
+        @media (max-width: 375px) {{
+            .briefing-container {{
+                padding: 24px 14px;
+            }}
+            
+            .briefing-content {{
+                font-size: 14px;
+                line-height: 1.75;
+            }}
+            
+            .briefing-content-card {{
+                padding: 20px 16px;
+            }}
+            
+            .briefing-title {{
+                font-size: 24px;
+            }}
+            
+            .nav-back {{
+                font-size: 13px;
+                padding: 6px 12px;
+            }}
+        }}
+        
+        /* 移动端字体渲染优化 */
+        @media (max-width: 768px) {{
+            body {{
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+            }}
+            
+            .briefing-content {{
+                text-rendering: optimizeLegibility;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
             }}
         }}
         
@@ -406,6 +491,24 @@ def generate_briefing_html(data: dict):
         ::selection {{
             background: rgba(0, 102, 204, 0.2);
             color: var(--apple-text);
+        }}
+        
+        /* 移动端触摸优化 */
+        @media (max-width: 768px) {{
+            * {{
+                -webkit-tap-highlight-color: transparent;
+            }}
+            
+            .btn, .nav-back {{
+                -webkit-touch-callout: none;
+                user-select: none;
+            }}
+            
+            /* 按钮点击反馈 */
+            .btn:active {{
+                transform: scale(0.98);
+                opacity: 0.9;
+            }}
         }}
     </style>
 </head>
