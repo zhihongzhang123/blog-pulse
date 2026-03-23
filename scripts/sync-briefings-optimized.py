@@ -97,7 +97,7 @@ def generate_briefing_json(data: dict):
     }
 
 def generate_briefing_html(data: dict):
-    """生成 HTML 格式"""
+    """生成 HTML 格式（苹果风格）"""
     # 将 Markdown 转换为简单 HTML
     content_html = data['fullContent']
     
@@ -117,60 +117,340 @@ def generate_briefing_html(data: dict):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{data['title']} · Pulse</title>
-    <link rel="stylesheet" href="../../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {{
+            --apple-font: -apple-system, BlinkMacSystemFont, 'SF Pro SC', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', sans-serif;
+            --apple-bg: #ffffff;
+            --apple-bg-secondary: #f5f5f7;
+            --apple-text: #1d1d1f;
+            --apple-text-secondary: #86868b;
+            --apple-accent: #0066cc;
+            --apple-accent-hover: #004499;
+            --apple-border: rgba(0, 0, 0, 0.08);
+            --apple-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --apple-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --apple-radius: 12px;
+            --apple-radius-lg: 18px;
+        }}
+        
+        @media (prefers-color-scheme: dark) {{
+            :root {{
+                --apple-bg: #000000;
+                --apple-bg-secondary: #1d1d1f;
+                --apple-text: #f5f5f7;
+                --apple-text-secondary: #86868b;
+                --apple-border: rgba(255, 255, 255, 0.08);
+                --apple-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                --apple-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.3);
+            }}
+        }}
+        
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        
+        body {{
+            font-family: var(--apple-font);
+            background: var(--apple-bg);
+            color: var(--apple-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }}
+        
         .briefing-container {{
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 24px;
         }}
+        
+        /* 导航栏 */
+        .nav-back {{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--apple-accent);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--apple-bg-secondary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 32px;
+        }}
+        
+        .nav-back:hover {{
+            background: var(--apple-accent);
+            color: white;
+            transform: translateX(-4px);
+        }}
+        
+        .nav-back::before {{
+            content: '←';
+            font-size: 16px;
+            font-weight: 600;
+        }}
+        
+        /* 头部 */
         .briefing-header {{
-            margin-bottom: 40px;
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }}
-        .briefing-title {{
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 10px;
+        
+        .briefing-badge {{
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
             background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%);
+            color: #000;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }}
+        
+        .briefing-title {{
+            font-family: var(--apple-font);
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--apple-text) 0%, var(--apple-text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }}
+        
         .briefing-meta {{
-            color: #86868b;
-            font-size: 0.9rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 16px 0;
+            border-top: 1px solid var(--apple-border);
+            border-bottom: 1px solid var(--apple-border);
         }}
+        
+        .meta-item {{
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: var(--apple-text-secondary);
+            font-weight: 400;
+        }}
+        
+        .meta-item::before {{
+            font-size: 16px;
+        }}
+        
+        /* 内容卡片 */
+        .briefing-content-card {{
+            background: var(--apple-bg-secondary);
+            border-radius: var(--apple-radius-lg);
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: var(--apple-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }}
+        
+        .briefing-content-card:hover {{
+            box-shadow: var(--apple-shadow-hover);
+        }}
+        
         .briefing-content {{
+            font-size: 16px;
             line-height: 1.8;
+            color: var(--apple-text);
             white-space: pre-wrap;
+            word-wrap: break-word;
         }}
-        .back-link {{
+        
+        .briefing-content h1,
+        .briefing-content h2,
+        .briefing-content h3 {{
+            font-family: var(--apple-font);
+            font-weight: 600;
+            margin: 32px 0 16px;
+            letter-spacing: -0.01em;
+        }}
+        
+        .briefing-content h1 {{ font-size: 32px; }}
+        .briefing-content h2 {{ font-size: 24px; }}
+        .briefing-content h3 {{ font-size: 18px; }}
+        
+        .briefing-content strong {{
+            font-weight: 600;
+            color: var(--apple-text);
+        }}
+        
+        .briefing-content hr {{
+            border: none;
+            height: 1px;
+            background: var(--apple-border);
+            margin: 32px 0;
+        }}
+        
+        .briefing-content p {{
+            margin-bottom: 16px;
+        }}
+        
+        /* 核心主线高亮 */
+        .core-highlight {{
+            background: linear-gradient(135deg, rgba(255, 214, 10, 0.1) 0%, rgba(255, 159, 10, 0.1) 100%);
+            border-left: 4px solid #ffd60a;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            font-size: 15px;
+            line-height: 1.7;
+        }}
+        
+        /* 按钮 */
+        .action-buttons {{
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }}
+        
+        .btn {{
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            color: #0a84ff;
+            padding: 14px 28px;
+            border-radius: var(--apple-radius);
+            font-size: 15px;
+            font-weight: 500;
             text-decoration: none;
-            margin-bottom: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            min-width: 160px;
+        }}
+        
+        .btn-primary {{
+            background: var(--apple-accent);
+            color: white;
+        }}
+        
+        .btn-primary:hover {{
+            background: var(--apple-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
+        }}
+        
+        .btn-secondary {{
+            background: var(--apple-bg-secondary);
+            color: var(--apple-text);
+        }}
+        
+        .btn-secondary:hover {{
+            background: var(--apple-border);
+            transform: translateY(-2px);
+        }}
+        
+        /* 动画 */
+        @keyframes fadeInUp {{
+            from {{
+                opacity: 0;
+                transform: translateY(20px);
+            }}
+            to {{
+                opacity: 1;
+                transform: translateY(0);
+            }}
+        }}
+        
+        /* 响应式 */
+        @media (max-width: 768px) {{
+            .briefing-container {{
+                padding: 40px 20px;
+            }}
+            
+            .briefing-content-card {{
+                padding: 24px;
+            }}
+            
+            .briefing-meta {{
+                flex-direction: column;
+                gap: 8px;
+            }}
+            
+            .action-buttons {{
+                flex-direction: column;
+            }}
+            
+            .btn {{
+                width: 100%;
+            }}
+        }}
+        
+        /* 平滑滚动 */
+        html {{
+            scroll-behavior: smooth;
+        }}
+        
+        /* 选中效果 */
+        ::selection {{
+            background: rgba(0, 102, 204, 0.2);
+            color: var(--apple-text);
         }}
     </style>
 </head>
 <body>
     <div class="briefing-container">
-        <a href="../../index.html" class="back-link">← 返回首页</a>
+        <a href="../../index.html" class="nav-back">返回首页</a>
         
-        <div class="briefing-header">
-            <h1 class="briefing-title">{data['title']}</h1>
+        <header class="briefing-header">
+            <div class="briefing-badge">📰 宏观交易简报</div>
+            <h1 class="briefing-title">{data['title'].replace('🟢 ', '')}</h1>
             <div class="briefing-meta">
-                <span>📅 {data['pushTime'] or '未知'}</span> • 
-                <span>📊 {data['newsCount']} 条新闻</span> •
-                <span>🆔 {data['msgid'] or 'N/A'}</span>
+                <span class="meta-item">📅 {data['pushTime'] or '未知'}</span>
+                <span class="meta-item">📊 {data['newsCount']} 条新闻</span>
+                <span class="meta-item">🆔 {data['msgid'] or 'N/A'}</span>
             </div>
-        </div>
+        </header>
         
-        <div class="briefing-content">
+        <main>
+            <div class="briefing-content-card">
+                <div class="briefing-content">
 {content_html}
-        </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="../../index.html" class="btn btn-primary">← 返回首页</a>
+                <a href="latest.json" class="btn btn-secondary" download>📥 下载 JSON</a>
+            </div>
+        </main>
     </div>
+    
+    <script>
+        // 核心主线高亮
+        document.addEventListener('DOMContentLoaded', function() {{
+            const content = document.querySelector('.briefing-content');
+            if (content) {{
+                const coreText = content.innerHTML;
+                const highlighted = coreText.replace(
+                    /(💡 核心主线.*?)(?=<h2>|<hr>|$)/s,
+                    '<div class="core-highlight">$1</div>'
+                );
+                content.innerHTML = highlighted;
+            }}
+        }});
+    </script>
 </body>
 </html>
 """
