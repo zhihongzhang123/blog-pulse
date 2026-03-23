@@ -215,15 +215,41 @@ body::before {
     padding-bottom: var(--spacing-lg);
 }
 
+/* 带更新时间的模块标题 */
+.section-header-with-time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
 .section-title {
     font-family: var(--font-sans);
     font-size: 1.7rem;
     font-weight: 600;
-    margin-bottom: var(--spacing-lg);
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
     letter-spacing: -0.02em;
+    margin: 0;
+}
+
+/* 模块更新时间 */
+.section-update-time {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+    padding: 6px 12px;
+    background: var(--color-bg-secondary);
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+/* 移除卡片内的更新时间样式 */
+.sentiment-header .update-time {
+    display: none;
 }
 
 .title-icon {

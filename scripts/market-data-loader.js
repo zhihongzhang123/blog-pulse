@@ -34,25 +34,12 @@
      * 更新页面显示
      */
     function updateDisplay(data) {
-        // 指标映射
-        const metricMap = {
-            'sp500': data.sp500,
-            'width': data.market_width,
-            'rsi': data.rsi,
-            'vix': data.vix,
-            'pcr': data.put_call,
-            'treasury': data.treasury_10y
-        };
-        
-        // 更新每个指标的更新时间
-        Object.keys(metricMap).forEach(key => {
-            const element = document.querySelector(`[data-metric="${key}"]`);
-            if (element && metricMap[key]) {
-                const updateTime = metricMap[key].updated || data.updated_at;
-                element.textContent = formatRelativeTime(updateTime);
-                element.title = `最后更新：${updateTime}`;
-            }
-        });
+        // 更新市场情绪模块的更新时间
+        const timeElement = document.getElementById('market-data-time');
+        if (timeElement && data.updated_at) {
+            timeElement.textContent = formatRelativeTime(data.updated_at);
+            timeElement.title = `最后更新：${data.updated_at}`;
+        }
         
         console.log('✅ 市场数据已加载', data);
     }
