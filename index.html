@@ -81,15 +81,123 @@
             </div>
             
             <nav class="nav">
-                <a href="#daily-thoughts" class="active">每日思考</a>
                 <a href="#market-sentiment">市场情绪</a>
+                <a href="#daily-thoughts" class="active">每日思考</a>
                 <a href="#market-analysis">市场分析</a>
                 <a href="#briefings">新闻简报</a>
                 <a href="about.html">关于</a>
             </nav>
         </header>
 
-        <!-- 每日思考 -->
+                <!-- 市场情绪 -->
+        <section id="market-sentiment" class="section section-spaced">
+            <h2 class="section-title">
+                <span class="title-icon">🌡️</span>
+                市场情绪
+            </h2>
+            
+            <div class="sentiment-grid">
+                <!-- 市场整体情绪 -->
+                <div class="sentiment-card">
+                    <div class="sentiment-header">
+                        <span class="sentiment-icon">🎯</span>
+                        <h3>市场整体情绪</h3>
+                    </div>
+                    <div class="sentiment-value neutral">中性偏多</div>
+                    <div class="sentiment-bar">
+                        <div class="sentiment-fill" style="width: 60%"></div>
+                    </div>
+                    <p class="sentiment-desc">风险情绪回暖，投资者谨慎乐观</p>
+                </div>
+                
+                <!-- 市场宽度 -->
+                <div class="sentiment-card">
+                    <div class="sentiment-header">
+                        <span class="sentiment-icon">📊</span>
+                        <h3>市场宽度</h3>
+                    </div>
+                    <div class="sentiment-value positive">65%</div>
+                    <p class="sentiment-desc">上涨股票占比，市场参与度良好</p>
+                </div>
+                
+                <!-- 市场温度 -->
+                <div class="sentiment-card">
+                    <div class="sentiment-header">
+                        <span class="sentiment-icon">🌡️</span>
+                        <h3>市场温度</h3>
+                    </div>
+                    <div class="sentiment-value warm">62°C</div>
+                    <div class="temperature-gauge">
+                        <div class="gauge-fill" style="width: 62%"></div>
+                    </div>
+                    <p class="sentiment-desc">温度适中，不宜过度交易</p>
+                </div>
+                
+                <!-- 恐慌指数 -->
+                <div class="sentiment-card">
+                    <div class="sentiment-header">
+                        <span class="sentiment-icon">😨</span>
+                        <h3>VIX 恐慌指数</h3>
+                    </div>
+                    <div class="sentiment-value low">18.5</div>
+                    <p class="sentiment-desc">低于 20，市场情绪稳定</p>
+                </div>
+            </div>
+            
+            <!-- 市场热点 -->
+            <div class="hotspots-section">
+                <h3 class="subsection-title">🔥 市场热点</h3>
+                <div class="hotspots-grid">
+                    <div class="hotspot-tag hot">AI 人工智能</div>
+                    <div class="hotspot-tag hot">半导体</div>
+                    <div class="hotspot-tag warm">新能源</div>
+                    <div class="hotspot-tag warm">生物科技</div>
+                    <div class="hotspot-tag normal">金融科技</div>
+                    <div class="hotspot-tag normal">消费电子</div>
+                </div>
+            </div>
+            
+            <!-- 重点板块 -->
+            <div class="sectors-section">
+                <h3 class="subsection-title">📈 重点板块</h3>
+                <div class="sectors-list">
+                    <div class="sector-item">
+                        <span class="sector-name">科技 (XLK)</span>
+                        <span class="sector-change positive">+2.3%</span>
+                        <span class="sector-trend">领涨</span>
+                    </div>
+                    <div class="sector-item">
+                        <span class="sector-name">能源 (XLE)</span>
+                        <span class="sector-change positive">+1.8%</span>
+                        <span class="sector-trend">强势</span>
+                    </div>
+                    <div class="sector-item">
+                        <span class="sector-name">金融 (XLF)</span>
+                        <span class="sector-change neutral">+0.5%</span>
+                        <span class="sector-trend">震荡</span>
+                    </div>
+                    <div class="sector-item">
+                        <span class="sector-name">医疗 (XLV)</span>
+                        <span class="sector-change negative">-0.8%</span>
+                        <span class="sector-trend">回调</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 市场策略 -->
+            <div class="strategy-section">
+                <h3 class="subsection-title">💡 市场策略</h3>
+                <div class="strategy-content">
+                    <p><strong>当前建议：</strong>保持中性偏多仓位，重点关注科技和能源板块，警惕医疗板块回调风险。</p>
+                    <p><strong>仓位建议：</strong>60-70%，不宜满仓操作</p>
+                    <p><strong>风险提示：</strong>关注美联储政策动向和地缘政治风险</p>
+                </div>
+            </div>
+            
+            <p class="section-note">⚠️ 以上数据仅供参考，不构成投资建议。市场有风险，投资需谨慎。</p>
+        </section>
+
+<!-- 每日思考 -->
         <section id="daily-thoughts" class="section">
             <h2 class="section-title">
                 <span class="title-icon">🌌</span>
@@ -205,113 +313,7 @@
             </div>
         </section>
 
-        <!-- 市场情绪 -->
-        <section id="market-sentiment" class="section section-spaced">
-            <h2 class="section-title">
-                <span class="title-icon">🌡️</span>
-                市场情绪
-            </h2>
-            
-            <div class="sentiment-grid">
-                <!-- 市场整体情绪 -->
-                <div class="sentiment-card">
-                    <div class="sentiment-header">
-                        <span class="sentiment-icon">🎯</span>
-                        <h3>市场整体情绪</h3>
-                    </div>
-                    <div class="sentiment-value neutral">中性偏多</div>
-                    <div class="sentiment-bar">
-                        <div class="sentiment-fill" style="width: 60%"></div>
-                    </div>
-                    <p class="sentiment-desc">风险情绪回暖，投资者谨慎乐观</p>
-                </div>
-                
-                <!-- 市场宽度 -->
-                <div class="sentiment-card">
-                    <div class="sentiment-header">
-                        <span class="sentiment-icon">📊</span>
-                        <h3>市场宽度</h3>
-                    </div>
-                    <div class="sentiment-value positive">65%</div>
-                    <p class="sentiment-desc">上涨股票占比，市场参与度良好</p>
-                </div>
-                
-                <!-- 市场温度 -->
-                <div class="sentiment-card">
-                    <div class="sentiment-header">
-                        <span class="sentiment-icon">🌡️</span>
-                        <h3>市场温度</h3>
-                    </div>
-                    <div class="sentiment-value warm">62°C</div>
-                    <div class="temperature-gauge">
-                        <div class="gauge-fill" style="width: 62%"></div>
-                    </div>
-                    <p class="sentiment-desc">温度适中，不宜过度交易</p>
-                </div>
-                
-                <!-- 恐慌指数 -->
-                <div class="sentiment-card">
-                    <div class="sentiment-header">
-                        <span class="sentiment-icon">😨</span>
-                        <h3>VIX 恐慌指数</h3>
-                    </div>
-                    <div class="sentiment-value low">18.5</div>
-                    <p class="sentiment-desc">低于 20，市场情绪稳定</p>
-                </div>
-            </div>
-            
-            <!-- 市场热点 -->
-            <div class="hotspots-section">
-                <h3 class="subsection-title">🔥 市场热点</h3>
-                <div class="hotspots-grid">
-                    <div class="hotspot-tag hot">AI 人工智能</div>
-                    <div class="hotspot-tag hot">半导体</div>
-                    <div class="hotspot-tag warm">新能源</div>
-                    <div class="hotspot-tag warm">生物科技</div>
-                    <div class="hotspot-tag normal">金融科技</div>
-                    <div class="hotspot-tag normal">消费电子</div>
-                </div>
-            </div>
-            
-            <!-- 重点板块 -->
-            <div class="sectors-section">
-                <h3 class="subsection-title">📈 重点板块</h3>
-                <div class="sectors-list">
-                    <div class="sector-item">
-                        <span class="sector-name">科技 (XLK)</span>
-                        <span class="sector-change positive">+2.3%</span>
-                        <span class="sector-trend">领涨</span>
-                    </div>
-                    <div class="sector-item">
-                        <span class="sector-name">能源 (XLE)</span>
-                        <span class="sector-change positive">+1.8%</span>
-                        <span class="sector-trend">强势</span>
-                    </div>
-                    <div class="sector-item">
-                        <span class="sector-name">金融 (XLF)</span>
-                        <span class="sector-change neutral">+0.5%</span>
-                        <span class="sector-trend">震荡</span>
-                    </div>
-                    <div class="sector-item">
-                        <span class="sector-name">医疗 (XLV)</span>
-                        <span class="sector-change negative">-0.8%</span>
-                        <span class="sector-trend">回调</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 市场策略 -->
-            <div class="strategy-section">
-                <h3 class="subsection-title">💡 市场策略</h3>
-                <div class="strategy-content">
-                    <p><strong>当前建议：</strong>保持中性偏多仓位，重点关注科技和能源板块，警惕医疗板块回调风险。</p>
-                    <p><strong>仓位建议：</strong>60-70%，不宜满仓操作</p>
-                    <p><strong>风险提示：</strong>关注美联储政策动向和地缘政治风险</p>
-                </div>
-            </div>
-            
-            <p class="section-note">⚠️ 以上数据仅供参考，不构成投资建议。市场有风险，投资需谨慎。</p>
-        </section>
+
 
         <!-- 关于 -->
         <section id="about" class="section">
