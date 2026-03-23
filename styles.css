@@ -768,6 +768,15 @@ body.light-mode .briefing-evening {
 .sentiment-value.warm { color: var(--color-warning); }
 .sentiment-value.low { color: var(--color-success); }
 
+/* 指标条颜色变体 */
+.sentiment-fill.positive {
+    background: linear-gradient(90deg, var(--color-success) 0%, var(--color-teal) 100%);
+}
+
+.sentiment-fill.warm {
+    background: linear-gradient(90deg, var(--color-warning) 0%, var(--color-gold) 100%);
+}
+
 .sentiment-bar {
     width: 100%;
     height: 8px;
