@@ -27,7 +27,15 @@
       "newsCount": 8,
       "jsonPath": "data/news/latest.json",
       "htmlPath": "data/news/latest.html"
+    },
+    {
+      "title": "🟢 2026-03-21 evening | 全球宏观与核心交易线索",
+      "timestamp": "2026-03-21 20:41:43",
+      "msgid": "da4726047b554ef982d356208651347b",
+      "newsCount": 8,
+      "jsonPath": "data/news/latest.json",
+      "htmlPath": "data/news/latest.html"
     }
   ],
-  "lastUpdated": "2026-03-23 14:20:35"
+  "lastUpdated": "2026-03-23 14:48:58"
 }
