@@ -208,14 +208,15 @@ def generate_briefing_html(data: dict):
             align-items: center;
             gap: 6px;
             padding: 6px 14px;
-            background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%);
-            color: #000;
+            background: linear-gradient(135deg, #0a84ff 0%, #0066cc 100%);
+            color: #ffffff;
             border-radius: 20px;
             font-size: 13px;
             font-weight: 600;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3);
         }}
         
         .briefing-title {{
@@ -225,10 +226,7 @@ def generate_briefing_html(data: dict):
             line-height: 1.1;
             margin-bottom: 20px;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--apple-text) 0%, var(--apple-text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--apple-text);
         }}
         
         .briefing-meta {{
@@ -341,14 +339,14 @@ def generate_briefing_html(data: dict):
         }}
         
         .btn-primary {{
-            background: var(--apple-accent);
+            background: linear-gradient(135deg, #0a84ff 0%, #0066cc 100%);
             color: white;
         }}
         
         .btn-primary:hover {{
-            background: var(--apple-accent-hover);
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
+            box-shadow: 0 8px 24px rgba(10, 132, 255, 0.4);
         }}
         
         .btn-secondary {{
