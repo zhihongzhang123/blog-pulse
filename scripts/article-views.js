@@ -1,65 +1,141 @@
 /**
- * 文章阅读计数
+ * 文章阅读计数 v2.0 (优化版)
  * 
  * 功能:
  * 1. 统计每篇文章的阅读次数
- * 2. 显示热门文章
- * 3. 数据存储在 localStorage
+ * 2. 防刷机制 (30 分钟内同一用户只计数 1 次)
+ * 3. 显示热门文章
+ * 4. 数据存储在 localStorage
  * 
- * 注意：这是简单的本地计数，非跨设备统计
- * 如需精确统计，需接入后端服务
+ * 优化:
+ * - 路径归一化 (解决首页/文章页路径不一致)
+ * - 防刷机制 (30 分钟冷却)
+ * - 实时同步 (首页/文章页数据一致)
+ * - 批量更新首页卡片
  */
 
 (function() {
     'use strict';
     
     const STORAGE_KEY = 'pulse_article_views';
-    const VIEWS_DISPLAY_KEY = 'pulse_views_display';
+    const COOLDOWN_KEY = 'pulse_view_cooldown';
+    const COOLDOWN_MS = 30 * 60 * 1000; // 30 分钟冷却时间
+    
+    /**
+     * 路径归一化 (解决路径不一致问题)
+     */
+    function normalizePath(path) {
+        if (!path) return '';
+        
+        // 移除域名部分 (如果有)
+        path = path.replace(/^https?:\/\/[^\/]+/, '');
+        
+        // 确保以 / 开头
+        if (!path.startsWith('/')) {
+            path = '/' + path;
+        }
+        
+        // 移除查询参数和哈希
+        path = path.split('?')[0].split('#')[0];
+        
+        return path;
+    }
+    
+    /**
+     * 获取当前标准化路径
+     */
+    function getCurrentPath() {
+        return normalizePath(window.location.pathname);
+    }
     
     /**
      * 获取阅读计数数据
      */
     function getViewsData() {
-        const data = localStorage.getItem(STORAGE_KEY);
-        return data ? JSON.parse(data) : {};
+        try {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : {};
+        } catch (e) {
+            console.warn('读取阅读数据失败:', e);
+            return {};
+        }
     }
     
     /**
      * 保存阅读计数数据
      */
     function saveViewsData(data) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        } catch (e) {
+            console.warn('保存阅读数据失败:', e);
+        }
     }
     
     /**
-     * 增加文章阅读计数
+     * 检查是否在冷却时间内
+     */
+    function isInCooldown(path) {
+        const cooldownData = JSON.parse(localStorage.getItem(COOLDOWN_KEY) || '{}');
+        const lastView = cooldownData[path];
+        
+        if (!lastView) return false;
+        
+        const now = Date.now();
+        return (now - lastView) < COOLDOWN_MS;
+    }
+    
+    /**
+     * 设置冷却时间
+     */
+    function setCooldown(path) {
+        const cooldownData = JSON.parse(localStorage.getItem(COOLDOWN_KEY) || '{}');
+        cooldownData[path] = Date.now();
+        localStorage.setItem(COOLDOWN_KEY, JSON.stringify(cooldownData));
+    }
+    
+    /**
+     * 增加文章阅读计数 (带防刷机制)
      */
     function incrementViews(path) {
+        const normalizedPath = normalizePath(path);
+        
+        // 检查冷却时间
+        if (isInCooldown(normalizedPath)) {
+            console.log('⏱️ 冷却时间内，不增加计数');
+            return getViews(normalizedPath);
+        }
+        
         const data = getViewsData();
         const now = Date.now();
         
-        if (!data[path]) {
-            data[path] = {
+        if (!data[normalizedPath]) {
+            data[normalizedPath] = {
                 count: 0,
                 firstView: now,
-                lastView: now
+                lastView: now,
+                title: extractTitle(normalizedPath)
             };
         }
         
-        data[path].count += 1;
-        data[path].lastView = now;
+        data[normalizedPath].count += 1;
+        data[normalizedPath].lastView = now;
         
         saveViewsData(data);
+        setCooldown(normalizedPath);
         
-        return data[path].count;
+        console.log(`📊 ${normalizedPath} 阅读数 +1 = ${data[normalizedPath].count}`);
+        
+        return data[normalizedPath].count;
     }
     
     /**
      * 获取文章阅读计数
      */
     function getViews(path) {
+        const normalizedPath = normalizePath(path);
         const data = getViewsData();
-        return data[path] ? data[path].count : 0;
+        return data[normalizedPath] ? data[normalizedPath].count : 0;
     }
     
     /**
@@ -71,7 +147,8 @@
             path,
             count: info.count,
             firstView: info.firstView,
-            lastView: info.lastView
+            lastView: info.lastView,
+            title: info.title || extractTitle(path)
         }));
         
         // 按阅读数排序
@@ -86,7 +163,7 @@
     function displayViews(elementId, count) {
         const element = document.getElementById(elementId);
         if (element) {
-            element.textContent = count.toLocaleString();
+            element.textContent = count ? count.toLocaleString() : '0';
         }
     }
     
@@ -100,21 +177,19 @@
         const topArticles = getTopArticles(limit);
         
         if (topArticles.length === 0) {
-            container.innerHTML = '<p>暂无阅读数据</p>';
+            container.innerHTML = '<p class="no-data">暂无阅读数据</p>';
             return;
         }
         
         let html = '<ul class="top-articles-list">';
         topArticles.forEach((article, index) => {
-            const path = article.path;
-            const title = extractTitle(path);
-            const views = article.count.toLocaleString();
+            const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
             
             html += `
                 <li class="top-article-item">
-                    <span class="rank">#${index + 1}</span>
-                    <a href="${path}" class="article-link">${title}</a>
-                    <span class="views-count">👁️ ${views}</span>
+                    <span class="rank">${medal}</span>
+                    <a href="${article.path}" class="article-link" title="${article.title}">${article.title}</a>
+                    <span class="views-count">👁️ ${article.count.toLocaleString()}</span>
                 </li>
             `;
         });
@@ -127,21 +202,23 @@
      * 从路径提取文章标题
      */
     function extractTitle(path) {
-        // 从路径提取标题，例如：
-        // /content/daily-thoughts/2026-03-22-fear-and-opportunity.html
-        // → "Fear And Opportunity"
-        
         const filename = path.split('/').pop();
-        if (!filename) return path;
+        if (!filename) return '未知文章';
         
         // 移除日期前缀和扩展名
         const title = filename
             .replace(/^\d{4}-\d{2}-\d{2}-/, '')
             .replace(/\.[^.]+$/, '')
             .replace(/-/g, ' ')
-            .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
+            .replace(/_/g, ' ')
+            .trim();
+        
+        // 首字母大写 (英文标题)
+        if (/^[a-zA-Z]/.test(title)) {
+            return title.split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
         
         return title;
     }
@@ -150,44 +227,64 @@
      * 初始化当前页面阅读计数
      */
     function initCurrentPageViews() {
-        const path = window.location.pathname;
+        const path = getCurrentPath();
+        
+        // 只在文章页面计数 (排除首页、列表页等)
+        const isArticlePage = path.includes('/content/daily-thoughts/') && 
+                              path.endsWith('.html');
+        
+        if (!isArticlePage) {
+            console.log('📄 非文章页面，不计数');
+            return;
+        }
+        
         const count = incrementViews(path);
         
         // 显示计数
         displayViews('view-count', count);
         displayViews('article-views-count', count);
-        
-        // 保存到显示缓存 (用于首页显示)
-        const displayData = JSON.parse(localStorage.getItem(VIEWS_DISPLAY_KEY) || '{}');
-        displayData[path] = count;
-        localStorage.setItem(VIEWS_DISPLAY_KEY, JSON.stringify(displayData));
     }
     
     /**
      * 更新首页文章卡片的阅读数显示
      */
     function updateHomepageViews() {
-        const displayData = JSON.parse(localStorage.getItem(VIEWS_DISPLAY_KEY) || '{}');
+        const data = getViewsData();
         
         // 查找所有文章卡片
         const cards = document.querySelectorAll('.thought-card, .article-card');
+        
         cards.forEach(card => {
             const link = card.querySelector('a[href*="content/daily-thoughts"]');
             if (!link) return;
             
-            const path = link.getAttribute('href');
-            const views = displayData[path] || getViews(path);
+            // 获取链接路径并归一化
+            const href = link.getAttribute('href');
+            const path = normalizePath(href);
+            
+            // 获取阅读数
+            const articleData = data[path];
+            const views = articleData ? articleData.count : 0;
             
             // 创建或更新阅读数显示
             let viewsElement = card.querySelector('.card-views');
             if (!viewsElement) {
                 viewsElement = document.createElement('div');
                 viewsElement.className = 'card-views';
-                card.appendChild(viewsElement);
+                
+                // 插入到 read-more 链接之前
+                const readMore = card.querySelector('.read-more');
+                if (readMore) {
+                    readMore.parentNode.insertBefore(viewsElement, readMore);
+                } else {
+                    card.appendChild(viewsElement);
+                }
             }
             
             viewsElement.textContent = `👁️ ${views.toLocaleString()}`;
         });
+        
+        console.log(`🏠 更新了 ${cards.length} 个文章卡片的阅读数`);
     }
     
     /**
@@ -213,7 +310,10 @@
         getViews,
         getTopArticles,
         displayTopArticles,
-        incrementViews
+        incrementViews,
+        normalizePath,
+        getViewsData,
+        getTopArticles
     };
     
 })();
