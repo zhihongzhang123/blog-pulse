@@ -722,6 +722,42 @@ body.light-mode .briefing-evening {
     opacity: 0.7;
 }
 
+.footer-social {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--glass-border);
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-link:hover {
+    background: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+.social-icon {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.social-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 /* ========================================
    浅色模式支持
    ======================================== */
