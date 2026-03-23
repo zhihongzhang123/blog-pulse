@@ -2,6 +2,14 @@
 // Pulse Blog · 交互脚本 (Apple 风格增强)
 // ========================================
 
+// 先加载主题同步增强脚本
+(function() {
+    const script = document.createElement('script');
+    script.src = 'scripts/theme-sync.js';
+    script.async = true;
+    document.head.appendChild(script);
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // 动态岛通知
@@ -38,6 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedMode = localStorage.getItem('pulse-theme-mode') || 'light';
     applyMode(savedMode);
     
+    // 页面加载时同步主题到所有模式切换按钮
+    function syncThemeButtons() {
+        const currentMode = localStorage.getItem('pulse-theme-mode') || 'light';
+        switchBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.mode === currentMode);
+        });
+    }
+    
     // 更新按钮状态
     switchBtns.forEach(btn => {
         if (btn.dataset.mode === savedMode) {
@@ -50,6 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 保存偏好
             localStorage.setItem('pulse-theme-mode', mode);
+            
+            // 同步所有页面的按钮状态
+            syncThemeButtons();
             
             // 触觉反馈动画
             this.classList.add('haptic-press');
