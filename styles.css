@@ -203,16 +203,16 @@ body::before {
    章节通用
    ======================================== */
 .section {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0;
     border-bottom: 1px solid rgba(148, 163, 184, 0.1);
 }
 
-/* 增加特定模块的间距 - 提升阅读体验 */
+/* 特定模块的间距 - 适度增加层次感 */
 .section-spaced {
-    margin-top: calc(var(--spacing-xl) * 1.5);
-    margin-bottom: calc(var(--spacing-xl) * 1.5);
-    padding-top: calc(var(--spacing-xl) * 1.2);
-    padding-bottom: calc(var(--spacing-xl) * 1.2);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
 }
 
 .section-title {
