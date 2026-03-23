@@ -4,34 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>复利的本质 · Pulse</title>
-    <link rel="stylesheet" href="../../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
     <style>
-        .article-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: var(--spacing-xl) var(--spacing-md);
+        :root {
+            --apple-font: -apple-system, BlinkMacSystemFont, 'SF Pro SC', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', sans-serif;
+            --apple-serif: 'Noto Serif SC', serif;
+            --apple-bg: #ffffff;
+            --apple-bg-secondary: #f5f5f7;
+            --apple-text: #1d1d1f;
+            --apple-text-secondary: #86868b;
+            --apple-accent: #0a84ff;
+            --apple-gold: #ffd60a;
+            --apple-border: rgba(0, 0, 0, 0.08);
+            --apple-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --apple-radius: 12px;
+            --apple-radius-lg: 18px;
         }
         
+        body.dark-mode {
+            --apple-bg: #000000;
+            --apple-bg-secondary: #1d1d1f;
+            --apple-text: #f5f5f7;
+            --apple-text-secondary: #86868b;
+            --apple-border: rgba(255, 255, 255, 0.08);
+            --apple-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --apple-bg-auto: #000000;
+                --apple-bg-secondary-auto: #1d1d1f;
+                --apple-text-auto: #f5f5f7;
+                --apple-text-secondary-auto: #86868b;
+                --apple-border-auto: rgba(255, 255, 255, 0.08);
+                --apple-shadow-auto: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
+            body:not(.dark-mode):not(.light-mode) {
+                --apple-bg: var(--apple-bg-auto);
+                --apple-bg-secondary: var(--apple-bg-secondary-auto);
+                --apple-text: var(--apple-text-auto);
+                --apple-text-secondary: var(--apple-text-secondary-auto);
+                --apple-border: var(--apple-border-auto);
+                --apple-shadow: var(--apple-shadow-auto);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--apple-font);
+            background: var(--apple-bg);
+            color: var(--apple-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        
+        /* 返回导航 */
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--apple-accent);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--apple-bg-secondary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 40px;
+        }
+        
+        .nav-back:hover {
+            background: var(--apple-accent);
+            color: white;
+            transform: translateX(-4px);
+        }
+        
+        .nav-back::before {
+            content: '←';
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* 文章头部 */
         .article-header {
             text-align: center;
-            margin-bottom: var(--spacing-xl);
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .article-date {
-            color: var(--color-text-muted);
-            font-size: 0.95rem;
-            margin-bottom: var(--spacing-sm);
+            font-size: 14px;
+            color: var(--apple-text-secondary);
+            font-weight: 500;
+            margin-bottom: 16px;
         }
         
         .article-title {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            line-height: 1.3;
-            margin-bottom: var(--spacing-md);
-            background: var(--gradient-gold);
+            font-family: var(--apple-serif);
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -40,203 +131,300 @@
         .article-tags {
             display: flex;
             justify-content: center;
-            gap: var(--spacing-xs);
+            gap: 8px;
             flex-wrap: wrap;
         }
         
         .tag {
-            background: var(--color-gold-light);
-            color: var(--color-gold);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--radius-sm);
-            font-size: 0.85rem;
+            background: rgba(255, 214, 10, 0.15);
+            color: #b88600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 214, 10, 0.3);
+        }
+        
+        body.dark-mode .tag {
+            color: #ffd60a;
+        }
+        
+        /* 文章卡片 */
+        .article-card {
+            background: var(--apple-bg-secondary);
+            border-radius: var(--apple-radius-lg);
+            padding: 40px 36px;
+            margin-bottom: 32px;
+            border: 1px solid var(--apple-border);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
         }
         
         .article-content {
-            font-size: 1.1rem;
-            line-height: 1.9;
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--apple-text);
         }
         
         .article-content p {
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .article-content blockquote {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            font-style: italic;
-            border-left: 3px solid var(--color-gold);
-            padding-left: var(--spacing-md);
-            margin: var(--spacing-xl) 0;
-            color: var(--color-text);
-            background: rgba(212, 175, 55, 0.05);
-            padding: var(--spacing-lg);
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-bottom: 20px;
         }
         
         .article-content h2 {
-            font-family: var(--font-serif);
-            font-size: 1.6rem;
-            margin: var(--spacing-xl) 0 var(--spacing-md);
-            color: var(--color-gold);
+            font-family: var(--apple-serif);
+            font-size: 22px;
+            font-weight: 600;
+            margin: 36px 0 16px;
+            color: var(--apple-text);
+            letter-spacing: -0.01em;
         }
         
-        .article-content ul {
-            margin: var(--spacing-md) 0;
-            padding-left: var(--spacing-lg);
+        .article-content h2:first-child {
+            margin-top: 0;
+        }
+        
+        .article-content strong {
+            font-weight: 600;
+            color: var(--apple-text);
+        }
+        
+        .article-content blockquote {
+            background: linear-gradient(135deg, rgba(255, 214, 10, 0.1) 0%, rgba(255, 159, 10, 0.1) 100%);
+            border-left: 4px solid #ffd60a;
+            padding: 24px 28px;
+            margin: 32px 0;
+            border-radius: 12px;
+            font-style: italic;
+            color: var(--apple-text);
+            line-height: 1.6;
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 20px 0;
+            padding-left: 28px;
         }
         
         .article-content li {
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: 10px;
+            color: var(--apple-text-secondary);
         }
         
-        .key-insight {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: var(--radius-md);
-            padding: var(--spacing-lg);
-            margin: var(--spacing-xl) 0;
+        /* 核心洞察框 */
+        .insight-box {
+            background: linear-gradient(135deg, rgba(10, 132, 255, 0.08) 0%, rgba(94, 92, 230, 0.08) 100%);
+            border: 1px solid rgba(10, 132, 255, 0.2);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin: 32px 0;
         }
         
-        .key-insight-title {
-            color: var(--color-accent);
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
+        .insight-box-title {
             display: flex;
             align-items: center;
-            gap: var(--spacing-xs);
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--apple-accent);
+            margin-bottom: 16px;
+        }
+        
+        .insight-box p {
+            margin-bottom: 12px;
+            color: var(--apple-text);
+        }
+        
+        /* 行动建议框 */
+        .action-box {
+            background: rgba(48, 209, 88, 0.08);
+            border: 1px solid rgba(48, 209, 88, 0.2);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin: 32px 0;
+        }
+        
+        .action-box-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #10b981;
+            margin-bottom: 16px;
+        }
+        
+        /* 底部导航 */
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--apple-border);
+            margin-top: 48px;
         }
         
         .back-link {
-            display: inline-block;
-            margin-top: var(--spacing-xl);
-            color: var(--color-accent);
+            color: var(--apple-accent);
             text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
         
         .back-link:hover {
-            text-decoration: underline;
+            color: var(--apple-gold);
+        }
+        
+        /* 阅读计数 */
+        .article-views {
+            font-size: 13px;
+            color: var(--apple-text-secondary);
+            font-weight: 500;
+        }
+        
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .article-card {
+                padding: 28px 20px;
+            }
+            
+            .article-title {
+                font-size: 26px;
+            }
+            
+            .article-content {
+                font-size: 15px;
+            }
+            
+            .article-content h2 {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="article-container">
+    <div class="container">
+        <a href="../../index.html" class="nav-back">返回首页</a>
+        
         <header class="article-header">
-            <div class="article-date">2026 年 3 月 23 日</div>
+            <div class="article-date">📅 2026 年 3 月 23 日</div>
             <h1 class="article-title">复利的本质</h1>
             <div class="article-tags">
                 <span class="tag">交易哲学</span>
                 <span class="tag">长期主义</span>
             </div>
         </header>
-
-        <article class="article-content">
-            <p>巴菲特说："复利是世界第八大奇迹。"</p>
+        
+        <main>
+            <article class="article-card">
+                <div class="article-content">
+                    <p>巴菲特说："复利是世界第八大奇迹。"</p>
+                    
+                    <p>但大多数人理解的复利，只是公式：<strong>(1+r)^n</strong>。</p>
+                    
+                    <p>他们看到的是 r（收益率），却忽略了 n（时间）。</p>
+                    
+                    <h2>复利的真正敌人</h2>
+                    
+                    <p>不是低收益率，而是<strong>中断</strong>。</p>
+                    
+                    <p>一次爆仓，n 归零。一次情绪化交易，n 重置。一次"就这一次"的例外，n 断裂。</p>
+                    
+                    <blockquote>
+                        "活着才能享受复利。"
+                        <br>—— 老雷
+                    </blockquote>
+                    
+                    <h2>为什么大多数人享受不到复利？</h2>
+                    
+                    <p>因为他们追求的是<strong>暴富</strong>，不是<strong>变富</strong>。</p>
+                    
+                    <p>暴富需要高 r，变富需要长 n。</p>
+                    
+                    <p>高 r 意味着高风险，高风险意味着可能出局。出局的人，没有资格谈复利。</p>
+                    
+                    <div class="insight-box">
+                        <div class="insight-box-title">💡 核心洞察</div>
+                        <p><strong>复利的本质不是数学，是生存。</strong></p>
+                        <p>先活下来，再谈增长。先保证 n 不断裂，再考虑 r 的大小。</p>
+                    </div>
+                    
+                    <h2>交易中的复利思维</h2>
+                    
+                    <p>每天进步 1%，一年后是 37 倍。但前提是——<strong>每天都交易</strong>吗？</p>
+                    
+                    <p>不。是<strong>每天都在系统内</strong>。</p>
+                    
+                    <p>有时空仓，有时持仓，有时止损，有时止盈。但永远在系统内，永远按规则行事。</p>
+                    
+                    <p>这才是交易者的复利：<strong>一致性 × 时间</strong>。</p>
+                    
+                    <h2>三个反直觉的真相</h2>
+                    
+                    <ul>
+                        <li><strong>慢就是快</strong> — 年化 20% 持续 20 年，胜过一年 200% 然后归零</li>
+                        <li><strong>少就是多</strong> — 一年 3 次高质量交易，胜过每天频繁操作</li>
+                        <li><strong>守就是攻</strong> — 空仓等待最佳时机，本身就是一种进攻</li>
+                    </ul>
+                    
+                    <h2>给迷茫者的建议</h2>
+                    
+                    <p>如果你现在还在亏损，不要想"如何快速回本"。</p>
+                    
+                    <p>要想：</p>
+                    
+                    <ul>
+                        <li>我的系统能保证我一年后还在市场里吗？</li>
+                        <li>我的仓位能让我睡得着觉吗？</li>
+                        <li>我的策略能让我持续执行 1000 次吗？</li>
+                    </ul>
+                    
+                    <p>如果答案是否定的，那就先解决这些问题。</p>
+                    
+                    <p><strong>复利不会奖励聪明的人，只会奖励活着的人。</strong></p>
+                    
+                    <blockquote>
+                        "计划你的交易，交易你的计划。"
+                        <br>—— 华尔街格言
+                    </blockquote>
+                    
+                    <div class="action-box">
+                        <div class="action-box-title">✅ 今日行动</div>
+                        <p>检查你的交易系统：</p>
+                        <ul>
+                            <li>单笔风险是否 ≤2%？</li>
+                            <li>是否有明确的止损规则？</li>
+                            <li>是否有强制平仓线（如回撤 50%）？</li>
+                            <li>是否能保证一年后还在市场里？</li>
+                        </ul>
+                        <p style="margin-top: 16px;">如果有任何一个答案是否定的，今天不要交易。先完善系统。</p>
+                        <p style="margin-top: 12px; font-weight: 600;"><strong>因为复利，只属于那些能活到明天的人。</strong></p>
+                    </div>
+                </div>
+            </article>
             
-            <p>但大多数人理解的复利，只是公式：<strong>(1+r)^n</strong>。</p>
-            
-            <p>他们看到的是 r（收益率），却忽略了 n（时间）。</p>
-
-            <h2>复利的真正敌人</h2>
-            
-            <p>不是低收益率，而是<strong>中断</strong>。</p>
-            
-            <p>一次爆仓，n 归零。一次情绪化交易，n 重置。一次"就这一次"的例外，n 断裂。</p>
-            
-            <blockquote>
-                "活着才能享受复利。"<br>
-                —— 老雷
-            </blockquote>
-
-            <h2>为什么大多数人享受不到复利？</h2>
-            
-            <p>因为他们追求的是<strong>暴富</strong>，不是<strong>变富</strong>。</p>
-            
-            <p>暴富需要高 r，变富需要长 n。</p>
-            
-            <p>高 r 意味着高风险，高风险意味着可能出局。出局的人，没有资格谈复利。</p>
-
-            <div class="key-insight">
-                <div class="key-insight-title">💡 核心洞察</div>
-                <p><strong>复利的本质不是数学，是生存。</strong></p>
-                <p>先活下来，再谈增长。先保证 n 不断裂，再考虑 r 的大小。</p>
-            </div>
-
-            <h2>交易中的复利思维</h2>
-            
-            <p>每天进步 1%，一年后是 37 倍。但前提是——<strong>每天都交易</strong>吗？</p>
-            
-            <p>不。是<strong>每天都在系统内</strong>。</p>
-            
-            <p>有时空仓，有时持仓，有时止损，有时止盈。但永远在系统内，永远按规则行事。</p>
-            
-            <p>这才是交易者的复利：<strong>一致性 × 时间</strong>。</p>
-
-            <h2>三个反直觉的真相</h2>
-            
-            <ul>
-                <li><strong>慢就是快</strong> — 年化 20% 持续 20 年，胜过一年 200% 然后归零</li>
-                <li><strong>少就是多</strong> — 一年 3 次高质量交易，胜过每天频繁操作</li>
-                <li><strong>守就是攻</strong> — 空仓等待最佳时机，本身就是一种进攻</li>
-            </ul>
-
-            <h2>给迷茫者的建议</h2>
-            
-            <p>如果你现在还在亏损，不要想"如何快速回本"。</p>
-            
-            <p>要想：</p>
-            <ul>
-                <li>我的系统能保证我一年后还在市场里吗？</li>
-                <li>我的仓位能让我睡得着觉吗？</li>
-                <li>我的策略能让我持续执行 1000 次吗？</li>
-            </ul>
-            
-            <p>如果答案是否定的，那就先解决这些问题。</p>
-            
-            <p><strong>复利不会奖励聪明的人，只会奖励活着的人。</strong></p>
-
-            <blockquote>
-                "计划你的交易，交易你的计划。"<br>
-                —— 华尔街格言
-            </blockquote>
-
-            <h2>今日行动</h2>
-            
-            <p>检查你的交易系统：</p>
-            <ul>
-                <li>单笔风险是否 ≤2%？</li>
-                <li>是否有明确的止损规则？</li>
-                <li>是否有强制平仓线（如回撤 50%）？</li>
-                <li>是否能保证一年后还在市场里？</li>
-            </ul>
-            
-            <p>如果有任何一个答案是否定的，今天不要交易。先完善系统。</p>
-            
-            <p><strong>因为复利，只属于那些能活到明天的人。</strong></p>
-        </article>
-
-        <a href="../../index.html" class="back-link">← 返回首页</a>
-
-        <!-- Giscus 评论系统 -->
-        <script src="https://giscus.app/client.js"
-        data-repo="zhihongzhang123/blog-pulse"
-        data-repo-id="R_kgDORtmH5w"
-        data-category="General"
-        data-category-id="DIC_kwDORtmH584CnRbT"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="zh-CN"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-        </script>
+            <footer class="article-footer">
+                <a href="../../index.html" class="back-link">← 返回所有文章</a>
+                <span class="article-views">👁️ 阅读计数中...</span>
+            </footer>
+        </main>
     </div>
     
-    <!-- 加载主脚本 (主题切换等) -->
     <script src="../../scripts/article-views.js"></script>
     <script src="../../main.js"></script>
 </body>

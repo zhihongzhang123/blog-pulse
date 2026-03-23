@@ -485,26 +485,14 @@ body.light-mode .tag {
 
 .briefing-morning {
     background: rgba(245, 158, 11, 0.15);
-    color: #b87c0a;
-    border: 1px solid rgba(245, 158, 11, 0.4);
-}
-
-body.light-mode .briefing-morning {
-    background: rgba(245, 158, 11, 0.25);
-    color: #9c6406;
-    border: 1px solid rgba(245, 158, 11, 0.5);
+    color: var(--color-warning);
+    border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .briefing-evening {
     background: rgba(59, 130, 246, 0.15);
-    color: #0a66d6;
-    border: 1px solid rgba(59, 130, 246, 0.4);
-}
-
-body.light-mode .briefing-evening {
-    background: rgba(59, 130, 246, 0.25);
-    color: #0052a3;
-    border: 1px solid rgba(59, 130, 246, 0.5);
+    color: var(--color-accent);
+    border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .briefing-time {
@@ -725,20 +713,20 @@ body.light-mode .briefing-evening {
 /* ========================================
    浅色模式支持
    ======================================== */
-/* 默认浅色模式 - 优化版 (降低亮度) */
+/* 默认浅色模式 */
 body, body.light-mode {
-    --color-bg: #f0f0f5;
-    --color-bg-secondary: #e8e8ed;
+    --color-bg: #f5f5f7;
+    --color-bg-secondary: #ffffff;
     --color-bg-card: #ffffff;
-    --color-bg-glass: rgba(255, 255, 255, 0.85);
+    --color-bg-glass: rgba(255, 255, 255, 0.75);
     --color-text: #1d1d1f;
     --color-text-muted: #6e6e73;
     --color-accent: #0071e3;
-    --color-accent-glow: rgba(0, 113, 227, 0.2);
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(0, 0, 0, 0.12);
-    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.1);
-    --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.12);
+    --color-accent-glow: rgba(0, 113, 227, 0.3);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-elevated: 0 12px 48px rgba(0, 0, 0, 0.15);
     --shadow-subtle: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -1210,6 +1198,15 @@ body.light-mode .ambient-light::after {
    加载动画
    ======================================== */
 
+/* ========================================
+   响应式
+   ======================================== */
+��
+   ======================================== */
+============= */
+= */
+��
+   ======================================== */
 
 /* ========================================
    阅读计数样式
