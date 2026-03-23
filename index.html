@@ -4,10 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulse · 市场脉搏与交易哲学</title>
+    <meta name="description" content="Pulse - 融合数据科学、市场哲学与艺术视角的交易分析系统。提供 12H 宏观交易新闻简报、美股市场分析、每日交易哲学思考。">
+    <meta name="keywords" content="交易，投资，市场分析，新闻简报，美股，宏观经济学，交易哲学">
+    <meta name="author" content="Pulse">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blog.themarketpulse.uk/">
+    <meta property="og:title" content="Pulse · 市场脉搏与交易哲学">
+    <meta property="og:description" content="融合数据科学、市场哲学与艺术视角的交易分析系统">
+    <meta property="og:image" content="https://blog.themarketpulse.uk/og-image.png">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="Pulse Blog">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://blog.themarketpulse.uk/">
+    <meta property="twitter:title" content="Pulse · 市场脉搏与交易哲学">
+    <meta property="twitter:description" content="融合数据科学、市场哲学与艺术视角的交易分析系统">
+    <meta property="twitter:image" content="https://blog.themarketpulse.uk/og-image.png">
+    <meta property="twitter:creator" content="@YourMarketPulse">
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://blog.themarketpulse.uk/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Plausible 访问统计 (隐私友好，无 Cookie) -->
+    <script defer data-domain="blog.themarketpulse.uk" src="https://plausible.io/js/script.js"></script>
+    
+    <!-- 结构化数据 (Schema.org) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Pulse Blog",
+        "url": "https://blog.themarketpulse.uk/",
+        "description": "融合数据科学、市场哲学与艺术视角的交易分析系统",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Pulse",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://blog.themarketpulse.uk/logo.png"
+            }
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Pulse",
+            "url": "https://blog.themarketpulse.uk/"
+        },
+        "potentialAction": {
+            "@type": "ReadAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://blog.themarketpulse.uk/"
+            }
+        }
+    }
+    </script>
     <style>
         /* Apple 风格动态光晕背景 */
         @keyframes float {
@@ -419,5 +483,7 @@
     <script src="scripts/article-views.js"></script>
     <!-- 市场数据加载器 -->
     <script src="scripts/market-data-loader.js"></script>
+    <!-- 懒加载 -->
+    <script src="scripts/lazy-load.js"></script>
 </body>
 </html>

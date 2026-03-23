@@ -246,6 +246,27 @@ body::before {
     border: 1px solid var(--glass-border);
 }
 
+/* 懒加载样式 */
+.lazy-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.lazy-section.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+img[data-src] {
+    background: var(--color-bg-secondary);
+    min-height: 200px;
+}
+
+img[data-src].loaded {
+    background: transparent;
+}
+
 /* 移除卡片内的更新时间样式 */
 .sentiment-header .update-time {
     display: none;
