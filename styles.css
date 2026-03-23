@@ -950,21 +950,21 @@ body.light-mode .briefing-evening {
 /* ========================================
    浅色模式支持
    ======================================== */
-/* 默认浅色模式 - 优化版 (降低亮度) */
+/* 默认浅色模式 - 进一步优化 (更暗更舒适) */
 body, body.light-mode {
-    --color-bg: #f0f0f5;
-    --color-bg-secondary: #e8e8ed;
-    --color-bg-card: #ffffff;
-    --color-bg-glass: rgba(255, 255, 255, 0.85);
+    --color-bg: #e8e8ed;
+    --color-bg-secondary: #d8d8e0;
+    --color-bg-card: #f5f5f7;
+    --color-bg-glass: rgba(245, 245, 247, 0.9);
     --color-text: #1d1d1f;
     --color-text-muted: #6e6e73;
     --color-accent: #0071e3;
-    --color-accent-glow: rgba(0, 113, 227, 0.2);
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(0, 0, 0, 0.12);
-    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.1);
-    --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.12);
-    --shadow-subtle: 0 2px 12px rgba(0, 0, 0, 0.08);
+    --color-accent-glow: rgba(0, 113, 227, 0.15);
+    --glass-bg: rgba(245, 245, 247, 0.9);
+    --glass-border: rgba(0, 0, 0, 0.15);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.12);
+    --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --shadow-subtle: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 body.dark-mode {
