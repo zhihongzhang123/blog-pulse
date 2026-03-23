@@ -277,7 +277,7 @@ def generate_briefing_html(data: dict):
         .briefing-content-card {{
             background: var(--apple-bg-secondary);
             border-radius: var(--apple-radius-lg);
-            padding: 40px;
+            padding: 48px 56px;
             margin-bottom: 32px;
             box-shadow: var(--apple-shadow);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -289,14 +289,16 @@ def generate_briefing_html(data: dict):
         }}
         
         .briefing-content {{
-            font-size: 14px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 1.9;
             color: var(--apple-text);
             white-space: pre-wrap;
             word-wrap: break-word;
             font-weight: 300;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
+            max-width: 680px;
+            margin: 0 auto;
         }}
         
         .briefing-content h1,
@@ -304,29 +306,59 @@ def generate_briefing_html(data: dict):
         .briefing-content h3 {{
             font-family: var(--apple-font);
             font-weight: 500;
-            margin: 28px 0 14px;
+            margin: 42px 0 18px;
             letter-spacing: -0.01em;
-            line-height: 1.35;
+            line-height: 1.4;
         }}
         
-        .briefing-content h1 {{ font-size: 24px; }}
-        .briefing-content h2 {{ font-size: 19px; }}
-        .briefing-content h3 {{ font-size: 16px; }}
+        .briefing-content h1 {{ 
+            font-size: 28px;
+            margin-top: 48px;
+        }}
+        .briefing-content h2 {{ 
+            font-size: 22px;
+            margin-top: 42px;
+        }}
+        .briefing-content h3 {{ 
+            font-size: 17px;
+            margin-top: 36px;
+        }}
         
         .briefing-content strong {{
-            font-weight: 400;
+            font-weight: 500;
             color: var(--apple-text);
         }}
         
         .briefing-content p {{
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }}
         
         .briefing-content hr {{
             border: none;
             height: 1px;
             background: var(--apple-border);
-            margin: 28px 0;
+            margin: 42px 0;
+        }}
+        
+        .briefing-content ul,
+        .briefing-content ol {{
+            margin: 24px 0;
+            padding-left: 24px;
+        }}
+        
+        .briefing-content li {{
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }}
+        
+        .briefing-content blockquote {{
+            margin: 32px 0;
+            padding: 20px 24px;
+            border-left: 3px solid var(--apple-accent);
+            background: var(--apple-bg-secondary);
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            line-height: 1.8;
         }}
         
         .briefing-content hr {{
@@ -440,54 +472,78 @@ def generate_briefing_html(data: dict):
                 font-size: 14px;
             }}
             
-            /* 移动端字体优化 */
+            /* 移动端优化 */
+        @media (max-width: 768px) {{
+            .briefing-content-card {{
+                padding: 32px 24px;
+                border-radius: var(--apple-radius);
+            }}
+        }}
+        
+        /* 移动端字体优化 */
             .briefing-content {{
-                font-size: 13px;
-                line-height: 1.75;
+                font-size: 14px;
+                line-height: 1.85;
                 letter-spacing: 0.01em;
                 font-weight: 300;
                 -webkit-font-smoothing: antialiased;
+                max-width: 100%;
             }}
             
             .briefing-content h1 {{
-                font-size: 20px;
-                line-height: 1.3;
-                margin: 24px 0 12px;
+                font-size: 24px;
+                line-height: 1.35;
+                margin: 36px 0 16px;
                 font-weight: 500;
             }}
             
             .briefing-content h2 {{
-                font-size: 17px;
-                line-height: 1.35;
-                margin: 22px 0 11px;
+                font-size: 20px;
+                line-height: 1.4;
+                margin: 32px 0 14px;
                 font-weight: 500;
             }}
             
             .briefing-content h3 {{
-                font-size: 14px;
-                line-height: 1.4;
-                margin: 20px 0 10px;
-                font-weight: 400;
+                font-size: 16px;
+                line-height: 1.45;
+                margin: 28px 0 12px;
+                font-weight: 500;
             }}
             
             .briefing-content p {{
-                margin-bottom: 14px;
+                margin-bottom: 18px;
                 word-break: break-word;
             }}
             
             .briefing-content strong {{
-                font-weight: 400;
+                font-weight: 500;
             }}
             
             .briefing-content hr {{
-                margin: 24px 0;
+                margin: 36px 0;
+            }}
+            
+            .briefing-content ul,
+            .briefing-content ol {{
+                margin: 20px 0;
+                padding-left: 20px;
+            }}
+            
+            .briefing-content li {{
+                margin-bottom: 10px;
+            }}
+            
+            .briefing-content blockquote {{
+                margin: 28px 0;
+                padding: 16px 20px;
             }}
             
             .core-highlight {{
-                padding: 14px;
-                font-size: 12px;
-                line-height: 1.6;
-                margin: 14px 0;
+                padding: 18px;
+                font-size: 13px;
+                line-height: 1.7;
+                margin: 20px 0;
                 border-left-width: 3px;
             }}
         }}
@@ -495,20 +551,24 @@ def generate_briefing_html(data: dict):
         /* 小屏幕手机优化 */
         @media (max-width: 375px) {{
             .briefing-content {{
-                font-size: 12px;
-                line-height: 1.7;
+                font-size: 13px;
+                line-height: 1.8;
             }}
             
             .briefing-content h1 {{
-                font-size: 18px;
+                font-size: 22px;
             }}
             
             .briefing-content h2 {{
-                font-size: 15px;
+                font-size: 18px;
             }}
             
             .briefing-content h3 {{
-                font-size: 13px;
+                font-size: 15px;
+            }}
+            
+            .briefing-content p {{
+                margin-bottom: 16px;
             }}
         }}
         
