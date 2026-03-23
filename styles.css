@@ -1207,3 +1207,64 @@ body.light-mode .ambient-light::after {
 = */
 ��
    ======================================== */
+
+/* ========================================
+   阅读计数样式
+======================================== */
+.article-views {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.card-views {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    margin-top: var(--spacing-sm);
+}
+
+.top-articles-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top-article-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.top-article-item:last-child {
+    border-bottom: none;
+}
+
+.rank {
+    font-weight: 700;
+    color: var(--color-gold);
+    min-width: 30px;
+}
+
+.article-link {
+    flex: 1;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.article-link:hover {
+    color: var(--color-gold);
+}
+
+.views-count {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}

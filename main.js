@@ -267,3 +267,11 @@ function formatPercent(num) {
     const sign = num >= 0 ? '+' : '';
     return `${sign}${num.toFixed(2)}%`;
 }
+
+// 加载阅读计数
+(function() {
+    const script = document.createElement('script');
+    script.src = 'scripts/article-views.js';
+    script.async = true;
+    document.head.appendChild(script);
+})();
