@@ -774,7 +774,7 @@ body.light-mode .ambient-light::after {
 }
 
 /* ========================================
-   响应式
+   响应式 - 平板和手机 (≤768px)
    ======================================== */
 @media (max-width: 768px) {
     .logo h1 {
@@ -833,6 +833,189 @@ body.light-mode .ambient-light::after {
     .dynamic-island.expanded {
         min-width: 260px;
         min-height: 52px;
+    }
+}
+
+/* ========================================
+   响应式 - 小屏手机 (≤375px)
+   ======================================== */
+@media (max-width: 375px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .logo h1 {
+        font-size: 1.75rem;
+    }
+    
+    .tagline {
+        font-size: 0.85rem;
+    }
+    
+    .nav {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 8px;
+    }
+    
+    .nav a {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .card {
+        padding: 16px;
+        border-radius: 16px;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .card-excerpt {
+        font-size: 0.9rem;
+    }
+    
+    .briefing-time {
+        font-size: 2rem;
+    }
+    
+    .widget-metric-value {
+        font-size: 1.3rem;
+    }
+}
+
+/* ========================================
+   响应式 - 超小屏 (≤320px) iPhone SE 等
+   ======================================== */
+@media (max-width: 320px) {
+    html {
+        font-size: 14px; /* 全局字体缩小 */
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+    
+    .logo {
+        gap: 8px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .pulse-icon {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 0.75rem;
+        margin-bottom: 12px;
+    }
+    
+    .nav {
+        gap: 4px;
+        padding: 6px;
+        border-radius: 20px;
+    }
+    
+    .nav a {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+        border-radius: 16px;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+    
+    .title-icon {
+        font-size: 1.2rem;
+    }
+    
+    .card {
+        padding: 14px;
+        border-radius: 14px;
+        margin-bottom: 12px;
+    }
+    
+    .card-date {
+        font-size: 0.75rem;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    .card-excerpt {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+    
+    .tag {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+    
+    .read-more {
+        font-size: 0.8rem;
+    }
+    
+    .card-views {
+        font-size: 0.75rem;
+    }
+    
+    .briefing-card {
+        padding: 16px;
+    }
+    
+    .briefing-type {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+    
+    .briefing-time {
+        font-size: 1.75rem;
+    }
+    
+    .briefing-status {
+        font-size: 0.8rem;
+    }
+    
+    .widget {
+        border-radius: 14px;
+    }
+    
+    .widget-header {
+        padding: 12px;
+    }
+    
+    .widget-title {
+        font-size: 0.85rem;
+    }
+    
+    .widget-content {
+        padding: 12px;
+    }
+    
+    .widget-metric-label {
+        font-size: 0.7rem;
+    }
+    
+    .widget-metric-value {
+        font-size: 1.2rem;
+    }
+    
+    .footer {
+        font-size: 0.75rem;
+        padding: 20px 0;
     }
 }
 
