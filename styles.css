@@ -743,6 +743,7 @@ body.light-mode .briefing-evening {
     align-items: center;
     gap: 8px;
     margin-bottom: var(--spacing-md);
+    position: relative;
 }
 
 .sentiment-icon {
@@ -754,6 +755,18 @@ body.light-mode .briefing-evening {
     font-weight: 600;
     color: var(--color-text);
     margin: 0;
+    flex: 1;
+}
+
+/* 更新时间标签 */
+.update-time {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+    padding: 2px 8px;
+    background: var(--color-bg-secondary);
+    border-radius: 10px;
+    white-space: nowrap;
 }
 
 .sentiment-value {

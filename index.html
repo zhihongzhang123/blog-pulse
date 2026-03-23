@@ -102,6 +102,7 @@
                     <div class="sentiment-header">
                         <span class="sentiment-icon">📈</span>
                         <h3>标普 500 趋势</h3>
+                        <span class="update-time" data-metric="sp500">更新于 --</span>
                     </div>
                     <div class="sentiment-value positive">+0.8%</div>
                     <div class="sentiment-bar">
@@ -115,6 +116,7 @@
                     <div class="sentiment-header">
                         <span class="sentiment-icon">📊</span>
                         <h3>市场宽度</h3>
+                        <span class="update-time" data-metric="width">更新于 --</span>
                     </div>
                     <div class="sentiment-value positive">65%</div>
                     <p class="sentiment-desc">NYSE 上涨家数占比，市场参与度良好</p>
@@ -125,6 +127,7 @@
                     <div class="sentiment-header">
                         <span class="sentiment-icon">🌡️</span>
                         <h3>市场温度 (RSI)</h3>
+                        <span class="update-time" data-metric="rsi">更新于 --</span>
                     </div>
                     <div class="sentiment-value warm">62</div>
                     <div class="temperature-gauge">
@@ -138,6 +141,7 @@
                     <div class="sentiment-header">
                         <span class="sentiment-icon">😨</span>
                         <h3>VIX 恐慌指数</h3>
+                        <span class="update-time" data-metric="vix">更新于 --</span>
                     </div>
                     <div class="sentiment-value low">18.5</div>
                     <p class="sentiment-desc">低于 20，市场情绪稳定，适合持仓</p>
@@ -148,6 +152,7 @@
                     <div class="sentiment-header">
                         <span class="sentiment-icon">🛡️</span>
                         <h3>Put/Call 比率</h3>
+                        <span class="update-time" data-metric="pcr">更新于 --</span>
                     </div>
                     <div class="sentiment-value neutral">0.82</div>
                     <p class="sentiment-desc">期权情绪中性，略偏乐观</p>
@@ -158,6 +163,7 @@
                     <div class="sentiment-header">
                         <span class="sentiment-icon">📉</span>
                         <h3>10Y 美债收益率</h3>
+                        <span class="update-time" data-metric="treasury">更新于 --</span>
                     </div>
                     <div class="sentiment-value">4.28%</div>
                     <p class="sentiment-desc">收益率平稳，经济预期温和</p>
@@ -414,5 +420,7 @@
     <script src="scripts/integrate-systems.js"></script>
     <!-- 阅读计数器 -->
     <script src="scripts/article-views.js"></script>
+    <!-- 市场数据加载器 -->
+    <script src="scripts/market-data-loader.js"></script>
 </body>
 </html>
