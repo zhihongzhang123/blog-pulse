@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>市场情绪指标的 6 个维度 · Pulse</title>
+    <meta name="description" content="学会倾听市场情绪，6 个指标读懂市场的'心跳'：标普 500、市场宽度、RSI、VIX、Put/Call、美债收益率">
+    <meta name="keywords" content="市场情绪，VIX,RSI，交易指标，投资分析">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --apple-font: -apple-system, BlinkMacSystemFont, 'SF Pro SC', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', sans-serif;
+            --apple-serif: 'Noto Serif SC', serif;
+            --apple-bg: #ffffff;
+            --apple-bg-secondary: #f5f5f7;
+            --apple-text: #1d1d1f;
+            --apple-text-secondary: #86868b;
+            --apple-accent: #0a84ff;
+            --apple-gold: #ffd60a;
+            --apple-border: rgba(0, 0, 0, 0.08);
+            --apple-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --apple-radius: 12px;
+            --apple-radius-lg: 18px;
+        }
+        
+        body.dark-mode {
+            --apple-bg: #000000;
+            --apple-bg-secondary: #1d1d1f;
+            --apple-text: #f5f5f7;
+            --apple-text-secondary: #86868b;
+            --apple-border: rgba(255, 255, 255, 0.08);
+            --apple-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --apple-bg-auto: #000000;
+                --apple-bg-secondary-auto: #1d1d1f;
+                --apple-text-auto: #f5f5f7;
+                --apple-text-secondary-auto: #86868b;
+                --apple-border-auto: rgba(255, 255, 255, 0.08);
+                --apple-shadow-auto: 0 2px 8px rgba(0, 0, 0, 0.2);
+            }
+            body:not(.dark-mode):not(.light-mode) {
+                --apple-bg: var(--apple-bg-auto);
+                --apple-bg-secondary: var(--apple-bg-secondary-auto);
+                --apple-text: var(--apple-text-auto);
+                --apple-text-secondary: var(--apple-text-secondary-auto);
+                --apple-border: var(--apple-border-auto);
+                --apple-shadow: var(--apple-shadow-auto);
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--apple-font);
+            background: var(--apple-bg);
+            color: var(--apple-text);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        
+        /* 返回导航 */
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--apple-accent);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--apple-bg-secondary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 40px;
+        }
+        
+        .nav-back:hover {
+            background: var(--apple-accent);
+            color: white;
+            transform: translateX(-4px);
+        }
+        
+        .nav-back::before {
+            content: '←';
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* 文章头部 */
+        .article-header {
+            text-align: center;
+            margin-bottom: 48px;
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .article-date {
+            font-size: 14px;
+            color: var(--apple-text-secondary);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .article-title {
+            font-family: var(--apple-serif);
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .article-tags {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: rgba(255, 214, 10, 0.15);
+            color: #b88600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 214, 10, 0.3);
+        }
+        
+        body.dark-mode .tag {
+            color: #ffd60a;
+        }
+        
+        /* 文章卡片 */
+        .article-card {
+            background: var(--apple-bg-secondary);
+            border-radius: var(--apple-radius-lg);
+            padding: 40px 36px;
+            margin-bottom: 32px;
+            border: 1px solid var(--apple-border);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }
+        
+        .article-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--apple-text);
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+        }
+        
+        .article-content h2 {
+            font-family: var(--apple-serif);
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 20px;
+            color: var(--apple-text);
+            letter-spacing: -0.01em;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--apple-gold);
+        }
+        
+        .article-content h2:first-child {
+            margin-top: 0;
+        }
+        
+        .article-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 28px 0 14px;
+            color: var(--apple-text);
+        }
+        
+        .article-content strong {
+            font-weight: 600;
+            color: var(--apple-text);
+        }
+        
+        .article-content blockquote {
+            background: linear-gradient(135deg, rgba(255, 214, 10, 0.1) 0%, rgba(255, 159, 10, 0.1) 100%);
+            border-left: 4px solid #ffd60a;
+            padding: 24px 28px;
+            margin: 32px 0;
+            border-radius: 12px;
+            font-style: italic;
+            color: var(--apple-text);
+            line-height: 1.6;
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 20px 0;
+            padding-left: 28px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+            color: var(--apple-text-secondary);
+        }
+        
+        /* 表格样式 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--apple-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--apple-border);
+        }
+        
+        .data-table th {
+            background: var(--apple-bg-secondary);
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 2px solid var(--apple-border);
+        }
+        
+        .data-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--apple-border);
+            font-size: 14px;
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-table tr:hover {
+            background: var(--apple-bg-glass);
+        }
+        
+        /* 重点框 */
+        .insight-box {
+            background: linear-gradient(135deg, rgba(10, 132, 255, 0.08) 0%, rgba(94, 92, 230, 0.08) 100%);
+            border: 1px solid rgba(10, 132, 255, 0.2);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin: 32px 0;
+        }
+        
+        .insight-box-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--apple-accent);
+            margin-bottom: 16px;
+        }
+        
+        .insight-box p {
+            margin-bottom: 12px;
+            color: var(--apple-text);
+        }
+        
+        /* 底部导航 */
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--apple-border);
+            margin-top: 48px;
+        }
+        
+        .back-link {
+            color: var(--apple-accent);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--apple-gold);
+        }
+        
+        .share-links {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .share-link {
+            color: var(--apple-text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 16px;
+            background: var(--apple-bg-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .share-link:hover {
+            background: var(--apple-accent);
+            color: white;
+        }
+        
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .article-card {
+                padding: 28px 20px;
+            }
+            
+            .article-title {
+                font-size: 26px;
+            }
+            
+            .article-content {
+                font-size: 15px;
+            }
+            
+            .article-content h2 {
+                font-size: 20px;
+            }
+            
+            .data-table {
+                font-size: 13px;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="nav-back">返回首页</a>
+        
+        <header class="article-header">
+            <div class="article-date">📅 2026 年 3 月 24 日</div>
+            <h1 class="article-title">市场情绪指标的 6 个维度</h1>
+            <p style="font-size: 18px; color: var(--apple-text-secondary); margin-bottom: 20px; font-style: italic;">
+                如何读懂市场的"心跳"
+            </p>
+            <div class="article-tags">
+                <span class="tag">市场分析</span>
+                <span class="tag">交易指标</span>
+                <span class="tag">投资哲学</span>
+            </div>
+        </header>
+        
+        <main>
+            <article class="article-card">
+                <div class="article-content">
+                    <blockquote>
+                        市场不会说话，但情绪会。<br><br>
+                        学会倾听，你就能听见钱流动的声音。
+                    </blockquote>
+                    
+                    <h2>为什么需要市场情绪指标？</h2>
+                    
+                    <p>2026 年 3 月 21 日，中东地缘危机升级，布伦特原油突破$116 关口。</p>
+                    
+                    <p>市场一片恐慌。</p>
+                    
+                    <p>但有人看到了机会。</p>
+                    
+                    <p>为什么？</p>
+                    
+                    <p>因为<strong>市场情绪指标</strong>告诉他：恐慌已经过度，反转即将来临。</p>
+                    
+                    <h3>市场情绪的真相</h3>
+                    
+                    <p>市场不是理性的。</p>
+                    
+                    <p>市场是<strong>人性</strong>的集合体。</p>
+                    
+                    <ul>
+                        <li>贪婪时，价格远超价值</li>
+                        <li>恐惧时，价格远低于价值</li>
+                        <li>大部分时间，市场在两者之间摇摆</li>
+                    </ul>
+                    
+                    <div class="insight-box">
+                        <div class="insight-box-title">💡 情绪指标的作用</div>
+                        <p>1. 量化市场情绪 (从主观到客观)</p>
+                        <p>2. 识别极端状态 (超买/超卖)</p>
+                        <p>3. 辅助决策 (而非预测)</p>
+                    </div>
+                    
+                    <h2>指标 1: 标普 500 vs 200 日均线 (趋势)</h2>
+                    
+                    <h3>什么是 200 日均线？</h3>
+                    
+                    <p>过去 200 个交易日的平均收盘价。</p>
+                    
+                    <p><strong>为什么是 200 天？</strong></p>
+                    <ul>
+                        <li>约等于 1 年的交易日 (252 天)</li>
+                        <li>兼顾短期和长期</li>
+                        <li>被广泛使用 (自我实现的预言)</li>
+                    </ul>
+                    
+                    <h3>如何解读</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>状态</th>
+                                <th>含义</th>
+                                <th>策略</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>价格 > 均线</td>
+                                <td>趋势偏多</td>
+                                <td>持仓/逢低买入</td>
+                            </tr>
+                            <tr>
+                                <td>价格 < 均线</td>
+                                <td>趋势偏空</td>
+                                <td>减仓/观望</td>
+                            </tr>
+                            <tr>
+                                <td>价格 ≈ 均线</td>
+                                <td>趋势不明</td>
+                                <td>等待方向</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>实战案例</h3>
+                    
+                    <p>2026 年 3 月 23 日：</p>
+                    <ul>
+                        <li>标普 500: 657.37</li>
+                        <li>200 日均线：约 640</li>
+                        <li><strong>状态</strong>: 价格 > 均线 (+2.7%)</li>
+                        <li><strong>信号</strong>: 趋势偏多</li>
+                    </ul>
+                    
+                    <p><strong>解读</strong>: 尽管地缘危机引发恐慌，但大盘仍在 200 日均线上方，<strong>长期趋势未破</strong>。</p>
+                    
+                    <h3>局限</h3>
+                    <ul>
+                        <li><strong>滞后指标</strong>: 均线基于历史数据</li>
+                        <li><strong>震荡市失效</strong>: 横盘时频繁交叉</li>
+                        <li><strong>需配合其他指标</strong>: 单一使用胜率低</li>
+                    </ul>
+                    
+                    <h2>指标 2: 市场宽度 (参与度)</h2>
+                    
+                    <h3>什么是市场宽度？</h3>
+                    
+                    <p>上涨股票数量 / 总股票数量</p>
+                    
+                    <h3>如何解读</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>宽度</th>
+                                <th>含义</th>
+                                <th>信号</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&gt; 70%</td>
+                                <td>普涨</td>
+                                <td>强势 (可能超买)</td>
+                            </tr>
+                            <tr>
+                                <td>50-70%</td>
+                                <td>多数上涨</td>
+                                <td>健康</td>
+                            </tr>
+                            <tr>
+                                <td>30-50%</td>
+                                <td>分化</td>
+                                <td>观望</td>
+                            </tr>
+                            <tr>
+                                <td>&lt; 30%</td>
+                                <td>普跌</td>
+                                <td>弱势 (可能超卖)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="insight-box">
+                        <div class="insight-box-title">💡 关键洞察</div>
+                        <p><strong>指数会骗人，宽度不会。</strong></p>
+                        <p>指数可能被权重股操纵，宽度反映真实市场情绪。</p>
+                    </div>
+                    
+                    <h2>指标 3: RSI (过热/过冷)</h2>
+                    
+                    <h3>什么是 RSI？</h3>
+                    
+                    <p>相对强弱指数 (Relative Strength Index)</p>
+                    
+                    <h3>如何解读</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>RSI</th>
+                                <th>状态</th>
+                                <th>含义</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&gt; 70</td>
+                                <td>超买</td>
+                                <td>可能回调</td>
+                            </tr>
+                            <tr>
+                                <td>50-70</td>
+                                <td>偏强</td>
+                                <td>多头主导</td>
+                            </tr>
+                            <tr>
+                                <td>30-50</td>
+                                <td>偏弱</td>
+                                <td>空头主导</td>
+                            </tr>
+                            <tr>
+                                <td>&lt; 30</td>
+                                <td>超卖</td>
+                                <td>可能反弹</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h2>指标 4: VIX 恐慌指数 (恐惧)</h2>
+                    
+                    <h3>什么是 VIX？</h3>
+                    
+                    <p>芝加哥期权交易所波动率指数。</p>
+                    
+                    <p><strong>本质</strong>: 市场对未来 30 天波动率的预期。</p>
+                    
+                    <h3>如何解读</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>VIX</th>
+                                <th>状态</th>
+                                <th>含义</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&lt; 15</td>
+                                <td>极低</td>
+                                <td>过度乐观 (警惕)</td>
+                            </tr>
+                            <tr>
+                                <td>15-20</td>
+                                <td>低位</td>
+                                <td>市场平静</td>
+                            </tr>
+                            <tr>
+                                <td>20-30</td>
+                                <td>正常</td>
+                                <td>正常波动</td>
+                            </tr>
+                            <tr>
+                                <td>30-40</td>
+                                <td>高位</td>
+                                <td>恐慌 (机会)</td>
+                            </tr>
+                            <tr>
+                                <td>&gt; 40</td>
+                                <td>极高</td>
+                                <td>极度恐慌 (大机会)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <blockquote>
+                        "在别人恐惧时贪婪，在别人贪婪时恐惧。"<br><br>
+                        <strong>— 沃伦·巴菲特</strong>
+                    </blockquote>
+                    
+                    <h2>指标 5: Put/Call 比率 (期权情绪)</h2>
+                    
+                    <h3>什么是 Put/Call 比率？</h3>
+                    
+                    <p>看跌期权成交量 / 看涨期权成交量</p>
+                    
+                    <h3>为什么是反向指标？</h3>
+                    
+                    <ul>
+                        <li>大部分期权买家是散户</li>
+                        <li>散户大部分时间是错的</li>
+                        <li>极端情绪时，反向操作胜率高</li>
+                    </ul>
+                    
+                    <h2>指标 6: 10Y 美债收益率 (经济预期)</h2>
+                    
+                    <h3>为什么关注美债？</h3>
+                    
+                    <p><strong>10 年期美债收益率 = 全球经济锚</strong></p>
+                    
+                    <ul>
+                        <li>无风险利率的基准</li>
+                        <li>影响所有资产定价</li>
+                        <li>反映经济预期</li>
+                    </ul>
+                    
+                    <h2>如何综合使用 6 个指标</h2>
+                    
+                    <h3>权重分配</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>指标</th>
+                                <th>权重</th>
+                                <th>理由</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>标普 500 vs 均线</td>
+                                <td>20%</td>
+                                <td>趋势是朋友</td>
+                            </tr>
+                            <tr>
+                                <td>市场宽度</td>
+                                <td>15%</td>
+                                <td>真实参与度</td>
+                            </tr>
+                            <tr>
+                                <td>RSI</td>
+                                <td>15%</td>
+                                <td>超买超卖</td>
+                            </tr>
+                            <tr>
+                                <td>VIX</td>
+                                <td>20%</td>
+                                <td>恐慌是机会</td>
+                            </tr>
+                            <tr>
+                                <td>Put/Call</td>
+                                <td>15%</td>
+                                <td>反向指标</td>
+                            </tr>
+                            <tr>
+                                <td>美债收益率</td>
+                                <td>15%</td>
+                                <td>经济锚</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3>综合评分系统</h3>
+                    
+                    <p><strong>每个指标打分 (-1 到 +1)</strong>:</p>
+                    <ul>
+                        <li>+1: 强烈看多信号</li>
+                        <li>+0.5: 温和看多</li>
+                        <li>0: 中性</li>
+                        <li>-0.5: 温和看空</li>
+                        <li>-1: 强烈看空</li>
+                    </ul>
+                    
+                    <p><strong>综合得分</strong>:</p>
+                    <ul>
+                        <li>&gt; +0.5: 强烈看多 (70-100% 仓位)</li>
+                        <li>0 到 +0.5: 温和看多 (50-70% 仓位)</li>
+                        <li>-0.5 到 0: 中性 (30-50% 仓位)</li>
+                        <li>&lt; -0.5: 看空 (&lt;30% 仓位)</li>
+                    </ul>
+                    
+                    <h2>当前市场情绪解读 (2026-03-24)</h2>
+                    
+                    <h3>背景</h3>
+                    <ul>
+                        <li>中东地缘危机升级</li>
+                        <li>油价突破$116</li>
+                        <li>美联储维持高息</li>
+                        <li>标普 500 连续 4 周下跌</li>
+                    </ul>
+                    
+                    <h3>6 个指标的信号</h3>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>指标</th>
+                                <th>状态</th>
+                                <th>解读</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>标普 500</td>
+                                <td>均线上方</td>
+                                <td>长期趋势未破</td>
+                            </tr>
+                            <tr>
+                                <td>市场宽度</td>
+                                <td>65%</td>
+                                <td>内部结构健康</td>
+                            </tr>
+                            <tr>
+                                <td>RSI</td>
+                                <td>36.3</td>
+                                <td>接近超卖，但未极端</td>
+                            </tr>
+                            <tr>
+                                <td>VIX</td>
+                                <td>25.59</td>
+                                <td>恐慌中等，非极端</td>
+                            </tr>
+                            <tr>
+                                <td>Put/Call</td>
+                                <td>0.82</td>
+                                <td>情绪中性</td>
+                            </tr>
+                            <tr>
+                                <td>美债收益率</td>
+                                <td>4.28%</td>
+                                <td>通胀预期仍存</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="insight-box">
+                        <div class="insight-box-title">📊 综合判断</div>
+                        <p><strong>市场情绪</strong>: 温和偏多 (得分 +0.5)</p>
+                        <p><strong>策略建议</strong>:</p>
+                        <ul>
+                            <li>仓位：50-70%</li>
+                            <li>关注：能源、防御性股票</li>
+                            <li>警惕：地缘政治风险升级</li>
+                        </ul>
+                    </div>
+                    
+                    <h2>风险与局限</h2>
+                    
+                    <h3>指标的局限</h3>
+                    <ul>
+                        <li><strong>滞后性</strong>: 所有指标基于历史数据</li>
+                        <li><strong>假信号</strong>: 没有 100% 准确的指标</li>
+                        <li><strong>黑天鹅</strong>: 极端事件无法预测</li>
+                    </ul>
+                    
+                    <h3>正确的使用方式</h3>
+                    
+                    <p><strong>指标是工具，不是水晶球。</strong></p>
+                    
+                    <ul>
+                        <li>✅ 辅助决策</li>
+                        <li>✅ 量化情绪</li>
+                        <li>✅ 提高胜率</li>
+                        <li>❌ 预测未来</li>
+                        <li>❌ 保证盈利</li>
+                        <li>❌ 替代思考</li>
+                    </ul>
+                    
+                    <h2>结语</h2>
+                    
+                    <p>市场情绪指标不是圣杯。</p>
+                    
+                    <p>但它们是<strong>倾听市场心跳的听诊器</strong>。</p>
+                    
+                    <p>学会使用它们，你不能保证每次都赢。</p>
+                    
+                    <p>但你可以：</p>
+                    <ul>
+                        <li>少犯错误</li>
+                        <li>抓住大机会</li>
+                        <li>在恐慌时保持冷静</li>
+                        <li>在贪婪时保持警惕</li>
+                    </ul>
+                    
+                    <blockquote>
+                        市场是宇宙的缩影，规律永恒，人性不变。<br><br>
+                        真正的智慧不在于预测每一次波动，而在于理解周期、保持耐心。
+                    </blockquote>
+                </div>
+            </article>
+            
+            <footer class="article-footer">
+                <a href="../../index.html" class="back-link">← 返回所有文章</a>
+                <div class="share-links">
+                    <a href="https://x.com/intent/tweet?text=市场情绪指标的 6 个维度&url=https://blog.themarketpulse.uk/content/articles/market-sentiment-6-dimensions.html" class="share-link" target="_blank" rel="noopener">𝕏 分享</a>
+                    <a href="https://t.me/share/url?url=https://blog.themarketpulse.uk/content/articles/market-sentiment-6-dimensions.html&text=市场情绪指标的 6 个维度" class="share-link" target="_blank" rel="noopener">Telegram 分享</a>
+                </div>
+            </footer>
+            
+            <p style="text-align: center; color: var(--apple-text-secondary); font-size: 0.85rem; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--apple-border);">
+                <em>本文仅供参考，不构成投资建议。市场有风险，投资需谨慎。</em><br>
+                <em>数据来源：Alpha Vantage、Yahoo Finance、CBOE</em>
+            </p>
+        </main>
+    </div>
+    
+    <script src="../../scripts/article-views.js"></script>
+    <script src="../../main.js"></script>
+</body>
+</html>
