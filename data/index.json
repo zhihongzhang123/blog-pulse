@@ -5,6 +5,13 @@
   "trading": true,
   "briefings": [
     {
+      "title": "早报 | 全球宏观与核心交易线索 (v23.1 修复版)",
+      "date": "2026-03-24",
+      "type": "morning",
+      "version": "v23.1-webfetch",
+      "url": "data/news/latest.html"
+    },
+    {
       "title": "3 月 24 日早报 | 全球宏观与核心交易线索 (v23)",
       "date": "2026-03-24",
       "type": "morning",
