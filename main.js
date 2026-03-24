@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const switchBtns = document.querySelectorAll('.switch-btn');
     const body = document.body;
     
-    // 读取保存的模式（默认跟随系统）
-    const savedMode = localStorage.getItem('pulse-theme-mode') || 'auto';
+    // 读取保存的模式（默认深色模式）
+    const savedMode = localStorage.getItem('pulse-theme-mode') || 'dark';
     applyMode(savedMode);
     
     // 页面加载时同步主题到所有模式切换按钮

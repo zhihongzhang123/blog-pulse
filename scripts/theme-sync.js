@@ -12,7 +12,7 @@
     
     // 主题配置
     const THEME_KEY = 'pulse-theme-mode';
-    const DEFAULT_MODE = 'light';
+    const DEFAULT_MODE = 'dark';
     
     /**
      * 应用主题模式
