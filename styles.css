@@ -216,24 +216,24 @@ body::before {
    章节通用
    ======================================== */
 .section {
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-xl) 0;
     border-bottom: 1px solid rgba(148, 163, 184, 0.1);
 }
 
-/* 特定模块的间距 - 适度增加层次感 */
+/* 特定模块的间距 - 优化层次感 */
 .section-spaced {
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
+    margin-top: calc(var(--spacing-xl) * 1.5);
+    margin-bottom: calc(var(--spacing-xl) * 1.5);
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
 }
 
-/* 带更新时间的模块标题 */
+/* 带更新时间的模块标题 - 优化间距 */
 .section-header-with-time {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
 }
 
 .section-title {
@@ -295,7 +295,7 @@ img[data-src].loaded {
 .content-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
 }
 
 .card {
@@ -779,8 +779,8 @@ body.light-mode .briefing-evening {
 .sentiment-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
 }
 
 .sentiment-card {

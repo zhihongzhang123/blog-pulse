@@ -18,28 +18,42 @@
     function updateActiveNav() {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
+        const viewportCenter = scrollY + (windowHeight / 2);
         
         let currentSection = '';
+        let minDistance = Infinity;
         
+        // 找到距离视口中心最近的 section
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150; // 偏移量
-            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
             const sectionId = section.getAttribute('id');
             
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                currentSection = sectionId;
+            // 计算 section 中心点与视口中心点的距离
+            const sectionCenter = sectionTop + (section.offsetHeight / 2);
+            const distance = Math.abs(viewportCenter - sectionCenter);
+            
+            // 只有当 section 在视口内或接近视口时才考虑
+            if (scrollY < sectionBottom && scrollY + windowHeight > sectionTop) {
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    currentSection = sectionId;
+                }
             }
         });
         
         // 移除所有 active
         navLinks.forEach(link => {
             link.classList.remove('active');
-            
-            // 添加当前 section 的 active
-            if (link.getAttribute('href') === `#${currentSection}`) {
-                link.classList.add('active');
-            }
         });
+        
+        // 添加当前 section 的 active
+        if (currentSection) {
+            const activeLink = document.querySelector(`.nav a[href="#${currentSection}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
     }
     
     /**

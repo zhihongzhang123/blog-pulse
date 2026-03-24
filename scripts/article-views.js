@@ -187,9 +187,14 @@
         const data = getViewsData();
         console.log('🏠 更新首页阅读计数，当前数据:', data);
         
-        // 查找所有文章卡片 (使用通用 .card 选择器)
-        const cards = document.querySelectorAll('.card');
-        console.log(`📇 找到 ${cards.length} 个卡片`);
+        // 查找所有文章卡片 (使用 .thought-card 选择器更精确)
+        const cards = document.querySelectorAll('.thought-card');
+        console.log(`📇 找到 ${cards.length} 个文章卡片`);
+        
+        if (cards.length === 0) {
+            console.log('⚠️ 未找到文章卡片，可能是首页结构变化');
+            return;
+        }
         
         cards.forEach((card, index) => {
             const link = card.querySelector('a[href*="content/daily-thoughts"]');
@@ -207,23 +212,26 @@
             const articleData = data[path];
             const views = articleData ? articleData.count : 0;
             
-            // 创建或更新阅读数显示
+            // 更新阅读数显示
             let viewsElement = card.querySelector('.card-views');
-            if (!viewsElement) {
+            if (viewsElement) {
+                viewsElement.textContent = `👁️ ${views}`;
+                console.log(`✅ 卡片 ${index}: 更新为 ${views} 次阅读`);
+            } else {
+                // 如果不存在，创建并插入
                 viewsElement = document.createElement('div');
                 viewsElement.className = 'card-views';
+                viewsElement.textContent = `👁️ ${views}`;
                 
-                // 插入到 read-more 链接之前
-                const readMore = card.querySelector('.read-more');
-                if (readMore) {
-                    readMore.parentNode.insertBefore(viewsElement, readMore);
+                // 插入到 card-meta 之后
+                const meta = card.querySelector('.card-meta');
+                if (meta) {
+                    meta.parentNode.insertBefore(viewsElement, meta.nextSibling);
                 } else {
                     card.appendChild(viewsElement);
                 }
+                console.log(`✅ 卡片 ${index}: 创建阅读数显示 ${views}`);
             }
-            
-            viewsElement.textContent = `👁️ ${views}`;
-            console.log(`✅ 卡片 ${index}: 更新为 ${views} 次阅读`);
         });
         
         console.log(`🏠 更新了 ${cards.length} 个文章卡片的阅读数`);
