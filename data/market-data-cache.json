@@ -4,18 +4,18 @@
   "treasury_10y": null,
   "market_width": {
     "percentage": 65,
-    "updated": "2026-03-24 23:15:12"
+    "updated": "2026-03-24 23:29:15"
   },
   "rsi": {
     "value": 62,
     "level": "neutral",
-    "updated": "2026-03-24 23:15:12"
+    "updated": "2026-03-24 23:29:15"
   },
   "put_call": {
     "ratio": 0.82,
     "sentiment": "neutral",
-    "updated": "2026-03-24 23:15:12"
+    "updated": "2026-03-24 23:29:15"
   },
-  "updated_at": "2026-03-24T23:15:12.783127",
+  "updated_at": "2026-03-24T23:29:15.662458",
   "data_source": "Alpha Vantage (Real-time)"
 }
