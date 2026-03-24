@@ -881,6 +881,7 @@ body.light-mode .briefing-evening {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
 }
 
 .hotspot-tag {
@@ -912,8 +913,9 @@ body.light-mode .briefing-evening {
 /* 重点板块 */
 .sectors-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--spacing-sm);
+    justify-items: center;
 }
 
 .sector-item {
@@ -924,7 +926,7 @@ body.light-mode .briefing-evening {
     background: var(--color-bg-secondary);
     border-radius: var(--radius-md);
     border: 1px solid var(--glass-border);
-    margin-bottom: 8px;
+    width: 100%;
 }
 
 .sector-name {
@@ -959,6 +961,8 @@ body.light-mode .briefing-evening {
     border: 1px solid rgba(10, 132, 255, 0.15);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .strategy-content p {
