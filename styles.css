@@ -200,40 +200,28 @@ body::before {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.nav a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    background: var(--color-gold);
-    border-radius: 50%;
-}
-
 /* ========================================
    章节通用
    ======================================== */
 .section {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0;
     border-bottom: 1px solid rgba(148, 163, 184, 0.1);
 }
 
-/* 特定模块的间距 - 优化层次感 */
+/* 特定模块的间距 - 统一协调 */
 .section-spaced {
-    margin-top: calc(var(--spacing-xl) * 1.5);
-    margin-bottom: calc(var(--spacing-xl) * 1.5);
-    padding-top: var(--spacing-xl);
-    padding-bottom: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
 }
 
 /* 带更新时间的模块标题 - 优化间距 */
 .section-header-with-time {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
 }
 
 .section-title {
@@ -295,7 +283,7 @@ img[data-src].loaded {
 .content-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
 }
 
 .card {
@@ -779,8 +767,8 @@ body.light-mode .briefing-evening {
 .sentiment-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
 .sentiment-card {

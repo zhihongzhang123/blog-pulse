@@ -18,26 +18,30 @@
     function updateActiveNav() {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
-        const viewportCenter = scrollY + (windowHeight / 2);
         
+        // 找到当前视口中最靠上的 section（且可见面积最大）
         let currentSection = '';
-        let minDistance = Infinity;
+        let maxVisibleHeight = 0;
         
-        // 找到距离视口中心最近的 section
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionBottom = sectionTop + section.offsetHeight;
             const sectionId = section.getAttribute('id');
             
-            // 计算 section 中心点与视口中心点的距离
-            const sectionCenter = sectionTop + (section.offsetHeight / 2);
-            const distance = Math.abs(viewportCenter - sectionCenter);
+            // 计算 section 在视口中的可见部分
+            const visibleTop = Math.max(sectionTop, scrollY);
+            const visibleBottom = Math.min(sectionBottom, scrollY + windowHeight);
+            const visibleHeight = Math.max(0, visibleBottom - visibleTop);
             
-            // 只有当 section 在视口内或接近视口时才考虑
-            if (scrollY < sectionBottom && scrollY + windowHeight > sectionTop) {
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    currentSection = sectionId;
+            // 只有当 section 在视口中有一定可见面积时才考虑
+            if (visibleHeight > 100) {
+                // 优先选择视口顶部的 section
+                const distanceFromTop = sectionTop - scrollY;
+                if (distanceFromTop >= -100 && distanceFromTop < windowHeight * 0.6) {
+                    if (visibleHeight > maxVisibleHeight) {
+                        maxVisibleHeight = visibleHeight;
+                        currentSection = sectionId;
+                    }
                 }
             }
         });
