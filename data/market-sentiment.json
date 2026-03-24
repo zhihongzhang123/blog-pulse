@@ -1,35 +1,21 @@
 {
-  "sp500": {
-    "price": 657.37,
-    "change": 0.63,
-    "vs_ma200": 0.08,
-    "trend": "bullish",
-    "updated": "2026-03-24 03:31:20"
-  },
-  "vix": {
-    "value": 25.59,
-    "change": -4.37,
-    "level": "medium",
-    "updated": "2026-03-24 03:31:21"
-  },
-  "treasury_10y": {
-    "yield": 4.33,
-    "change": -1.3,
-    "updated": "2026-03-24 03:31:21"
-  },
+  "sp500": null,
+  "vix": null,
+  "treasury_10y": null,
   "market_width": {
     "percentage": 65,
-    "updated": "2026-03-24 03:31:21"
+    "updated": "2026-03-24 22:57:21"
   },
   "rsi": {
-    "value": 36.3,
+    "value": 62,
     "level": "neutral",
-    "updated": "2026-03-24 03:31:21"
+    "updated": "2026-03-24 22:57:21"
   },
   "put_call": {
     "ratio": 0.82,
     "sentiment": "neutral",
-    "updated": "2026-03-24 03:31:24"
+    "updated": "2026-03-24 22:57:21"
   },
-  "updated_at": "2026-03-24T03:31:24.737969"
+  "updated_at": "2026-03-24T22:57:21.597933",
+  "data_source": "Alpha Vantage (Real-time)"
 }
