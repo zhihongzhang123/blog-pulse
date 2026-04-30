@@ -16,6 +16,8 @@ INDICES = {
     "QQQ": {"name": "NASDAQ", "ticker": "QQQ"},
     "DIA": {"name": "DOW", "ticker": "DIA"},
     "IWM": {"name": "Russell 2000", "ticker": "IWM"},
+    "SOXX": {"name": "Semiconductor", "ticker": "SOXX"},
+    "RSP": {"name": "S&P 500 Equal Weight", "ticker": "RSP"},
 }
 
 EXTRAS = {

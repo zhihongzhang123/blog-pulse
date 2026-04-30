@@ -58,6 +58,20 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              try {
+                document.querySelectorAll('[data-darkreader-inline-stroke]').forEach(function(el) {
+                  el.removeAttribute('data-darkreader-inline-stroke');
+                  el.style.removeProperty('--darkreader-inline-stroke');
+                });
+              } catch(e) {}
+            })();
+          `
+        }} />
+      </head>
       <body className="min-h-screen bg-background text-foreground antialiased" suppressHydrationWarning>
         <I18nProvider dict={dict} locale={locale}>
           <ThemeProvider>

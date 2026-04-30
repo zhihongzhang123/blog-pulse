@@ -2,6 +2,7 @@ import { TrendingUp, TrendingDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getDictionary } from "@/i18n/dictionaries";
 import { SP500Chart } from "@/components/sp500-chart";
+import { LEIIndicators } from "@/components/lei-indicators";
 import fs from 'fs';
 import path from 'path';
 
@@ -25,6 +26,16 @@ function getMarketData(): MarketData | null {
   }
 }
 
+function getLEIData() {
+  const leiPath = path.join(process.cwd(), '..', 'content', 'lei-market-data.json');
+  if (!fs.existsSync(leiPath)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(leiPath, 'utf-8'));
+  } catch {
+    return null;
+  }
+}
+
 function renderPrice(value: number | undefined, key?: string): string {
   if (value === undefined) return "—";
   if (key === "US10Y") return `${(value * 100).toFixed(2)}%`;
@@ -36,6 +47,7 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   const dict = getDictionary(locale);
   const marketData = getMarketData();
+  const leiData = getLEIData();
 
   const indicesList = marketData ? Object.entries(marketData.indices || {}).map(([key, v]) => ({
     key,
@@ -52,6 +64,16 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
   })) : [];
 
   const spyData = marketData?.indices?.SPY;
+
+  // Transform LEI data for component
+  const leiIndicators = leiData ? Object.entries(leiData.indicators || {}).map(([key, v]: [string, any]) => ({
+    key,
+    name: v.name,
+    value: key === "VIX" ? v.value.toFixed(2) : key === "US10Y" ? `${(v.value * 100).toFixed(2)}%` : v.value.toLocaleString(),
+    change: v.change,
+    signal: v.signal,
+    comment: v.comment,
+  })) : [];
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
@@ -98,6 +120,20 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
           </div>
         ))}
       </section>
+
+      {/* LEI 核心指标矩阵 */}
+      {leiData && (
+        <section className="bg-surface border border-border rounded-xl p-6 mb-8">
+          <LEIIndicators
+            indicators={leiIndicators}
+            marketWidth={leiData.market_width}
+            trendStatus={leiData.trend_status}
+            topConstruction={leiData.risk_signals?.top_construction}
+            fomoGap={leiData.risk_signals?.fomo_gap}
+            liquidityAlert={leiData.risk_signals?.liquidity_alert}
+          />
+        </section>
+      )}
 
       {/* Commodities */}
       <section className="bg-surface border border-border rounded-xl p-6">

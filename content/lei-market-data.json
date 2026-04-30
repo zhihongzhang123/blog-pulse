@@ -1,0 +1,58 @@
+{
+  "updated_at": "2026-04-30T02:07:05.004831+00:00",
+  "indicators": {
+    "QQQ": {
+      "name": "纳斯达克100 (QQQ)",
+      "value": 661.57,
+      "change": 0.33,
+      "signal": "neutral",
+      "comment": "科技股方向指引，关注顶部构造与连涨天数"
+    },
+    "SPY": {
+      "name": "标普500 (SPY)",
+      "value": 711.58,
+      "change": -0.12,
+      "signal": "neutral",
+      "comment": "宽基指数，与QQQ对比判断市场分化"
+    },
+    "IWM": {
+      "name": "罗素2000 (IWM)",
+      "value": 272.08,
+      "change": -0.87,
+      "signal": "bearish",
+      "comment": "小盘股表现，判断市场宽度与资金扩散"
+    },
+    "SOXX": {
+      "name": "半导体指数 (SOXX)",
+      "value": 449.99,
+      "change": 1.41,
+      "signal": "bullish",
+      "comment": "科技股龙头风向标，AI资本开支周期核心指标"
+    },
+    "RSP": {
+      "name": "标普等权 (RSP)",
+      "value": 200.41,
+      "change": -0.24,
+      "signal": "neutral",
+      "comment": "判断是否只是权重股在涨，等权vs市值权重分化"
+    },
+    "VIX": {
+      "name": "VIX恐慌指数",
+      "value": 18.81,
+      "change": 5.5,
+      "signal": "neutral",
+      "comment": "市场恐慌情绪，>20警示，>30极度恐惧"
+    }
+  },
+  "market_width": 33,
+  "trend_status": "consolidation",
+  "risk_signals": {
+    "top_construction": false,
+    "fomo_gap": false,
+    "liquidity_alert": false
+  },
+  "lei_philosophy": {
+    "quote": "在未見跡象之前，有理由繼續看漲",
+    "source": "@TheMarketMemo"
+  }
+}

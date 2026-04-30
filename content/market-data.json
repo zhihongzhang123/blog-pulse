@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-30T01:30:13.129513+00:00",
+  "updated_at": "2026-04-30T02:07:05.004831+00:00",
   "indices": {
     "SPY": {
       "name": "S&P 500",
@@ -20,6 +20,16 @@
       "name": "Russell 2000",
       "price": 272.08,
       "change_pct": -0.87
+    },
+    "SOXX": {
+      "name": "Semiconductor",
+      "price": 449.99,
+      "change_pct": 1.41
+    },
+    "RSP": {
+      "name": "S&P 500 Equal Weight",
+      "price": 200.41,
+      "change_pct": -0.24
     }
   },
   "extras": {
@@ -37,18 +47,18 @@
   "commodities": {
     "CL": {
       "name": "WTI Crude",
-      "price": 107.4,
-      "change_pct": 8.11
+      "price": 107.33,
+      "change_pct": 8.04
     },
     "GC": {
       "name": "Gold",
-      "price": 4582.8,
-      "change_pct": -0.58
+      "price": 4590.9,
+      "change_pct": -0.41
     },
     "SI": {
       "name": "Silver",
-      "price": 72.93,
-      "change_pct": -1.58
+      "price": 73.34,
+      "change_pct": -1.03
     }
   },
   "watchlist": {
@@ -79,8 +89,8 @@
     },
     "0700": {
       "name": "\u817e\u8baf\u63a7\u80a1",
-      "price": 472.2,
-      "change_pct": -1.46
+      "price": 470.6,
+      "change_pct": -1.79
     }
   },
   "chart_data": [
