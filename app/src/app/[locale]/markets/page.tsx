@@ -2,7 +2,7 @@ import { TrendingUp, TrendingDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getDictionary } from "@/i18n/dictionaries";
 import { SP500Chart } from "@/components/sp500-chart";
-import { LEIIndicators } from "@/components/lei-indicators";
+import { MarketIndicators } from "@/components/market-indicators";
 import fs from 'fs';
 import path from 'path';
 
@@ -26,11 +26,11 @@ function getMarketData(): MarketData | null {
   }
 }
 
-function getLEIData() {
-  const leiPath = path.join(process.cwd(), '..', 'content', 'lei-market-data.json');
-  if (!fs.existsSync(leiPath)) return null;
+function getMarketAnalysisData() {
+  const analysisPath = path.join(process.cwd(), '..', 'content', 'market-analysis-data.json');
+  if (!fs.existsSync(analysisPath)) return null;
   try {
-    return JSON.parse(fs.readFileSync(leiPath, 'utf-8'));
+    return JSON.parse(fs.readFileSync(analysisPath, 'utf-8'));
   } catch {
     return null;
   }
@@ -47,7 +47,7 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
   const dict = getDictionary(locale);
   const marketData = getMarketData();
-  const leiData = getLEIData();
+  const analysisData = getMarketAnalysisData();
 
   const indicesList = marketData ? Object.entries(marketData.indices || {}).map(([key, v]) => ({
     key,
@@ -65,8 +65,8 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
 
   const spyData = marketData?.indices?.SPY;
 
-  // Transform LEI data for component
-  const leiIndicators = leiData ? Object.entries(leiData.indicators || {}).map(([key, v]: [string, any]) => ({
+  // Transform analysis data for component
+  const marketIndicators = analysisData ? Object.entries(analysisData.indicators || {}).map(([key, v]: [string, any]) => ({
     key,
     name: v.name,
     value: key === "VIX" ? v.value.toFixed(2) : key === "US10Y" ? `${(v.value * 100).toFixed(2)}%` : v.value.toLocaleString(),
@@ -121,16 +121,16 @@ export default async function MarketsPage({ params }: { params: Promise<{ locale
         ))}
       </section>
 
-      {/* LEI 核心指标矩阵 */}
-      {leiData && (
+      {/* 核心指标矩阵 */}
+      {analysisData && (
         <section className="bg-surface border border-border rounded-xl p-6 mb-8">
-          <LEIIndicators
-            indicators={leiIndicators}
-            marketWidth={leiData.market_width}
-            trendStatus={leiData.trend_status}
-            topConstruction={leiData.risk_signals?.top_construction}
-            fomoGap={leiData.risk_signals?.fomo_gap}
-            liquidityAlert={leiData.risk_signals?.liquidity_alert}
+          <MarketIndicators
+            indicators={marketIndicators}
+            marketWidth={analysisData.market_width}
+            trendStatus={analysisData.trend_status}
+            topConstruction={analysisData.risk_signals?.top_construction}
+            fomoGap={analysisData.risk_signals?.fomo_gap}
+            liquidityAlert={analysisData.risk_signals?.liquidity_alert}
           />
         </section>
       )}

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-30T02:07:05.004831+00:00",
+  "updated_at": "2026-04-30T02:28:42.360452+00:00",
   "indices": {
     "SPY": {
       "name": "S&P 500",
@@ -47,18 +47,18 @@
   "commodities": {
     "CL": {
       "name": "WTI Crude",
-      "price": 107.33,
-      "change_pct": 8.04
+      "price": 108.15,
+      "change_pct": 8.87
     },
     "GC": {
       "name": "Gold",
-      "price": 4590.9,
-      "change_pct": -0.41
+      "price": 4589.5,
+      "change_pct": -0.44
     },
     "SI": {
       "name": "Silver",
-      "price": 73.34,
-      "change_pct": -1.03
+      "price": 73.32,
+      "change_pct": -1.05
     }
   },
   "watchlist": {
@@ -89,8 +89,8 @@
     },
     "0700": {
       "name": "\u817e\u8baf\u63a7\u80a1",
-      "price": 470.6,
-      "change_pct": -1.79
+      "price": 470.8,
+      "change_pct": -1.75
     }
   },
   "chart_data": [

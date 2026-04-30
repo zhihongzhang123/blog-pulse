@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-30T02:07:05.004831+00:00",
+  "updated_at": "2026-04-30T02:28:42.360452+00:00",
   "indicators": {
     "QQQ": {
       "name": "纳斯达克100 (QQQ)",
@@ -50,9 +50,5 @@
     "top_construction": false,
     "fomo_gap": false,
     "liquidity_alert": false
-  },
-  "lei_philosophy": {
-    "quote": "在未見跡象之前，有理由繼續看漲",
-    "source": "@TheMarketMemo"
   }
 }

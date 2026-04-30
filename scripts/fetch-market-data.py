@@ -181,6 +181,93 @@ def main():
     print(f"  Saved to {OUTPUT}")
     count = sum(len(v) for k, v in result.items() if k != "updated_at")
     print(f"  Fetched {count} items successfully")
+
+    # Generate market analysis data
+    indices = result.get("indices", {})
+    extras = result.get("extras", {})
+
+    # Market width calculation
+    positive_count = sum(1 for v in indices.values() if v.get("change_pct", 0) > 0)
+    total_count = len(indices)
+    market_width = round((positive_count / total_count) * 100) if total_count > 0 else 50
+
+    # Trend status
+    spy_change = indices.get("SPY", {}).get("change_pct", 0)
+    qqq_change = indices.get("QQQ", {}).get("change_pct", 0)
+    if spy_change > 0.3 and qqq_change > 0.3:
+        trend_status = "uptrend"
+    elif spy_change < -0.3 and qqq_change < -0.3:
+        trend_status = "downtrend"
+    else:
+        trend_status = "consolidation"
+
+    # Risk signals
+    top_construction = abs(qqq_change) < 0.3 and market_width < 60
+    fomo_gap = qqq_change > 1.0
+    vix_price = extras.get("VIX", {}).get("price", 0)
+    vix_change = extras.get("VIX", {}).get("change_pct", 0)
+    liquidity_alert = vix_change > 10
+
+    analysis_data = {
+        "updated_at": result.get("updated_at", ""),
+        "indicators": {
+            "QQQ": {
+                "name": "纳斯达克100 (QQQ)",
+                "value": indices.get("QQQ", {}).get("price", 0),
+                "change": indices.get("QQQ", {}).get("change_pct", 0),
+                "signal": "bullish" if indices.get("QQQ", {}).get("change_pct", 0) > 0.5 else "neutral",
+                "comment": "科技股方向指引，关注顶部构造与连涨天数"
+            },
+            "SPY": {
+                "name": "标普500 (SPY)",
+                "value": indices.get("SPY", {}).get("price", 0),
+                "change": indices.get("SPY", {}).get("change_pct", 0),
+                "signal": "neutral",
+                "comment": "宽基指数，与QQQ对比判断市场分化"
+            },
+            "IWM": {
+                "name": "罗素2000 (IWM)",
+                "value": indices.get("IWM", {}).get("price", 0),
+                "change": indices.get("IWM", {}).get("change_pct", 0),
+                "signal": "bearish" if indices.get("IWM", {}).get("change_pct", 0) < -0.5 else "neutral",
+                "comment": "小盘股表现，判断市场宽度与资金扩散"
+            },
+            "SOXX": {
+                "name": "半导体指数 (SOXX)",
+                "value": indices.get("SOXX", {}).get("price", 0),
+                "change": indices.get("SOXX", {}).get("change_pct", 0),
+                "signal": "bullish" if indices.get("SOXX", {}).get("change_pct", 0) > 0 else "warning",
+                "comment": "科技股龙头风向标，AI资本开支周期核心指标"
+            },
+            "RSP": {
+                "name": "标普等权 (RSP)",
+                "value": indices.get("RSP", {}).get("price", 0),
+                "change": indices.get("RSP", {}).get("change_pct", 0),
+                "signal": "neutral",
+                "comment": "判断是否只是权重股在涨，等权vs市值权重分化"
+            },
+            "VIX": {
+                "name": "VIX恐慌指数",
+                "value": vix_price,
+                "change": vix_change,
+                "signal": "warning" if vix_price > 20 else "neutral",
+                "comment": "市场恐慌情绪，>20警示，>30极度恐惧"
+            }
+        },
+        "market_width": market_width,
+        "trend_status": trend_status,
+        "risk_signals": {
+            "top_construction": top_construction,
+            "fomo_gap": fomo_gap,
+            "liquidity_alert": liquidity_alert
+        }
+    }
+
+    analysis_path = os.path.join(CONTENT_DIR, "market-analysis-data.json")
+    with open(analysis_path, "w", encoding="utf-8") as f:
+        json.dump(analysis_data, f, indent=2, ensure_ascii=False)
+
+    print(f"  Saved analysis to {analysis_path}")
     return result
 
 

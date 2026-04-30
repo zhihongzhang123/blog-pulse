@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { TrendingUp, TrendingDown, AlertTriangle, Eye, Activity, Target } from "lucide-react";
 
-interface LEIIndicator {
+interface MarketIndicator {
   key: string;
   name: string;
   value: string;
@@ -12,8 +12,8 @@ interface LEIIndicator {
   comment: string;
 }
 
-interface LEIIndicatorsProps {
-  indicators: LEIIndicator[];
+interface MarketIndicatorsProps {
+  indicators: MarketIndicator[];
   marketWidth: number;
   trendStatus: string;
   topConstruction: boolean;
@@ -28,14 +28,14 @@ const signalConfig = {
   warning: { color: "text-warning", bg: "bg-warning/10", icon: AlertTriangle },
 };
 
-export function LEIIndicators({ indicators, marketWidth, trendStatus, topConstruction, fomoGap, liquidityAlert }: LEIIndicatorsProps) {
+export function MarketIndicators({ indicators, marketWidth, trendStatus, topConstruction, fomoGap, liquidityAlert }: MarketIndicatorsProps) {
   return (
     <div className="space-y-6">
-      {/* LEI 核心指标矩阵 */}
+      {/* 核心指标矩阵 */}
       <div>
         <h3 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-4">
           <Eye className="w-4 h-4 text-primary" />
-          LEI 核心指标矩阵
+          核心指标矩阵
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {indicators.map((indicator) => {
@@ -114,11 +114,11 @@ export function LEIIndicators({ indicators, marketWidth, trendStatus, topConstru
         </div>
       </div>
 
-      {/* 风险提示 */}
+      {/* 风险信号监控 */}
       <div>
         <h3 className="text-sm font-semibold text-foreground flex items-center gap-2 mb-4">
           <AlertTriangle className="w-4 h-4 text-warning" />
-          LEI 风险信号监控
+          风险信号监控
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className={cn("border rounded-lg p-4", topConstruction ? "bg-warning/5 border-warning/30" : "bg-surface-elevated/30 border-border")}>
@@ -145,12 +145,12 @@ export function LEIIndicators({ indicators, marketWidth, trendStatus, topConstru
         </div>
       </div>
 
-      {/* LEI 交易思维 */}
+      {/* 交易思维 */}
       <div className="bg-gradient-to-r from-primary/5 to-accent/5 border border-primary/20 rounded-lg p-5">
         <p className="text-sm text-foreground-muted italic leading-relaxed">
           &quot;在未見跡象之前，有理由繼續看漲。不是猜頂猜底，而是等待市場給出信號。&quot;
         </p>
-        <p className="text-xs text-foreground-subtle mt-2">— LEI (老雷) | @TheMarketMemo</p>
+        <p className="text-xs text-foreground-subtle mt-2">— 市场洞察</p>
       </div>
     </div>
   );

@@ -5,16 +5,8 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "@/lib/theme-provider";
 import { useI18n } from "@/i18n/provider";
 import { cn } from "@/lib/utils";
-import {
-  Sun,
-  Moon,
-  Monitor,
-  Search,
-  Menu,
-  X,
-} from "lucide-react";
+import { Sun, Moon, Monitor, Search, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { LanguageSwitcher } from "@/components/language-switcher";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -94,9 +86,6 @@ export function Navbar() {
             <Search className="w-3.5 h-3.5" />
             <span className="text-foreground-subtle">/</span>
           </button>
-
-          {/* Language Switcher */}
-          <LanguageSwitcher />
 
           {/* Theme switcher */}
           <div className="relative">

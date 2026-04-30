@@ -8,35 +8,32 @@ import { getDictionary } from "@/i18n/dictionaries";
 import "../globals.css";
 
 export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "zh" }];
+  return [{ locale: "zh" }];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const dict = getDictionary(locale);
-  const isZh = locale === "zh";
 
   return {
     title: {
-      default: isZh ? "Pulse — 市场洞察与交易哲学" : "Pulse — Market Insights & Trading Philosophy",
+      default: "Pulse — 市场洞察与交易哲学",
       template: `%s | Pulse`,
     },
-    description: isZh
-      ? "交易哲学、市场分析与投资智慧的融合。数据驱动，逻辑导向，宇宙规律指引。"
-      : "A fusion of trading philosophy, market analysis, and investment wisdom. Data-driven insights guided by cosmic rhythms and human nature.",
+    description: "交易哲学、市场分析与投资智慧的融合。数据驱动，逻辑导向，宇宙规律指引。",
     metadataBase: new URL("https://blog.themarketpulse.uk"),
     openGraph: {
       type: "website",
-      locale: isZh ? "zh_CN" : "en_US",
+      locale: "zh_CN",
       url: "https://blog.themarketpulse.uk",
-      title: isZh ? "Pulse — 市场洞察与交易哲学" : "Pulse — Market Insights & Trading Philosophy",
-      description: isZh ? "交易哲学、市场分析与投资智慧的融合。" : "A fusion of trading philosophy, market analysis, and investment wisdom.",
+      title: "Pulse — 市场洞察与交易哲学",
+      description: "交易哲学、市场分析与投资智慧的融合。",
       siteName: "Pulse",
     },
     twitter: {
       card: "summary_large_image",
-      title: isZh ? "Pulse — 市场洞察与交易哲学" : "Pulse — Market Insights & Trading Philosophy",
-      description: isZh ? "交易哲学、市场分析与投资智慧的融合。" : "A fusion of trading philosophy, market analysis, and investment wisdom.",
+      title: "Pulse — 市场洞察与交易哲学",
+      description: "交易哲学、市场分析与投资智慧的融合。",
     },
     robots: {
       index: true,
@@ -53,7 +50,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale: rawLocale } = await params;
-  const locale = (rawLocale === "en" || rawLocale === "zh") ? rawLocale : "en";
+  const locale = "zh";
   const dict = getDictionary(locale);
 
   return (
