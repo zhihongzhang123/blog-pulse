@@ -1,0 +1,140 @@
+/* Pulse Blog Design Tokens — Apple HIG 2024 + Financial Minimalism */
+
+@import "tailwindcss";
+
+@theme {
+  /* === Colors (oklch for Tailwind v4 compatibility) === */
+  --color-background: oklch(0.13 0.01 286);
+  --color-background-secondary: oklch(0.18 0.01 286 / 0.8);
+  --color-surface: oklch(0.2 0.01 286);
+  --color-surface-elevated: oklch(0.27 0.01 286);
+  --color-foreground: oklch(0.96 0.005 286);
+  --color-foreground-muted: oklch(0.72 0.005 286);
+  --color-foreground-subtle: oklch(0.55 0.005 286);
+
+  --color-primary: oklch(0.65 0.22 256);
+  --color-positive: oklch(0.72 0.2 145);
+  --color-negative: oklch(0.63 0.24 25);
+  --color-warning: oklch(0.77 0.19 70);
+  --color-accent: oklch(0.55 0.22 290);
+
+  --color-border: oklch(0.96 0.005 286 / 0.1);
+  --color-border-hover: oklch(0.96 0.005 286 / 0.2);
+
+  /* Light mode */
+  --color-light-background: oklch(0.96 0.005 286);
+  --color-light-background-secondary: oklch(1 0 0 / 0.8);
+  --color-light-surface: oklch(1 0 0);
+  --color-light-surface-elevated: oklch(1 0 0);
+  --color-light-foreground: oklch(0.13 0.01 286);
+  --color-light-foreground-muted: oklch(0.4 0.01 286);
+  --color-light-foreground-subtle: oklch(0.55 0.01 286);
+  --color-light-border: oklch(0.13 0.01 286 / 0.1);
+  --color-light-border-hover: oklch(0.13 0.01 286 / 0.2);
+
+  /* === Typography === */
+  --font-sans: -apple-system, "SF Pro Display", "SF Pro Text", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", "JetBrains Mono", monospace;
+
+  /* === Spacing (8pt grid) === */
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 40px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+
+  /* === Border Radius === */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+
+  /* === Shadows === */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.24), 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-frosted: 0 4px 16px rgba(0, 0, 0, 0.16);
+
+  /* === Transitions === */
+  --transition-fast: 200ms cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  --transition-normal: 300ms cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  --transition-slow: 350ms cubic-bezier(0.25, 0.1, 0.25, 1.0);
+}
+
+/* Light mode via prefers-color-scheme */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background: var(--color-light-background);
+    --color-background-secondary: var(--color-light-background-secondary);
+    --color-surface: var(--color-light-surface);
+    --color-surface-elevated: var(--color-light-surface-elevated);
+    --color-foreground: var(--color-light-foreground);
+    --color-foreground-muted: var(--color-light-foreground-muted);
+    --color-foreground-subtle: var(--color-light-foreground-subtle);
+    --color-border: var(--color-light-border);
+    --color-border-hover: var(--color-light-border-hover);
+  }
+}
+
+/* Manual dark mode override */
+.dark {
+  --color-background: oklch(0.13 0.01 286);
+  --color-background-secondary: oklch(0.18 0.01 286 / 0.8);
+  --color-surface: oklch(0.2 0.01 286);
+  --color-surface-elevated: oklch(0.27 0.01 286);
+  --color-foreground: oklch(0.96 0.005 286);
+  --color-foreground-muted: oklch(0.72 0.005 286);
+  --color-foreground-subtle: oklch(0.55 0.005 286);
+  --color-border: oklch(0.96 0.005 286 / 0.1);
+  --color-border-hover: oklch(0.96 0.005 286 / 0.2);
+}
+
+/* Manual light mode override */
+.light {
+  --color-background: var(--color-light-background);
+  --color-background-secondary: var(--color-light-background-secondary);
+  --color-surface: var(--color-light-surface);
+  --color-surface-elevated: var(--color-light-surface-elevated);
+  --color-foreground: var(--color-light-foreground);
+  --color-foreground-muted: var(--color-light-foreground-muted);
+  --color-foreground-subtle: var(--color-light-foreground-subtle);
+  --color-border: var(--color-light-border);
+  --color-border-hover: var(--color-light-border-hover);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  /* Chinese text spacing optimization */
+  text-spacing: trim-start trim-end ideograph-ideograph ideograph-alpha ideograph-numeric;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: var(--radius-md);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-foreground-muted);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-background);
+}

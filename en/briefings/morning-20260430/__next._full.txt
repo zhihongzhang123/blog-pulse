@@ -1,0 +1,291 @@
+1:"$Sreact.fragment"
+2:I[39756,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js"],"default"]
+3:I[37457,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js"],"default"]
+6:I[97367,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+a:I[97367,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js"],"ViewportBoundary"]
+c:I[97367,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js"],"MetadataBoundary"]
+e:I[68027,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js"],"default",1]
+:HL["/_next/static/chunks/05ua~4o8_9-7c.css","style"]
+:HL["/_next/static/chunks/04q9abc2j.ylj.css","style"]
+0:{"P":null,"c":["","en","briefings","morning-20260430"],"q":"","i":false,"f":[[["",{"children":[["locale","en","d",null],{"children":["briefings",{"children":[["slug","morning-20260430","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/05ua~4o8_9-7c.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/01xlw8hd842-c.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0n4z.7yu76je-.js","async":true,"nonce":"$undefined"}]],["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/0n38d_pox8vjt.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/04uyfg9fepp0l.js","async":true,"nonce":"$undefined"}]],"$L4"]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/04q9abc2j.ylj.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],{},null,false,null]},null,false,"$@9"]},null,false,"$@9"]},null,false,null]},null,false,null],["$","$1","h",{"children":[null,["$","$La",null,{"children":"$Lb"}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":"$Ld"}]}]}],null]}],false]],"m":"$undefined","G":["$e",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/05ua~4o8_9-7c.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"CgwHeqvfoidnUgnCc7UlS"}
+f:[]
+9:"$Wf"
+10:I[9643,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js","/_next/static/chunks/0n38d_pox8vjt.js","/_next/static/chunks/04uyfg9fepp0l.js"],"I18nProvider"]
+11:I[25445,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js","/_next/static/chunks/0n38d_pox8vjt.js","/_next/static/chunks/04uyfg9fepp0l.js"],"ThemeProvider"]
+12:I[2874,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js","/_next/static/chunks/0n38d_pox8vjt.js","/_next/static/chunks/04uyfg9fepp0l.js"],"Navbar"]
+13:I[54231,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js","/_next/static/chunks/0n38d_pox8vjt.js","/_next/static/chunks/04uyfg9fepp0l.js"],"Footer"]
+14:I[20449,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js","/_next/static/chunks/0n38d_pox8vjt.js","/_next/static/chunks/04uyfg9fepp0l.js"],"SearchModal"]
+4:["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen bg-background text-foreground antialiased","suppressHydrationWarning":true,"children":["$","$L10",null,{"dict":{"nav":{"home":"Home","briefings":"Briefings","articles":"Articles","markets":"Markets","about":"About"},"home":{"title":"Market Pulse","subtitle":"Where data meets wisdom. Trading insights, market analysis, and the philosophy behind every decision.","marketIndicators":"Market Indicators","viewAll":"View all","latestBriefing":"Latest Briefing","allBriefings":"All briefings","recentArticles":"Recent Articles","allArticles":"All articles","noBriefings":"No briefings available yet.","morning":"Morning","evening":"Evening","quote":"\"The four most dangerous words in investing are: 'it's different this time.'\"","quoteAuthor":"— Sir John Templeton"},"articles":{"title":"Articles","subtitle":"Deep thinking on markets, philosophy, and the art of investing.","readTime":"min read","categories":{"analysis":"Analysis","philosophy":"Philosophy"}},"briefings":{"title":"Briefings","subtitle":"Daily morning and evening macro trading briefings — concise, actionable, timely.","noBriefings":"No briefings yet.","noBriefingsSub":"Briefings will appear here once generated.","morning":"早报","evening":"晚报"},"markets":{"title":"Markets","subtitle":"Market data and technical analysis.","commodities":"Commodities"},"about":{"title":"About Pulse","subtitle":"A fusion of trading philosophy, market analysis, and investment wisdom.","intro":"Pulse is not just a blog. It's a living record of one trader's journey to understand the markets through the lens of data, logic, and the rhythms of human nature.","philosophy":"Philosophy","philosophyIntro":"I believe that markets are a reflection of collective human psychology — the interplay of fear and greed, patience and impulse, wisdom and folly. My approach synthesizes the insights of the greatest investors:","whatYoullFind":"What You'll Find Here","dailyBriefings":"Daily Briefings","dailyBriefingsDesc":"Morning and evening market summaries, concise and actionable","deepArticles":"Deep Articles","deepArticlesDesc":"Philosophy of trading, market analysis frameworks, lessons from history","marketData":"Market Data","marketDataDesc":"Technical charts, index tracking, commodity prices","connect":"Connect","connectDesc":"This project is open source. Follow the development and contribute on","backToHome":"Back to home","buffet":"Value investing, margin of safety, the circle of competence","munger":"Inversion thinking, mental models, the latticework of theory","livermore":"Trend following, key points, the danger of overtrading","dalio":"Diversification, understanding the economic machine, radical transparency","wood":"Innovation investing, exponential curves, disruptive technology"},"footer":{"description":"Market insights & trading philosophy.\nData-driven. Logic-oriented. Guided by cosmic rhythms.","navigate":"Navigate","philosophy":"Philosophy","quote":"\"The market is a device for transferring money from the impatient to the patient.\"","quoteAuthor":"— Warren Buffett","rights":"All rights reserved.","tagline":"Art · Philosophy · Finance"},"search":{"placeholder":"Search articles, briefings, markets...","noResults":"No results for","minChars":"Type at least 2 characters to search","article":"Article","briefing":"Briefing","market":"Market"}},"locale":"en","children":["$","$L11",null,{"children":[["$","div",null,{"className":"flex flex-col min-h-screen","children":[["$","$L12",null,{}],["$","main",null,{"className":"flex-1 pt-16","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L13",null,{}]]}],["$","$L14",null,{}]]}]}]}]}]
+15:I[22016,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js","/_next/static/chunks/0n38d_pox8vjt.js","/_next/static/chunks/04uyfg9fepp0l.js"],""]
+16:I[5014,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js","/_next/static/chunks/0n38d_pox8vjt.js","/_next/static/chunks/04uyfg9fepp0l.js"],"default"]
+5:["$","article",null,{"className":"max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16","children":[["$","$L15",null,{"href":"/en/briefings","className":"inline-flex items-center gap-2 text-sm text-foreground-muted hover:text-primary transition-colors duration-200 mb-8","children":[["$","$L16",null,{"ref":"$undefined","iconNode":[["path",{"d":"m12 19-7-7 7-7","key":"1l729n"}],["path",{"d":"M19 12H5","key":"x3x0zl"}]],"className":"lucide-arrow-left w-4 h-4"}],"Briefings"]}],["$","div",null,{"className":"grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8 lg:gap-12","children":[["$","aside",null,{"className":"hidden lg:block","children":["$","nav",null,{"className":"sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto","aria-label":"Table of contents","children":[["$","h2",null,{"className":"text-xs font-semibold text-foreground-subtle uppercase tracking-wider mb-3 px-2","children":"Contents"}],["$","ul",null,{"className":"space-y-0.5","children":[["$","li","核心主线",{"children":["$","a",null,{"href":"#核心主线","className":"toc-link toc-h2","children":"核心主线"}]}],["$","li","数据截点",{"children":["$","a",null,{"href":"#数据截点","className":"toc-link toc-h2","children":"数据截点"}]}],["$","li","焦点雷达",{"children":["$","a",null,{"href":"#焦点雷达","className":"toc-link toc-h2","children":"焦点雷达"}]}],["$","li","核心异动-催化剂",{"children":["$","a",null,{"href":"#核心异动-催化剂","className":"toc-link toc-h2","children":"核心异动 & 催化剂"}]}],["$","li","级别一-中东局势急剧升级-油价跳涨-7",{"children":["$","a",null,{"href":"#级别一-中东局势急剧升级-油价跳涨-7","className":"toc-link toc-h3","children":"🔴【级别一】中东局势急剧升级，油价跳涨 7%"}]}],["$","li","级别一-美联储按兵不动-dissent-创-34-年新高",{"children":["$","a",null,{"href":"#级别一-美联储按兵不动-dissent-创-34-年新高","className":"toc-link toc-h3","children":"🔴【级别一】美联储按兵不动，dissent 创 34 年新高"}]}],["$","li","级别二-科技巨头资本开支竞赛-ai-基建投入再创新高",{"children":["$","a",null,{"href":"#级别二-科技巨头资本开支竞赛-ai-基建投入再创新高","className":"toc-link toc-h3","children":"🟡【级别二】科技巨头资本开支竞赛，AI 基建投入再创新高"}]}],["$","li","指数走势预测",{"children":["$","a",null,{"href":"#指数走势预测","className":"toc-link toc-h2","children":"指数走势预测"}]}],["$","li","spx-spy",{"children":["$","a",null,{"href":"#spx-spy","className":"toc-link toc-h3","children":"SPX (SPY)"}]}],["$","li","nasdaq-qqq",{"children":["$","a",null,{"href":"#nasdaq-qqq","className":"toc-link toc-h3","children":"NASDAQ (QQQ)"}]}],["$","li","罗素-2000-iwm",{"children":["$","a",null,{"href":"#罗素-2000-iwm","className":"toc-link toc-h3","children":"罗素 2000 (IWM)"}]}],["$","li","全球市场联动与技术异常",{"children":["$","a",null,{"href":"#全球市场联动与技术异常","className":"toc-link toc-h2","children":"全球市场联动与技术异常"}]}],["$","li","个股深度解读",{"children":["$","a",null,{"href":"#个股深度解读","className":"toc-link toc-h2","children":"个股深度解读"}]}],["$","li","nvda-英伟达-209-25-1-84",{"children":["$","a",null,{"href":"#nvda-英伟达-209-25-1-84","className":"toc-link toc-h3","children":"NVDA 英伟达 ($209.25，-1.84%)"}]}],["$","li","googl-谷歌-349-94-0-05",{"children":["$","a",null,{"href":"#googl-谷歌-349-94-0-05","className":"toc-link toc-h3","children":"GOOGL 谷歌 ($349.94，+0.05%)"}]}],["$","li","tsm-台积电-393-83-0-38",{"children":["$","a",null,{"href":"#tsm-台积电-393-83-0-38","className":"toc-link toc-h3","children":"TSM 台积电 ($393.83，+0.38%)"}]}],["$","li","tsla-特斯拉-372-80-0-86",{"children":["$","a",null,{"href":"#tsla-特斯拉-372-80-0-86","className":"toc-link toc-h3","children":"TSLA 特斯拉 ($372.80，-0.86%)"}]}],["$","li","baba-阿里巴巴-130-43-0-32",{"children":["$","a",null,{"href":"#baba-阿里巴巴-130-43-0-32","className":"toc-link toc-h3","children":"BABA 阿里巴巴 ($130.43，-0.32%)"}]}],["$","li","0700-hk-腾讯控股-472-20-1-46",{"children":["$","a",null,{"href":"#0700-hk-腾讯控股-472-20-1-46","className":"toc-link toc-h3","children":"0700.HK 腾讯控股 ($472.20，-1.46%)"}]}],["$","li","meta-热点-meta-财报后下跌",{"children":["$","a",null,{"href":"#meta-热点-meta-财报后下跌","className":"toc-link toc-h3","children":"META (热点) — Meta 财报后下跌"}]}],["$","li","msft-热点-微软-1900-亿-capex-计划",{"children":["$","a",null,{"href":"#msft-热点-微软-1900-亿-capex-计划","className":"toc-link toc-h3","children":"MSFT (热点) — 微软 1900 亿 capex 计划"}]}],["$","li","整体分析与交易策略",{"children":["$","a",null,{"href":"#整体分析与交易策略","className":"toc-link toc-h2","children":"整体分析与交易策略"}]}],["$","li","宏观尾部预警",{"children":["$","a",null,{"href":"#宏观尾部预警","className":"toc-link toc-h2","children":"宏观尾部预警"}]}],["$","li","本周关键日历",{"children":["$","a",null,{"href":"#本周关键日历","className":"toc-link toc-h2","children":"本周关键日历"}]}],["$","li","资金流向监控",{"children":["$","a",null,{"href":"#资金流向监控","className":"toc-link toc-h2","children":"资金流向监控"}]}],"$L17","$L18","$L19"]}]]}]}],"$L1a"]}],"$L1b"]}]
+17:["$","li","大师智慧",{"children":["$","a",null,{"href":"#大师智慧","className":"toc-link toc-h2","children":"大师智慧"}]}]
+18:["$","li","分析师执笔",{"children":["$","a",null,{"href":"#分析师执笔","className":"toc-link toc-h2","children":"分析师执笔"}]}]
+19:["$","li","哲学思考",{"children":["$","a",null,{"href":"#哲学思考","className":"toc-link toc-h2","children":"哲学思考"}]}]
+1c:T4b16,<h2 id="核心主线">核心主线<a class="heading-anchor" href="#核心主线"><span class="anchor-symbol">#</span></a></h2>
+<p>地缘风险溢价与科技资本开支博弈。霍尔木兹海峡冲突推升布伦特原油至 120 美元上方，WSJ 报道美国考虑打击伊朗核设施。美联储维持利率不变但 dissent 水平创 1992 年以来新高，鲍威尔明确拒绝特朗普施压。科技巨头资本开支竞赛白热化：Alphabet 与微软均上调 2026 年 capex 至 1900 亿美元，三星利润暴增八倍验证 AI 内存超级周期。建议：能源板块对冲 + 科技龙头逢低布局，控制总仓位 50-60%。</p>
+<p>关键词：中东危机升级 | 油价破位 | 美联储按兵不动 | AI 资本竞赛 | 防御配置</p>
+<h2 id="数据截点">数据截点<a class="heading-anchor" href="#数据截点"><span class="anchor-symbol">#</span></a></h2>
+<p>⏰ 数据截点：2026-04-30 09:29</p>
+<h2 id="焦点雷达">焦点雷达<a class="heading-anchor" href="#焦点雷达"><span class="anchor-symbol">#</span></a></h2>
+<p>🌍 焦点雷达：地缘风险 | 美联储决议 | 科技 capex | 财报季 | 内存超级周期</p>
+<h2 id="核心异动--催化剂">核心异动 &#x26; 催化剂<a class="heading-anchor" href="#核心异动--催化剂"><span class="anchor-symbol">#</span></a></h2>
+<h3 id="级别一中东局势急剧升级油价跳涨-7">🔴【级别一】中东局势急剧升级，油价跳涨 7%<a class="heading-anchor" href="#级别一中东局势急剧升级油价跳涨-7"><span class="anchor-symbol">#</span></a></h3>
+<p>[能源/地缘] 霍尔木兹海峡冲突持续，布伦特原油突破 120 美元</p>
+<ul>
+<li>异动：布伦特原油 $120+ 📈，WSJ 报道美国正评估打击伊朗核设施选项</li>
+<li>技术异常：原油单周涨幅超 15%，突破 2022 年以来关键阻力位，VIX 仅 18.81 显示市场尚未完全定价尾部风险</li>
+<li>宏观发酵：油价飙升 → 通胀预期回升 → 美联储降息路径受阻 → 成长股估值承压 → 能源板块受益</li>
+</ul>
+<h3 id="级别一美联储按兵不动dissent-创-34-年新高">🔴【级别一】美联储按兵不动，dissent 创 34 年新高<a class="heading-anchor" href="#级别一美联储按兵不动dissent-创-34-年新高"><span class="anchor-symbol">#</span></a></h3>
+<p>[货币政策] FOMC 维持利率不变，内部意见分歧达 1992 年以来最高</p>
+<ul>
+<li>异动：利率维持当前水平 📊，鲍威尔称特朗普批评"史无前例"，明确将继续担任 Fed 理事</li>
+<li>技术异常：点阵图信号混乱，市场定价与 Fed 指引偏离度扩大</li>
+<li>宏观发酵：政策不确定性增加 → 美元波动加剧 → 新兴市场资本流动承压</li>
+</ul>
+<h3 id="级别二科技巨头资本开支竞赛ai-基建投入再创新高">🟡【级别二】科技巨头资本开支竞赛，AI 基建投入再创新高<a class="heading-anchor" href="#级别二科技巨头资本开支竞赛ai-基建投入再创新高"><span class="anchor-symbol">#</span></a></h3>
+<p>[科技/AI] Alphabet、微软、OpenAI 生态链持续加码</p>
+<ul>
+<li>Alphabet 上调 2026 capex 至 1900 亿美元，预计 2027 年进一步增加 📈</li>
+<li>微软 2026 年资本支出同样指向 1900 亿美元，内存价格飙升推动成本上升</li>
+<li>三星利润暴增超八倍，超预期，AI 内存需求缺口持续扩大</li>
+<li>OpenAI 与马斯克诉讼庭审第三天，Altman 律师与马斯克交叉质询激烈</li>
+<li>宏观发酵：AI 基建超级周期确认 → 半导体/内存/电力设备受益 → 但 capex 回报周期存疑</li>
+</ul>
+<h2 id="指数走势预测">指数走势预测<a class="heading-anchor" href="#指数走势预测"><span class="anchor-symbol">#</span></a></h2>
+<h3 id="spx-spy">SPX (SPY)<a class="heading-anchor" href="#spx-spy"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>期货指引：$711.58 (-0.02%)</li>
+<li>方向：区间震荡，方向不明</li>
+<li>目标：$720 (+1.2%) | 支撑：$700 (-1.6%) | 阻力：$725 (+1.9%)</li>
+<li>置信度：⭐⭐ (2/5)</li>
+<li>逻辑：油价冲击 vs 科技 earnings 对冲，多空力量均衡</li>
+<li>关键事件：PCE 数据、中东局势演变</li>
+</ul>
+<h3 id="nasdaq-qqq">NASDAQ (QQQ)<a class="heading-anchor" href="#nasdaq-qqq"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>期货指引：$661.57 (+0.61%)</li>
+<li>方向：偏强震荡</li>
+<li>目标：$675 (+2.0%) | 支撑：$650 (-1.8%) | 阻力：$680 (+2.8%)</li>
+<li>置信度：⭐⭐⭐ (3/5)</li>
+<li>逻辑：科技财报整体超预期，AI capex 叙事支撑估值</li>
+<li>关键事件：Alphabet/微软后续指引、NVDA 动态</li>
+</ul>
+<h3 id="罗素-2000-iwm">罗素 2000 (IWM)<a class="heading-anchor" href="#罗素-2000-iwm"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>期货指引：$272.08 (-0.67%)</li>
+<li>方向：偏弱</li>
+<li>目标：$278 (+2.2%) | 支撑：$265 (-2.6%) | 阻力：$280 (+2.9%)</li>
+<li>置信度：⭐⭐ (2/5)</li>
+<li>逻辑：小盘股对利率敏感度高，Fed 不确定性压制风险偏好</li>
+<li>关键事件：就业数据、中小企业盈利指引</li>
+</ul>
+<h2 id="全球市场联动与技术异常">全球市场联动与技术异常<a class="heading-anchor" href="#全球市场联动与技术异常"><span class="anchor-symbol">#</span></a></h2>
+<p><strong>市场叙事主线</strong>：</p>
+<ol>
+<li>中东地缘溢价 vs 科技 earnings 韧性 — 油价与科技股形成跷跷板</li>
+<li>AI 资本开支超级周期 — 从芯片到内存到电力基础设施的全面需求爆发</li>
+<li>货币政策不确定性 — Fed dissent 创历史高位，政策路径模糊</li>
+</ol>
+<p><strong>技术异常信号</strong>：</p>
+<ol>
+<li>原油暴涨但 VIX 仅温和上升 — 市场可能在低估尾部风险</li>
+<li>QQQ 逆势走强而 IWM 下跌 — 大盘/小盘分化极端，流动性集中于科技巨头</li>
+<li>黄金在 4582 高位横盘 — 避险资金未大规模涌入，暗示市场信心尚未崩溃</li>
+</ol>
+<p><strong>各市场概况</strong>：</p>
+<ul>
+<li>亚太：台积电 +0.38%，腾讯 -1.46%，分化明显</li>
+<li>欧洲：待开盘，关注能源板块反应</li>
+<li>大宗：原油暴涨 7.37% 至 $107.29，黄金微跌 0.21% 至 $4582</li>
+<li>加密：BTC ETF $42.75，ETH ETF $16.85，等待方向选择</li>
+</ul>
+<h2 id="个股深度解读">个股深度解读<a class="heading-anchor" href="#个股深度解读"><span class="anchor-symbol">#</span></a></h2>
+<h3 id="nvda-英伟达-20925-184">NVDA 英伟达 ($209.25，-1.84%)<a class="heading-anchor" href="#nvda-英伟达-20925-184"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>新闻：科技股整体回调中领跌，市场消化前期涨幅</li>
+<li>情绪：谨慎 🟡</li>
+<li>技术面：短期回调至 209 支撑位，关注 200 日均线</li>
+<li>催化剂：🎯 GTC 大会后续订单确认、数据中心需求持续性</li>
+<li>策略：逢低吸纳，等待明确企稳信号</li>
+<li>目标：$230 (+10%) | 止损：$195 (-7%)</li>
+</ul>
+<h3 id="googl-谷歌-34994005">GOOGL 谷歌 ($349.94，+0.05%)<a class="heading-anchor" href="#googl-谷歌-34994005"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>新闻：上调 capex 至 1900 亿美元，市场反应正面，"Big Tech 财报之夜"赢家</li>
+<li>情绪：偏多 🟢</li>
+<li>技术面：高位盘整，突破 350 打开上行空间</li>
+<li>催化剂：🎯 AI 搜索变现进展、Cloud 增速</li>
+<li>策略：持有，突破 355 加仓</li>
+<li>目标：$380 (+9%) | 止损：$330 (-6%)</li>
+</ul>
+<h3 id="tsm-台积电-39383038">TSM 台积电 ($393.83，+0.38%)<a class="heading-anchor" href="#tsm-台积电-39383038"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>新闻：AI 芯片代工需求强劲，先进产能满载</li>
+<li>情绪：偏多 🟢</li>
+<li>技术面：稳步上行，390 为强支撑</li>
+<li>催化剂：🎯 3nm/2nm 进展、CoWoS 产能扩张</li>
+<li>策略：趋势持有</li>
+<li>目标：$430 (+9%) | 止损：$370 (-6%)</li>
+</ul>
+<h3 id="tsla-特斯拉-37280-086">TSLA 特斯拉 ($372.80，-0.86%)<a class="heading-anchor" href="#tsla-特斯拉-37280-086"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>新闻：自动驾驶与机器人叙事持续，但短期估值压力大</li>
+<li>情绪：中性 ⚪</li>
+<li>技术面：高位震荡，370 附近多空争夺</li>
+<li>催化剂：🎯 Robotaxi 进展、FSD v14 数据</li>
+<li>策略：观望，等待明确方向</li>
+<li>目标：$400 (+7%) | 止损：$345 (-8%)</li>
+</ul>
+<h3 id="baba-阿里巴巴-13043-032">BABA 阿里巴巴 ($130.43，-0.32%)<a class="heading-anchor" href="#baba-阿里巴巴-13043-032"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>新闻：中概整体平稳，云业务增长受关注</li>
+<li>情绪：中性 ⚪</li>
+<li>技术面：130 附近盘整，等待催化</li>
+<li>催化剂：🎯 财报、AI 云业务进展</li>
+<li>策略：低配，等待右侧信号</li>
+<li>目标：$145 (+11%) | 止损：$120 (-8%)</li>
+</ul>
+<h3 id="0700hk-腾讯控股-47220-146">0700.HK 腾讯控股 ($472.20，-1.46%)<a class="heading-anchor" href="#0700hk-腾讯控股-47220-146"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>新闻：港股整体承压，游戏业务稳健但增速放缓</li>
+<li>情绪：谨慎 🟡</li>
+<li>技术面：470 支撑位测试中</li>
+<li>催化剂：🎯 新游版号、回购进展</li>
+<li>策略：关注 465 支撑有效性</li>
+<li>目标：$510 (+8%) | 止损：$450 (-5%)</li>
+</ul>
+<h3 id="meta-热点--meta-财报后下跌">META (热点) — Meta 财报后下跌<a class="heading-anchor" href="#meta-热点--meta-财报后下跌"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>新闻：季度业绩不及预期，伊朗"互联网中断"影响用户数据</li>
+<li>情绪：谨慎 🟡</li>
+<li>技术面：财报后跳空，关注缺口回补</li>
+<li>催化剂：🎯 广告支出恢复节奏、AI  monetization</li>
+<li>策略：等待企稳，不追跌</li>
+<li>动态观察中</li>
+</ul>
+<h3 id="msft-热点--微软-1900-亿-capex-计划">MSFT (热点) — 微软 1900 亿 capex 计划<a class="heading-anchor" href="#msft-热点--微软-1900-亿-capex-计划"><span class="anchor-symbol">#</span></a></h3>
+<ul>
+<li>新闻：2026 年资本支出指向 1900 亿美元，内存成本上升推动</li>
+<li>情绪：偏多 🟢</li>
+<li>技术面：AI 叙事持续支撑，高位运行</li>
+<li>催化剂：🎯 Azure 增速、OpenAI 集成变现</li>
+<li>策略：趋势持有</li>
+<li>动态观察中</li>
+</ul>
+<h2 id="整体分析与交易策略">整体分析与交易策略<a class="heading-anchor" href="#整体分析与交易策略"><span class="anchor-symbol">#</span></a></h2>
+<p><strong>市场状态诊断</strong>：
+当前市场处于"地缘风险溢价 + 科技 earnings 韧性"的双轨博弈状态。原油的急剧上涨尚未充分传导至波动率指标（VIX 18.81），暗示市场要么在过度乐观，要么在等待更明确的信号。美联储的内部分歧创 34 年新高，政策不确定性本身就是一种风险。科技巨头的 capex 竞赛确认了 AI 基建超级周期，但 1900 亿美元的年度投入也意味着未来回报周期的拉长。</p>
+<p><strong>核心交易逻辑</strong>：</p>
+<ol>
+<li>油价冲击尚未完全定价 — 中东局势若进一步升级，能源板块仍有上行空间</li>
+<li>科技龙头 earnings 韧性 — Alphabet/微软的指引验证了 AI 变现能力</li>
+<li>Fed 政策模糊期 — 在方向明确前，降低 beta 暴露，增加 alpha 策略</li>
+<li>内存/半导体超级周期 — 三星暴涨八倍利润是明确信号，TSM/NVDA 长期受益</li>
+</ol>
+<p><strong>仓位建议</strong>：</p>
+<ul>
+<li>激进型：总仓位 60-70%。超配能源 (XLE) + 半导体 (SMH)，标配科技巨头，低配小盘股</li>
+<li>稳健型：总仓位 50-55%。核心持仓科技龙头，卫星仓位能源对冲，保留 30% 现金</li>
+<li>保守型：总仓位 40%。短债 + 黄金为主，少量能源 ETF 对冲，等待 Fed 信号明确</li>
+</ul>
+<p><strong>关键触发点</strong>：</p>
+<ul>
+<li>上行突破：油价回落至 $100 以下 + Fed 释放鸽派信号 → 加仓科技成长</li>
+<li>下行风险：中东军事行动扩大 + VIX 突破 25 → 减仓至 30%，增持 VIX 看跌期权对冲</li>
+</ul>
+<h2 id="宏观尾部预警">宏观尾部预警<a class="heading-anchor" href="#宏观尾部预警"><span class="anchor-symbol">#</span></a></h2>
+<ol>
+<li>
+<p>⚡ 霍尔木兹海峡全面封锁 (概率：15%)</p>
+<ul>
+<li>情景：冲突升级导致海峡通行中断，全球 20% 石油供应受阻</li>
+<li>影响：原油飙升至 $150+，全球衰退风险急剧上升，股市回调 15-20%</li>
+<li>对冲：做多原油看涨期权 (USO calls)、VIX 看涨期权、增持黄金</li>
+</ul>
+</li>
+<li>
+<p>💰 美联储政策失误 (概率：20%)</p>
+<ul>
+<li>情景：dissent 扩大导致市场失去对 Fed 的信任，美元信用受损</li>
+<li>影响：美元指数暴跌，新兴市场资本外逃，美债收益率曲线陡峭化</li>
+<li>对冲：做多黄金 (GLD)、做空美元 (UUP puts)、新兴市场对冲</li>
+</ul>
+</li>
+<li>
+<p>🤖 AI capex 泡沫化 (概率：25%)</p>
+<ul>
+<li>情景：1900 亿级 capex 投入无法在预期内产生回报，科技股估值重估</li>
+<li>影响：NASDAQ 回调 10-15%，半导体板块首当其冲</li>
+<li>对冲：NVDA/QQQ 看跌期权，增持价值股 (VTV)</li>
+</ul>
+</li>
+</ol>
+<h2 id="本周关键日历">本周关键日历<a class="heading-anchor" href="#本周关键日历"><span class="anchor-symbol">#</span></a></h2>
+<p>今日 (2026-04-30) + 本周重点：</p>
+<ul>
+<li>FOMC 会议结束，声明与鲍威尔新闻发布会 ✓ 已完成</li>
+<li>关注后续 PCE 通胀数据</li>
+<li>科技巨头财报季持续 — 关注 Apple、Amazon 指引</li>
+<li>中东局势每日演进 — 重点关注 WSJ/Reuters 实时报道</li>
+</ul>
+<h2 id="资金流向监控">资金流向监控<a class="heading-anchor" href="#资金流向监控"><span class="anchor-symbol">#</span></a></h2>
+<p><strong>美股资金流</strong>：</p>
+<ul>
+<li>科技巨头获持续流入 — Alphabet/微软 earnings 后资金加仓</li>
+<li>能源板块资金涌入 — 油价飙升驱动 ETF 申购 (XLE)</li>
+<li>小盘股资金外流 — IWM 承压，Risk-off 情绪下资金撤离高 beta 资产</li>
+</ul>
+<p><strong>加密货币流向</strong>：</p>
+<ul>
+<li>BTC ETF $42.75，ETH ETF $16.85 — 处于等待方向选择状态</li>
+<li>地缘风险未明显驱动加密避险叙事 — 市场仍在观察</li>
+</ul>
+<h2 id="大师智慧">大师智慧<a class="heading-anchor" href="#大师智慧"><span class="anchor-symbol">#</span></a></h2>
+<p><strong>巴菲特视角</strong>：
+"别人恐惧时贪婪，别人贪婪时恐惧。" 当前市场在地缘风险和科技 earnings 之间摇摆，恐惧与贪婪并存。真正的高手不是预测明天，而是在不确定中做出概率优势决策。能源板块的上涨是否已经反映了最坏情景？科技 capex 的回报周期是否被低估？这些问题比方向判断更重要。</p>
+<p><strong>芒格视角</strong>：
+逆向思考：如果油价继续上涨会怎样？如果 Fed 真的犯错会怎样？如果 AI capex 是一场过度投资会怎样？把最坏的情况想清楚，然后确保自己在那种情况下还能活着。</p>
+<p><strong>利弗莫尔视角</strong>：
+"市场永远不会错，只有投资者会。" 原油的上涨趋势已经形成，不要试图做空一个你无法判断顶部的市场。趋势跟随者的纪律是：让利润奔跑，让亏损止损。当前科技股的分化（QQQ 强 vs IWM 弱）是明确的趋势信号，顺势而为。</p>
+<p><strong>达利欧视角</strong>：
+分散化是唯一的免费午餐。在地缘风险、货币政策、科技周期三重不确定性叠加的环境中，单一方向押注的胜率极低。能源 + 科技 + 黄金的三角配置，配合动态仓位管理，才是穿越周期的正确姿势。</p>
+<h2 id="分析师执笔">分析师执笔<a class="heading-anchor" href="#分析师执笔"><span class="anchor-symbol">#</span></a></h2>
+<p>今日简报揭示了三个核心矛盾的交织：</p>
+<p>第一层是地缘与经济的矛盾。油价 7% 的单日涨幅是自 2022 年俄乌冲突以来最剧烈的一次。但 VIX 仅 18.81 的反应说明市场尚未完全定价"霍尔木兹海峡封锁"的尾部情景。如果 WSJ 报道的美国打击伊朗核设施选项成为现实，油价可能轻松突破 $150，全球通胀预期将重新点燃。这不是杞人忧天，而是需要被纳入风险预算的真实情景。</p>
+<p>第二层是科技资本开支的规模与回报周期矛盾。Alphabet 和微软同时指向 1900 亿美元的年度 capex，这是人类历史上最大规模的技术基础设施投资。三星利润暴增八倍验证了需求端的强劲。但问题在于：如此规模的投入何时能产生与之匹配的回报？AI 变现的速度能否跟上资本消耗的速度？这是一个关于时间维度的博弈。</p>
+<p>第三层是美联储的独立性与市场信任矛盾。dissent 创 34 年新高本身就释放了一个信号：货币政策正在从"可预测的科学"变为"政治化的艺术"。鲍威尔明确拒绝特朗普施压是正确姿态，但市场更关心的是这种对峙的持续时间。</p>
+<p><strong>交易策略建议</strong>：</p>
+<ul>
+<li>短期（1-3 天）：关注油价是否回落至 $100 以下。若不回落，能源板块继续持有</li>
+<li>中期（1-2 周）：等待 PCE 数据和更多科技财报，确认 AI capex 的回报叙事</li>
+<li>对冲：持有 VIX 看涨期权作为地缘风险保险，成本可控但保护巨大</li>
+</ul>
+<p>仓位管理上，建议将总风险敞口控制在 50-60%，保留足够现金应对尾部事件触发时的加仓机会。</p>
+<h2 id="哲学思考">哲学思考<a class="heading-anchor" href="#哲学思考"><span class="anchor-symbol">#</span></a></h2>
+<p>市场是一面镜子，折射的不是资产的内在价值，而是人性的恐惧与贪婪。当油价一夜之间上涨 7% 而波动率指数几乎纹丝不动时，我们看到的不是市场的理性，而是市场的傲慢——相信自己能够控制风险，相信地缘政治只是短暂噪音。</p>
+<p>但周期从不因为人类的傲慢而改变节奏。石油的周期、技术的周期、货币的周期，它们按照自己的意志运行，不以华尔街的预期为转移。真正聪明的投资者不是比市场更聪明，而是比市场更谦卑——承认自己无法预测未来，但可以通过配置和纪律，在任何未来中都能生存。</p>
+<p>敬畏周期，理解人性，在不确定中寻找概率优势。这不是交易技巧，这是生存智慧。</p>
+<hr>
+<p><em>12H 宏观交易简报 · Pulse 生成 · 永远利他 · 数据驱动决策</em></p>
+<p><strong>免责声明</strong>：本简报仅供参考，不构成投资建议。市场有风险，投资需谨慎。所有数据来源于公开渠道，截至发布时点可能已发生变化。</p>1a:["$","div",null,{"className":"article-body max-w-[65ch] mx-auto lg:mx-0","children":[["$","header",null,{"className":"mb-10 pb-6 border-b border-border","children":[["$","div",null,{"className":"flex items-center gap-2 mb-4","children":[["$","span",null,{"className":"text-xs font-semibold px-2.5 py-1 rounded-md bg-warning/10 text-warning","children":"早报"}],["$","span",null,{"className":"flex items-center gap-1.5 text-xs text-foreground-subtle","children":[["$","$L16",null,{"ref":"$undefined","iconNode":[["path",{"d":"M8 2v4","key":"1cmpym"}],["path",{"d":"M16 2v4","key":"4m81vk"}],["rect",{"width":"18","height":"18","x":"3","y":"4","rx":"2","key":"1hopcy"}],["path",{"d":"M3 10h18","key":"8toen8"}]],"className":"lucide-calendar w-3 h-3"}],"2026-04-30"]}],["$","span",null,{"className":"flex items-center gap-1.5 text-xs text-foreground-subtle","children":[["$","$L16",null,{"ref":"$undefined","iconNode":[["circle",{"cx":"12","cy":"12","r":"10","key":"1mglay"}],["path",{"d":"M12 6v6l4 2","key":"mmk7yg"}]],"className":"lucide-clock w-3 h-3"}],"2026-04-30 09:29"]}]]}],["$","h1",null,{"className":"text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mb-3 leading-snug","children":"🟢 2026-04-30 早报 | 全球宏观与核心交易线索"}],["$","p",null,{"className":"text-sm text-foreground-muted leading-relaxed","children":"地缘风险溢价与科技资本开支博弈。霍尔木兹海峡冲突推升布伦特原油至 120 美元上方，WSJ 报道美国考虑打击伊朗核设施。美联储维持利率不变但 dissent 水平创 1992 年以来新高，鲍威尔明确拒绝特朗普施压。科技巨头资本开支竞赛白热化：Alphabet 与微软均上调 2026 年 capex ..."}]]}],["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$1c"}}]]}]
+1b:["$","div",null,{"className":"lg:hidden mt-12 pt-6 border-t border-border","children":[["$","h2",null,{"className":"text-xs font-semibold text-foreground-subtle uppercase tracking-wider mb-4","children":"Contents"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","a","核心主线",{"href":"#核心主线","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"核心主线"}],["$","a","数据截点",{"href":"#数据截点","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"数据截点"}],["$","a","焦点雷达",{"href":"#焦点雷达","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"焦点雷达"}],["$","a","核心异动-催化剂",{"href":"#核心异动-催化剂","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"核心异动 & 催化剂"}],["$","a","级别一-中东局势急剧升级-油价跳涨-7",{"href":"#级别一-中东局势急剧升级-油价跳涨-7","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"🔴【级别一】中东局势急剧升级，油价跳涨 7%"}],["$","a","级别一-美联储按兵不动-dissent-创-34-年新高",{"href":"#级别一-美联储按兵不动-dissent-创-34-年新高","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"🔴【级别一】美联储按兵不动，dissent 创 34 年新高"}],["$","a","级别二-科技巨头资本开支竞赛-ai-基建投入再创新高",{"href":"#级别二-科技巨头资本开支竞赛-ai-基建投入再创新高","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"🟡【级别二】科技巨头资本开支竞赛，AI 基建投入再创新高"}],["$","a","指数走势预测",{"href":"#指数走势预测","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"指数走势预测"}],["$","a","spx-spy",{"href":"#spx-spy","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"SPX (SPY)"}],["$","a","nasdaq-qqq",{"href":"#nasdaq-qqq","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"NASDAQ (QQQ)"}],["$","a","罗素-2000-iwm",{"href":"#罗素-2000-iwm","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"罗素 2000 (IWM)"}],["$","a","全球市场联动与技术异常",{"href":"#全球市场联动与技术异常","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"全球市场联动与技术异常"}],["$","a","个股深度解读",{"href":"#个股深度解读","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"个股深度解读"}],["$","a","nvda-英伟达-209-25-1-84",{"href":"#nvda-英伟达-209-25-1-84","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"NVDA 英伟达 ($209.25，-1.84%)"}],["$","a","googl-谷歌-349-94-0-05",{"href":"#googl-谷歌-349-94-0-05","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"GOOGL 谷歌 ($349.94，+0.05%)"}],"$L1d","$L1e","$L1f","$L20","$L21","$L22","$L23","$L24","$L25","$L26","$L27","$L28","$L29"]}]]}]
+1d:["$","a","tsm-台积电-393-83-0-38",{"href":"#tsm-台积电-393-83-0-38","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"TSM 台积电 ($393.83，+0.38%)"}]
+1e:["$","a","tsla-特斯拉-372-80-0-86",{"href":"#tsla-特斯拉-372-80-0-86","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"TSLA 特斯拉 ($372.80，-0.86%)"}]
+1f:["$","a","baba-阿里巴巴-130-43-0-32",{"href":"#baba-阿里巴巴-130-43-0-32","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"BABA 阿里巴巴 ($130.43，-0.32%)"}]
+20:["$","a","0700-hk-腾讯控股-472-20-1-46",{"href":"#0700-hk-腾讯控股-472-20-1-46","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"0700.HK 腾讯控股 ($472.20，-1.46%)"}]
+21:["$","a","meta-热点-meta-财报后下跌",{"href":"#meta-热点-meta-财报后下跌","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"META (热点) — Meta 财报后下跌"}]
+22:["$","a","msft-热点-微软-1900-亿-capex-计划",{"href":"#msft-热点-微软-1900-亿-capex-计划","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors opacity-70","children":"MSFT (热点) — 微软 1900 亿 capex 计划"}]
+23:["$","a","整体分析与交易策略",{"href":"#整体分析与交易策略","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"整体分析与交易策略"}]
+24:["$","a","宏观尾部预警",{"href":"#宏观尾部预警","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"宏观尾部预警"}]
+25:["$","a","本周关键日历",{"href":"#本周关键日历","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"本周关键日历"}]
+26:["$","a","资金流向监控",{"href":"#资金流向监控","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"资金流向监控"}]
+27:["$","a","大师智慧",{"href":"#大师智慧","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"大师智慧"}]
+28:["$","a","分析师执笔",{"href":"#分析师执笔","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"分析师执笔"}]
+29:["$","a","哲学思考",{"href":"#哲学思考","className":"text-xs px-3 py-1.5 rounded-full border border-border text-foreground-muted hover:text-primary hover:border-primary/30 transition-colors ","children":"哲学思考"}]
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+2a:I[27201,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0n4z.7yu76je-.js"],"IconMark"]
+8:null
+d:[["$","title","0",{"children":"🟢 2026-04-30 早报 | 全球宏观与核心交易线索 | Pulse | Pulse"}],["$","meta","1",{"name":"description","content":"地缘风险溢价与科技资本开支博弈。霍尔木兹海峡冲突推升布伦特原油至 120 美元上方，WSJ 报道美国考虑打击伊朗核设施。美联储维持利率不变但 dissent 水平创 1992 年以来新高，鲍威尔明确拒绝特朗普施压。科技巨头资本开支竞赛白热化：Alphabet 与微软均上调 2026 年 capex ..."}],["$","meta","2",{"name":"robots","content":"index, follow"}],["$","meta","3",{"property":"og:title","content":"Pulse — Market Insights & Trading Philosophy"}],["$","meta","4",{"property":"og:description","content":"A fusion of trading philosophy, market analysis, and investment wisdom."}],["$","meta","5",{"property":"og:url","content":"https://blog.themarketpulse.uk"}],["$","meta","6",{"property":"og:site_name","content":"Pulse"}],["$","meta","7",{"property":"og:locale","content":"en_US"}],["$","meta","8",{"property":"og:type","content":"website"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"Pulse — Market Insights & Trading Philosophy"}],["$","meta","11",{"name":"twitter:description","content":"A fusion of trading philosophy, market analysis, and investment wisdom."}],["$","link","12",{"rel":"icon","href":"/favicon.ico?favicon.0x3dzn~oxb6tn.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L2a","13",{}]]

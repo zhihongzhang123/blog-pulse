@@ -1,234 +1,186 @@
 #!/usr/bin/env python3
-"""
-市场情绪数据自动更新脚本
-通过 Yahoo Finance API 获取实时市场数据
-"""
-
+"""Fetch real-time market data and save as JSON for the Pulse blog."""
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
+from typing import Optional, Dict, Any
+
 import yfinance as yf
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, 'data')
-MARKET_DATA_FILE = os.path.join(DATA_DIR, 'market-sentiment.json')
+CONTENT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "content")
+OUTPUT = os.path.join(CONTENT_DIR, "market-data.json")
 
-def fetch_sp500():
-    """获取标普 500 数据"""
+# Yahoo Finance ticker mappings
+INDICES = {
+    "SPY": {"name": "S&P 500", "ticker": "SPY"},
+    "QQQ": {"name": "NASDAQ", "ticker": "QQQ"},
+    "DIA": {"name": "DOW", "ticker": "DIA"},
+    "IWM": {"name": "Russell 2000", "ticker": "IWM"},
+}
+
+EXTRAS = {
+    "VIX": {"name": "VIX", "ticker": "^VIX"},
+    "US10Y": {"name": "US 10Y", "ticker": "^TNX"},
+}
+
+COMMODITIES = {
+    "CL": {"name": "WTI Crude", "ticker": "CL=F"},
+    "GC": {"name": "Gold", "ticker": "GC=F"},
+    "SI": {"name": "Silver", "ticker": "SI=F"},
+}
+
+WATCHLIST = {
+    "BABA": {"name": "阿里巴巴", "ticker": "BABA"},
+    "GOOGL": {"name": "谷歌", "ticker": "GOOGL"},
+    "TSLA": {"name": "特斯拉", "ticker": "TSLA"},
+    "NVDA": {"name": "英伟达", "ticker": "NVDA"},
+    "TSM": {"name": "台积电", "ticker": "TSM"},
+    "0700": {"name": "腾讯控股", "ticker": "0700.HK"},
+}
+
+
+def fetch_price(ticker_sym: str) -> Optional[Dict[str, Any]]:
     try:
-        spy = yf.Ticker("SPY")
-        info = spy.fast_info
-        current_price = info['lastPrice']
-        
-        # 获取 200 日均线
-        hist = spy.history(period="1y")
-        ma200 = hist['Close'].rolling(window=200).mean().iloc[-1]
-        
-        # 计算涨跌幅和相对均线位置
-        prev_close = info['previousClose']
-        change_pct = ((current_price - prev_close) / prev_close) * 100
-        vs_ma200 = ((current_price - ma200) / ma200) * 100
-        
+        t = yf.Ticker(ticker_sym)
+        info = t.fast_info
+        price = info.last_price
+        if price is None:
+            return None
+        prev_close = info.previous_close
+        change_pct = ((price - prev_close) / prev_close * 100) if prev_close else 0
         return {
-            'price': round(current_price, 2),
-            'change': round(change_pct, 2),
-            'vs_ma200': round(vs_ma200, 2),
-            'trend': 'bullish' if current_price > ma200 else 'bearish',
-            'updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            "price": round(price, 2),
+            "change_pct": round(change_pct, 2),
         }
     except Exception as e:
-        print(f"❌ 获取标普 500 数据失败：{e}")
+        print(f"  WARN: Failed to fetch {ticker_sym}: {e}")
         return None
 
-def fetch_vix():
-    """获取 VIX 恐慌指数"""
-    try:
-        vix = yf.Ticker("^VIX")
-        info = vix.fast_info
-        current = info['lastPrice']
-        prev_close = info['previousClose']
-        change = ((current - prev_close) / prev_close) * 100
-        
-        return {
-            'value': round(current, 2),
-            'change': round(change, 2),
-            'level': 'low' if current < 20 else ('high' if current > 30 else 'medium'),
-            'updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        }
-    except Exception as e:
-        print(f"❌ 获取 VIX 数据失败：{e}")
-        return None
-
-def fetch_treasury_10y():
-    """获取 10 年期美债收益率"""
-    try:
-        treasury = yf.Ticker("^TNX")
-        info = treasury.fast_info
-        current = info['lastPrice']
-        prev_close = info['previousClose']
-        change = ((current - prev_close) / prev_close) * 100
-        
-        return {
-            'yield': round(current, 2),
-            'change': round(change, 2),
-            'updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        }
-    except Exception as e:
-        print(f"❌ 获取美债收益率数据失败：{e}")
-        return None
-
-def fetch_market_width():
-    """获取市场宽度 (NYSE 上涨家数占比)"""
-    try:
-        # 使用 NYSE 综合指数作为代理
-        nyse = yf.Ticker("^NYA")
-        hist = nyse.history(period="1d")
-        
-        # 简化计算：基于当日涨跌
-        if len(hist) > 0:
-            open_price = hist['Open'].iloc[0]
-            close_price = hist['Close'].iloc[0]
-            width = 65 if close_price > open_price else 35  # 简化估算
-            
-            return {
-                'percentage': width,
-                'updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            }
-    except Exception as e:
-        print(f"❌ 获取市场宽度数据失败：{e}")
-    
-    # 默认值
-    return {
-        'percentage': 65,
-        'updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    }
-
-def fetch_rsi():
-    """计算市场 RSI (基于 SPY)"""
-    try:
-        spy = yf.Ticker("SPY")
-        hist = spy.history(period="3mo")
-        
-        # 计算 RSI
-        delta = hist['Close'].diff()
-        gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
-        loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
-        rs = gain / loss
-        rsi = 100 - (100 / (1 + rs))
-        current_rsi = rsi.iloc[-1]
-        
-        return {
-            'value': round(current_rsi, 1),
-            'level': 'hot' if current_rsi > 70 else ('cold' if current_rsi < 30 else 'neutral'),
-            'updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        }
-    except Exception as e:
-        print(f"❌ 计算 RSI 失败：{e}")
-        return {
-            'value': 62,
-            'level': 'neutral',
-            'updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        }
-
-def fetch_put_call_ratio():
-    """获取 Put/Call 比率"""
-    try:
-        # CBOE Put/Call 比率
-        pcr = yf.Ticker("^PCALL")
-        info = pcr.fast_info
-        current = info['lastPrice']
-        
-        return {
-            'ratio': round(current, 2),
-            'sentiment': 'bullish' if current < 0.7 else ('bearish' if current > 1.0 else 'neutral'),
-            'updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        }
-    except Exception as e:
-        print(f"❌ 获取 Put/Call 比率失败：{e}")
-        # 返回默认值
-        return {
-            'ratio': 0.82,
-            'sentiment': 'neutral',
-            'updated': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        }
-
-def update_html(metrics):
-    """更新 index.html 中的指标显示"""
-    html_path = os.path.join(BASE_DIR, 'index.html')
-    
-    if not os.path.exists(html_path):
-        print(f"❌ HTML 文件不存在：{html_path}")
-        return False
-    
-    with open(html_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-    
-    # 更新标普 500
-    if metrics.get('sp500'):
-        sp500 = metrics['sp500']
-        change_sign = '+' if sp500['change'] >= 0 else ''
-        # 这里可以添加更复杂的 HTML 更新逻辑
-        print(f"   📈 标普 500: {sp500['price']} ({change_sign}{sp500['change']}%)")
-    
-    # 更新 VIX
-    if metrics.get('vix'):
-        vix = metrics['vix']
-        print(f"   😨 VIX: {vix['value']} ({'低' if vix['level'] == 'low' else '高'})")
-    
-    # 更新美债收益率
-    if metrics.get('treasury_10y'):
-        treasury = metrics['treasury_10y']
-        print(f"   📉 10Y 美债：{treasury['yield']}%")
-    
-    # 更新市场宽度
-    if metrics.get('market_width'):
-        width = metrics['market_width']
-        print(f"   📊 市场宽度：{width['percentage']}%")
-    
-    # 更新 RSI
-    if metrics.get('rsi'):
-        rsi = metrics['rsi']
-        print(f"   🌡️ RSI: {rsi['value']} ({rsi['level']})")
-    
-    # 更新 Put/Call
-    if metrics.get('put_call'):
-        pcr = metrics['put_call']
-        print(f"   🛡️ Put/Call: {pcr['ratio']} ({pcr['sentiment']})")
-    
-    return True
 
 def main():
-    print("🚀 开始更新市场情绪数据...")
-    print(f"📅 更新时间：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print()
-    
-    # 确保数据目录存在
-    os.makedirs(DATA_DIR, exist_ok=True)
-    
-    # 获取所有指标
-    metrics = {
-        'sp500': fetch_sp500(),
-        'vix': fetch_vix(),
-        'treasury_10y': fetch_treasury_10y(),
-        'market_width': fetch_market_width(),
-        'rsi': fetch_rsi(),
-        'put_call': fetch_put_call_ratio(),
-        'updated_at': datetime.now().isoformat()
-    }
-    
-    # 保存到 JSON 文件
-    with open(MARKET_DATA_FILE, 'w', encoding='utf-8') as f:
-        json.dump(metrics, f, ensure_ascii=False, indent=2)
-    
-    print()
-    print("📊 数据概览:")
-    update_html(metrics)
-    
-    print()
-    print(f"💾 数据已保存：{MARKET_DATA_FILE}")
-    print("✅ 更新完成！")
-    
-    return metrics
+    print(f"[{datetime.now().isoformat()}] Fetching market data...")
+    all_tickers = []
+    for group in [INDICES, EXTRAS, COMMODITIES, WATCHLIST]:
+        all_tickers.extend(v["ticker"] for v in group.values())
 
-if __name__ == '__main__':
+    # Batch download for speed
+    print(f"  Downloading {len(all_tickers)} tickers...")
+    data = yf.download(all_tickers, period="5d", group_by="ticker", progress=False)
+
+    result = {
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "indices": {},
+        "extras": {},
+        "commodities": {},
+        "watchlist": {},
+    }
+
+    def get_change_from_df(df):
+        """Calculate change% from last 2 rows of dataframe."""
+        if df is None or df.empty:
+            return None
+        # Handle multi-column (some tickers have Open/High/Low/Close)
+        if isinstance(df.columns, tuple) or hasattr(df.columns, "nlevels") and df.columns.nlevels > 1:
+            close_col = ("Close", "") if ("Close", "") in df.columns else df.columns[0]
+        else:
+            close_col = "Close" if "Close" in df.columns else df.columns[0]
+        series = df[close_col].dropna()
+        if len(series) < 2:
+            return None
+        prev = series.iloc[-2]
+        last = series.iloc[-1]
+        return round((last - prev) / prev * 100, 2) if prev else 0
+
+    def get_last_price_from_df(df):
+        if df is None or df.empty:
+            return None
+        if isinstance(df.columns, tuple) or hasattr(df.columns, "nlevels") and df.columns.nlevels > 1:
+            close_col = ("Close", "") if ("Close", "") in df.columns else df.columns[0]
+        else:
+            close_col = "Close" if "Close" in df.columns else df.columns[0]
+        series = df[close_col].dropna()
+        if series.empty:
+            return None
+        return round(series.iloc[-1], 2)
+
+    for key, info in INDICES.items():
+        df = data.get(key) if isinstance(data, dict) else None
+        if df is not None:
+            price = get_last_price_from_df(df)
+            change = get_change_from_df(df)
+            if price is not None:
+                result["indices"][key] = {"name": info["name"], "price": price, "change_pct": change or 0}
+        # Fallback: try direct fetch
+        if key not in result["indices"]:
+            p = fetch_price(info["ticker"])
+            if p:
+                result["indices"][key] = {"name": info["name"], "price": p["price"], "change_pct": p["change_pct"]}
+
+    for key, info in EXTRAS.items():
+        df = data.get(key) if isinstance(data, dict) else None
+        if df is not None:
+            price = get_last_price_from_df(df)
+            change = get_change_from_df(df)
+            if price is not None:
+                # TNX is yield * 10, convert back
+                if key == "US10Y":
+                    price = round(price / 100, 4)
+                result["extras"][key] = {"name": info["name"], "price": price, "change_pct": change or 0}
+        if key not in result["extras"]:
+            p = fetch_price(info["ticker"])
+            if p:
+                if key == "US10Y":
+                    p["price"] = round(p["price"] / 100, 4)
+                result["extras"][key] = {"name": info["name"], "price": p["price"], "change_pct": p["change_pct"]}
+
+    for key, info in COMMODITIES.items():
+        df = data.get(key) if isinstance(data, dict) else None
+        if df is not None:
+            price = get_last_price_from_df(df)
+            change = get_change_from_df(df)
+            if price is not None:
+                result["commodities"][key] = {"name": info["name"], "price": price, "change_pct": change or 0}
+        if key not in result["commodities"]:
+            p = fetch_price(info["ticker"])
+            if p:
+                result["commodities"][key] = {"name": info["name"], "price": p["price"], "change_pct": p["change_pct"]}
+
+    for key, info in WATCHLIST.items():
+        df = data.get(key) if isinstance(data, dict) else None
+        if df is not None:
+            price = get_last_price_from_df(df)
+            change = get_change_from_df(df)
+            if price is not None:
+                result["watchlist"][key] = {"name": info["name"], "price": price, "change_pct": change or 0}
+        if key not in result["watchlist"]:
+            p = fetch_price(info["ticker"])
+            if p:
+                result["watchlist"][key] = {"name": info["name"], "price": p["price"], "change_pct": p["change_pct"]}
+
+    # Generate SP500 chart data from 5-day history
+    spy_df = data.get("SPY")
+    if spy_df is not None:
+        if isinstance(spy_df.columns, tuple) or hasattr(spy_df.columns, "nlevels") and spy_df.columns.nlevels > 1:
+            close_col = ("Close", "") if ("Close", "") in spy_df.columns else spy_df.columns[0]
+        else:
+            close_col = "Close" if "Close" in spy_df.columns else spy_df.columns[0]
+        series = spy_df[close_col].dropna()
+        chart_data = []
+        for idx, val in series.items():
+            date_str = idx.strftime("%b %d") if hasattr(idx, "strftime") else str(idx)[:10]
+            chart_data.append({"date": date_str, "value": round(val, 2)})
+        result["chart_data"] = chart_data
+
+    # Write output
+    os.makedirs(CONTENT_DIR, exist_ok=True)
+    with open(OUTPUT, "w") as f:
+        json.dump(result, f, indent=2)
+
+    print(f"  Saved to {OUTPUT}")
+    count = sum(len(v) for k, v in result.items() if k != "updated_at")
+    print(f"  Fetched {count} items successfully")
+    return result
+
+
+if __name__ == "__main__":
     main()
